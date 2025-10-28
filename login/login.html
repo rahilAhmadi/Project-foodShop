@@ -7,49 +7,57 @@
     <script src="https://kit.fontawesome.com/9b12089149.js" crossorigin="anonymous"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>صفحه ی ورود</title>
 </head>
 <body>
-   <section class="login_form_section">
-    <a class="back" href="index.html">
-        <img class="icon_login_back" src="asset/icon/right-arrow.png">
-    <p>بازگشت</p>
-    </a>
-    <form class="form_login" action="actionLogin.php" method="post">
-        <div class="user">
-            <label class="lbl_user">نام کاربری:</label>
-            <input class="input_user" name="input_user" type="text">
-        </div>
-        <div class="pass">
-            <label class="lbl_pass">رمز عبور:</label>
-            <div class="password_box">
-                <div class="toggle">
-                    <i class="far fa-eye"></i>
-                    <i class="far fa-eye-slash"></i>
-                </div>
-                <input class="input_pass" id="input_pass"  name="input_pass" type="password">
+    <section class="login_form_section">
+        <a class="back" href="index.html">
+            <img class="icon_login_back" src="asset/icon/right-arrow.png">
+            <p>بازگشت</p>
+        </a>
+        
+        <form class="form_login" id="loginForm" onsubmit="return validateLoginForm()" action="actionLogin.php" method="post">
+            
+            <div class="user">
+                <label class="lbl_user">نام کاربری:</label>
+                <input class="input_user" id="input_user" name="input_user" type="text">
+                <p class="error-message" id="userError"></p> 
             </div>
-        </div>
-        <input class="btn_submit" type="submit" value="ورود">
-        <p class="question">اکانت ندارید؟ <a href="register.html"  class="pink a_register">ثبت نام</a></p>
-    </form>
-   </section>
+            
+            <div class="pass">
+                <label class="lbl_pass">رمز عبور:</label>
+                <div class="password_box">
+                    <div class="toggle">
+                        <i class="far fa-eye"></i>
+                        <i class="far fa-eye-slash"></i>
+                    </div>
+                    <input class="input_pass" id="input_pass" name="input_pass" type="password" maxlength="8">
+                </div>
+                <p class="error-message" id="passError"></p> 
+            </div>
+            
+            <input class="btn_submit" type="submit" value="ورود">
+            
+            <p class="question">اکانت ندارید؟ <a href="register.html" class="pink a_register">ثبت نام</a></p>
+            <p class="error-message general-error" id="generalError"></p>
+        </form>
+    </section>
+    
+    <script>
+        const toggle=document.querySelector('.toggle');
+        const input=document.getElementById('input_pass');
+        toggle.addEventListener('click',function(){
+            console.log("click shodammm")
+            if(input.type==="password"){
+                input.setAttribute('type','text');
+                toggle.classList.add('hide');
+            }else{
+                input.setAttribute('type','password');
+                toggle.classList.remove('hide');
+            }
+        })
+    </script>
    <script src="js/all.min.js"></script>
-   <script>
-const toggle=document.querySelector('.toggle');
-const input=document.getElementById('input_pass');
-toggle.addEventListener('click',function(){
-    console.log("click shodammm")
-    if(input.type==="password"){
-        input.setAttribute('type','text');
-        toggle.classList.add('hide');
-    }else{
-        input.setAttribute('type','password');
-        toggle.classList.remove('hide');
-    }
-})
-   </script>
+<script src="js/login.js"></script>
 </body>
 </html>
-
-<!-- کاراکتر های غیر مجاز - "" و ' 'و ;است -->

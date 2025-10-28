@@ -105,3 +105,27 @@ body{
     font-size: 14px;
     margin-right: 10px;
 }
+/* استایل برای متن پیام خطا */
+.error-message {
+    /* رنگ قرمز برای متن خطا */
+    color: #CC0000; 
+    font-size: 0.85em;
+    margin-top: 5px;
+    direction: rtl;
+    text-align: right;
+    font-weight: bold; /* اختیاری: برای بهتر دیده شدن */
+}
+
+/* استایل برای کادر ورودی در صورت وجود خطا */
+.input-error {
+    /* کادر قرمز برای فیلد */
+    border: 1px solid #CC0000 !important; 
+    /* سایه یا پس‌زمینه کم‌رنگ قرمز برای تأکید بیشتر */
+    box-shadow: 0 0 5px rgba(204, 0, 0, 0.5);
+}
+
+/* استایل خطای کلی (اختیاری) */
+.general-error {
+    margin-top: 10px;
+    text-align: center;
+}
