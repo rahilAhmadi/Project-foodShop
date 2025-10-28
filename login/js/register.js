@@ -12,10 +12,6 @@ const capital = document.getElementById("capital");
 const number = document.getElementById("number");
 const length = document.getElementById("length");
 
-// -------------------------------------------------------------------
-// توابع نمایش خطا و موفقیت
-// -------------------------------------------------------------------
-
 function setError(input, message) {
     const formControl = input.parentElement;
     const errorSpan = formControl.querySelector('span');
@@ -27,10 +23,6 @@ function setSuccess(input) {
     const formControl = input.parentElement;
     formControl.className = 'form-control success';
 }
-
-// -------------------------------------------------------------------
-// توابع اعتبارسنجی اصلی
-// -------------------------------------------------------------------
 
 /**
  * اعتبارسنجی فیلد نام (فقط حروف فارسی، حداقل 2 و حداکثر 50 کاراکتر)
@@ -47,7 +39,7 @@ function validateName() {
         setError(nameInput, 'نام باید فقط شامل حروف فارسی باشد.');
         return false;
     } else if (nameValue.length < 2 || nameValue.length > 50) {
-         setError(nameInput, 'نام باید بین 2 تا 50 کاراکتر باشد.');
+        setError(nameInput, 'نام باید بین 2 تا 50 کاراکتر باشد.');
         return false;
     } else {
         setSuccess(nameInput);
@@ -56,18 +48,18 @@ function validateName() {
 }
 
 /**
- * اعتبارسنجی فیلد نام کاربری (دقیقاً ۸ کاراکتر)
+ * اعتبارسنجی فیلد نام کاربری
  */
 function validateUsername() {
     const userValue = userInput.value.trim();
     // حروف انگلیسی، اعداد، آندرسکور (_) و دات (.), دقیقاً 8 کاراکتر
-    const usernameRegex = /^[a-zA-Z0-9_.-]{8}$/; 
+    const usernameRegex = /^[a-zA-Z0-9_.-]{5,10}$/; 
 
     if (userValue === '') {
         setError(userInput, 'پر کردن نام کاربری الزامی است.');
         return false;
-    } else if (userValue.length !== 8) { 
-        setError(userInput, 'نام کاربری باید دقیقاً ۸ کاراکتر باشد.'); // پیام اصلاح شده
+    } else if (userValue.length < 5 || userValue.length > 10) { 
+        setError(userInput, 'نام کاربری باید بین5 تا 10 کاراکتر باشد.'); 
         return false;
     } else if (!usernameRegex.test(userValue)) {
         setError(userInput, 'نام کاربری فقط می‌تواند شامل حروف انگلیسی، اعداد، _ و . باشد.');
@@ -108,9 +100,7 @@ function validatePassword() {
 
 
 /**
- * به‌روزرسانی وضعیت پیام‌های راهنما رمز عبور
- * @param {string} value - مقدار ورودی رمز عبور
- */
+ * به‌روزرسانی وضعیت پیام‌های راهنما رمز عبور */
 function updatePasswordHelpMessage(value) {
     const lowerCaseLetters = /[a-z]/g;
     const upperCaseLetters = /[A-Z]/g;
@@ -154,11 +144,6 @@ function updatePasswordHelpMessage(value) {
     }
 }
 
-
-// -------------------------------------------------------------------
-// Event Listeners (هندل کننده‌های رویداد)
-// -------------------------------------------------------------------
-
 // اعتبارسنجی هنگام ارسال فرم
 form.addEventListener('submit', (e) => {
     // اجرای اعتبارسنجی‌ها
@@ -167,8 +152,9 @@ form.addEventListener('submit', (e) => {
     const isPassValid = validatePassword();
     
     // اگر یکی از اعتبارسنجی‌ها موفق نبود، از ارسال فرم جلوگیری کن
+    // این همان بخشی است که تضمین می‌کند هر سه فیلد باید معتبر باشند.
     if (!isNameValid || !isUserValid || !isPassValid) {
-        e.preventDefault();
+        e.preventDefault(); // **جلوگیری از رفتن به صفحه بعدی**
     }
 });
 
@@ -187,7 +173,7 @@ passInput.addEventListener('focus', () => {
 passInput.addEventListener('blur', () => {
     // اگر فیلد خالی نیست، پیام راهنما پنهان شود
     if (passInput.value.trim() !== '') {
-         messageBox.style.display = "none";
+        messageBox.style.display = "none";
     }
 });
 
@@ -210,12 +196,3 @@ togglePassword.addEventListener('click', function (e) {
         formControl.classList.remove('hide');
     }
 });
-
-// توابع متفرقه (اختیاری)
-function showVmsSnackbar(message, bgColor) {
-    var x = document.getElementById("snackbar-vms");
-    x.innerText = message;
-    x.style.backgroundColor = bgColor;
-    x.className = "show";
-    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-}
