@@ -94,15 +94,15 @@ a {
 }
 
 .menu .menuRight .hover:hover {
-    background-color: #f385aaad;
-    border: 1px solid #F012BE;
+    background-color: rgb(255, 188, 107);
+    border: 1px solid rgb(255,176,77);
     border-radius: 20px;
     padding: 3px 5px;
 }
 
 .menu .menuRight .logo img {
-    width: 90px;
-    height: 70px;
+    width: 140px;
+    height: 50px;
 }
 
 .menu .menuRight .fa {
@@ -137,11 +137,12 @@ a {
 }
 
 .menu .menuLeft ul li .btn_menu_a {
-    background-color: rgba(198,155,219,1);;
+    background-color: rgb(8, 113, 55);;
     padding: 10px 60px;
     border-radius: 10px;
     width: 200px;
     margin-left: 30px;
+    color: #fff;;
 }
 .vorod_btn{
     padding: 10px 40px !important;
@@ -149,7 +150,7 @@ a {
 .menu .menuLeft ul li .action_button {
     width: 120px;
     background-color: #fff;
-    border: 3px solid rgba(198,155,219,0.5);
+    border: 3px solid rgba(3, 108, 35, 0.742);
     position: relative;
     padding: 10px 60px;
 }
