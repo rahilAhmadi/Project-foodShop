@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 30, 2025 at 12:13 PM
+-- Generation Time: Oct 31, 2025 at 12:37 PM
 -- Server version: 8.3.0
 -- PHP Version: 8.2.18
 
@@ -57,7 +57,8 @@ CREATE TABLE IF NOT EXISTS `users` (
   `user_Password` varchar(255) COLLATE utf8mb3_persian_ci NOT NULL,
   `wallet_Balance` decimal(10,2) NOT NULL DEFAULT '0.00',
   PRIMARY KEY (`user_ID`),
-  UNIQUE KEY `user_ID` (`full_Name`)
+  UNIQUE KEY `user_ID` (`full_Name`),
+  KEY `fk_users_roles` (`role_ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_persian_ci;
 COMMIT;
 
