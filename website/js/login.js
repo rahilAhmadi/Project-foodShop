@@ -42,7 +42,7 @@ function validateLoginForm() {
         userError.textContent =  'نام کاربری باید بین 5 تا 10 کاراکتر باشد.';
         userInput.classList.add('input-error');
         isValid = false;
-    } else if (!/^[a-zA-Z0-9]+$/.test(username)) { 
+    } else if (! /^[a-zA-Z0-9_.-]+$/.test(username)) {
         userError.textContent = 'نام کاربری فقط می‌تواند شامل حروف و اعداد انگلیسی باشد.';
         userInput.classList.add('input-error');
         isValid = false;
