@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<title>افزودن غذای جدید</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="css/AddFood.css">
+
+
+</head>
+<body>
+
+<div class="food_section">
+
+<form class="form_food" action="#" method="POST" enctype="multipart/form-data">
+
+    <h2 style="text-align:center;margin-bottom:15px;">افزودن غذای جدید</h2>
+
+    <label class="label_food">نام غذا:</label>
+    <input type="text" class="input_food" placeholder="مثلاً پیتزا مخصوص" id="name">
+    <span class="error-message" id="nameError"></span>
+
+    <label class="label_food">توضیحات غذا:</label>
+    <textarea class="input_area" placeholder="توضیحات..." id="description"></textarea>
+    <span class="error-message" id="descriptionError"></span>
+
+    <label class="label_food">قیمت:</label>
+    <input type="text" class="input_food" placeholder="مثلاً 250000" id="price">
+    <span class="error-message" id="priceError"></span>
+
+    <label class="label_food">تصویر غذا:</label>
+    <input type="file" class="input_food" id="image" accept="image/*">
+    <span class="error-message" id="imageError"></span>
+    <div style="margin-top:5px;">
+        <img id="imagePreview" src="" alt="پیش‌نمایش تصویر" style="max-width:150px; display:none; border:1px solid #ccc; padding:3px;">
+    </div>
+
+    <button type="submit" class="btn_submit_food">ثبت غذا</button>
+
+</form>
+</div>
+<script src="js/all.min.js"></script>
+<script src="js/AddFood.js"></script>
+</body>
+
+</html>
+
+
