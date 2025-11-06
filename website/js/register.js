@@ -30,8 +30,7 @@ function setSuccess(input) {
 function validateName() {
     const nameValue = nameInput.value.trim();
     // حروف فارسی و فاصله، حداقل 2 تا 50 کاراکتر
-    const nameRegex = /^[\u0621-\u064A\s]{2,50}$/; 
-
+    const nameRegex =/^[\u0600-\u06FF\s]{2,50}$/;
     if (nameValue === '') {
         setError(nameInput, 'پر کردن نام الزامی است.');
         return false;
@@ -52,7 +51,7 @@ function validateName() {
  */
 function validateUsername() {
     const userValue = userInput.value.trim();
-    // حروف انگلیسی، اعداد، آندرسکور (_) و دات (.), دقیقاً 8 کاراکتر
+    // حروف انگلیسی، اعداد، آندرسکور (_) و دات (.),  
     const usernameRegex = /^[a-zA-Z0-9_.-]{5,10}$/; 
 
     if (userValue === '') {
