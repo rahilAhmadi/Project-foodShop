@@ -11,13 +11,17 @@ if(isset($_POST['input_name']) && !empty($_POST['input_name'])&&
     $connect = mysqli_connect('localhost', 'root', '', 'daspokht');
     $sql = 'insert into users (role_ID,full_Name,user_Name,user_Password) VALUES (2,"'.$full_Name.'","'.$user_Name.'","'.$user_Password.'")';
     $query = mysqli_query($connect, $sql);
-    echo $full_Name."++++".$user_Name."++++".$user_Password."true";
-}
-else
-{
-    header('location:register.html');
+        echo "<script>
+                alert('ثبت‌نام موفق بود');
+                window.location.href='login.html';
+              </script>";
+              echo $full_Name."++++".$user_Name."++++".$user_Password."true";
+    } else {
+        echo "<script>
+                alert('خطایی رخ داد');
+                window.location.href='register.html';
+              </script>";
+    }
 
-}
 mysqli_close($connect);
-
-header('location:login.html');
+?>
