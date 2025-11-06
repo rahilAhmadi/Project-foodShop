@@ -31,7 +31,466 @@
                 <li class="li-menu-dashboard"><a href="#">ورود به سایت<i class="fa-solid fa-globe"></i></a></li>
             </ul>
         </aside>
-       
+        <main data-id="dashboard" class="index-main" dir="rtl">
+            <div class="top-dashboard">
+                <div class="action">
+                    <div class="profile" onclick="toggleMenu()">
+                        <img src="asset/icon/user-profile.png" alt="profile img">
+                    </div>
+                    <div class="menu-profile-dashboard">
+                        <h3>محمدرضا احمدپور
+                            <br> <span>طراح و برنامه نویس وب</span>
+                        </h3>
+                        <ul>
+                            <li><img src="asset/icon/user-profile.png" alt=""><a href="#">پروفایل من</a></li>
+                            <li><img src="asset/icon/edit.png" alt=""><a href="#">تغییر اطلاعات</a></li>
+                            <li><img src="asset/icon/inbox.png" alt=""><a href="#">پیام ها</a></li>
+                            <li><img src="asset/icon/setting.png" alt=""><a href="#">تنظیمات</a></li>
+                            <li><img src="asset/icon/help.jpg" alt=""><a href="#">پشتیبانی</a></li>
+                            <li><img src="asset/icon/logout.png" alt=""><a href="#"> خروچ</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="search">
+                    <input type="text" placeholder="جستجو..." class="inputSearch">
+                    <button class="btnSearch">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="box-dashboard">
+                <div class="item-box-dashboard">
+                    <div class="icon_box_dashboard order_dash"><i class="fa-solid fa-cart-shopping"></i></div>
+                    <div class="text_box_dashboard">
+                        <h3>تعداد سفارش</h3>
+                        <p><span> 18 </span>سفارش جدید</p>
+                    </div>
+                </div>
+                <div class="item-box-dashboard">
+                    <div class="icon_box_dashboard sale_dash"><i class="fa-regular fa-credit-card"></i></div>
+                    <div class="text_box_dashboard">
+                        <h3>تعداد فروش</h3>
+                        <p>
+                            <span>12</span>
+                            فروش
+                        </p>
+                    </div>
+                </div>
+                <div class="item-box-dashboard">
+                    <div class="icon_box_dashboard user_dash"><i class="fa-solid fa-user"></i></div>
+                    <div class="text_box_dashboard">
+                        <h3>تعداد کاربر</h3>
+                        <p><span>255 </span>کاربر</p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="chart-dashboard">
+                <canvas id="myChart" width="300" height="150"></canvas>
+
+            </div>
+        </main>
+        <main class="prodcut_main" data-id="product">
+            <ul class="product-menu">
+                <li data-name="iranianFood-submenu" class="active-submenu">مدیریت غذای ایرانی</li>
+                <li data-name="fastFood-submenu">مدیریت فست فود</li>
+                <li data-name="kebab-submenu">مدیریت کباب</li>
+                <li data-name="sokhari-submenu">مدیریت سوخاری</li>
+                <li data-name="drink-submenu">مدیریت نوشیدنی</li>
+            </ul>
+            <div class="subdivs" data-id="iranianFood-submenu">
+                <div class="prodcut_items_box">
+                    <div class="img_text_product_item">
+                        <img src="./asset/img/iranifood1.jpg" alt="">
+                        <div class="text_prodcut_item_box">
+                            <h3>چلوکباب سلطانی</h3>
+                            <div class="price_prodcut_box">
+                                <h4> قیمت: </h4>
+                                <h5>530000 تومان</h5>
+                            </div>
+                            <div class="count_prodcut_box">
+                                <h4> تعداد: </h4>
+                                <h5>15 عدد</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="buttons_product_item">
+                        <div class="edite_delete_buttons_product_item">
+                            <a class="edit_product_item" href="#">ویرایش</a>
+                            <a class="delete_product_item" href="#">حذف محصول</a>
+                        </div>
+                        <a class="disable_product_item" href="#">غیر فعال</a>
+                    </div>
+                </div>
+                <div class="prodcut_items_box">
+                    <div class="img_text_product_item">
+                        <img src="./asset/img/iranifood2.jpg" alt="">
+                        <div class="text_prodcut_item_box">
+                            <h3>زرشک پلو با مرغ</h3>
+                            <div class="price_prodcut_box">
+                                <h4> قیمت: </h4>
+                                <h5>430000 تومان</h5>
+                            </div>
+                            <div class="count_prodcut_box">
+                                <h4> تعداد: </h4>
+                                <h5>10 عدد</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="buttons_product_item">
+                        <div class="edite_delete_buttons_product_item">
+                            <a class="edit_product_item" href="#">ویرایش</a>
+                            <a class="delete_product_item" href="#">حذف محصول</a>
+                        </div>
+                        <a class="disable_product_item" href="#">غیر فعال</a>
+                    </div>
+                </div>
+            </div>
+            <div class="subdivs" data-id="fastFood-submenu">
+
+                <div class="prodcut_items_box">
+                    <div class="img_text_product_item">
+                        <img src="./asset/img/fastfood1.jpg" alt="">
+                        <div class="text_prodcut_item_box">
+                            <h3>همبرگر زغالی مخصوص</h3>
+                            <div class="price_prodcut_box">
+                                <h4> قیمت: </h4>
+                                <h5>256000 تومان</h5>
+                            </div>
+                            <div class="count_prodcut_box">
+                                <h4> تعداد: </h4>
+                                <h5>55 عدد</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="buttons_product_item">
+                        <div class="edite_delete_buttons_product_item">
+                            <a class="edit_product_item" href="#">ویرایش</a>
+                            <a class="delete_product_item" href="#">حذف محصول</a>
+                        </div>
+                        <a class="disable_product_item" href="#">غیر فعال</a>
+                    </div>
+                </div>
+                <div class="prodcut_items_box">
+                    <div class="img_text_product_item">
+                        <img src="./asset/img/fastfood2.jpg" alt="">
+                        <div class="text_prodcut_item_box">
+                            <h3>پیتزا مخلوط گوشت و مرغ</h3>
+                            <div class="price_prodcut_box">
+                                <h4> قیمت: </h4>
+                                <h5>335000 تومان</h5>
+                            </div>
+                            <div class="count_prodcut_box">
+                                <h4> تعداد: </h4>
+                                <h5>6 عدد</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="buttons_product_item">
+                        <div class="edite_delete_buttons_product_item">
+                            <a class="edit_product_item" href="#">ویرایش</a>
+                            <a class="delete_product_item" href="#">حذف محصول</a>
+                        </div>
+                        <a class="disable_product_item" href="#">غیر فعال</a>
+                    </div>
+                </div>
+            </div>
+            <div class="subdivs" data-id="kebab-submenu">
+                <div class="prodcut_items_box">
+                    <div class="img_text_product_item">
+                        <img src="./asset/img/kabab2.jpg" alt="">
+                        <div class="text_prodcut_item_box">
+                            <h3>لقمه گوسفندی</h3>
+                            <div class="price_prodcut_box">
+                                <h4> قیمت: </h4>
+                                <h5>580000 تومان</h5>
+                            </div>
+                            <div class="count_prodcut_box">
+                                <h4> تعداد: </h4>
+                                <h5>15 عدد</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="buttons_product_item">
+                        <div class="edite_delete_buttons_product_item">
+                            <a class="edit_product_item" href="#">ویرایش</a>
+                            <a class="delete_product_item" href="#">حذف محصول</a>
+                        </div>
+                        <a class="disable_product_item" href="#">غیر فعال</a>
+                    </div>
+                </div>
+                <div class="prodcut_items_box">
+                    <div class="img_text_product_item">
+                        <img src="./asset/img/kabab1.jpg" alt="">
+                        <div class="text_prodcut_item_box">
+                            <h3>جوجه کباب</h3>
+                            <div class="price_prodcut_box">
+                                <h4> قیمت: </h4>
+                                <h5>389000 تومان</h5>
+                            </div>
+                            <div class="count_prodcut_box">
+                                <h4> تعداد: </h4>
+                                <h5>4 عدد</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="buttons_product_item">
+                        <div class="edite_delete_buttons_product_item">
+                            <a class="edit_product_item" href="#">ویرایش</a>
+                            <a class="delete_product_item" href="#">حذف محصول</a>
+                        </div>
+                        <a class="disable_product_item" href="#">غیر فعال</a>
+                    </div>
+                </div>
+                <div class="prodcut_items_box">
+                    <div class="img_text_product_item">
+                        <img src="./asset/img/kabab3.jpg" alt="">
+                        <div class="text_prodcut_item_box">
+                            <h3>کباب وزیری</h3>
+                            <div class="price_prodcut_box">
+                                <h4> قیمت: </h4>
+                                <h5>910000 تومان</h5>
+                            </div>
+                            <div class="count_prodcut_box">
+                                <h4> تعداد: </h4>
+                                <h5>5 عدد</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="buttons_product_item">
+                        <div class="edite_delete_buttons_product_item">
+                            <a class="edit_product_item" href="#">ویرایش</a>
+                            <a class="delete_product_item" href="#">حذف محصول</a>
+                        </div>
+                        <a class="disable_product_item" href="#">غیر فعال</a>
+                    </div>
+                </div>
+                <div class="prodcut_items_box">
+                    <div class="img_text_product_item">
+                        <img src="./asset/img/kabab4.jpg" alt="">
+                        <div class="text_prodcut_item_box">
+                            <h3>میکس کباب خانواده</h3>
+                            <div class="price_prodcut_box">
+                                <h4> قیمت: </h4>
+                                <h5>3530000 تومان</h5>
+                            </div>
+                            <div class="count_prodcut_box">
+                                <h4> تعداد: </h4>
+                                <h5>7 عدد</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="buttons_product_item">
+                        <div class="edite_delete_buttons_product_item">
+                            <a class="edit_product_item" href="#">ویرایش</a>
+                            <a class="delete_product_item" href="#">حذف محصول</a>
+                        </div>
+                        <a class="disable_product_item" href="#">غیر فعال</a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="subdivs" data-id="sokhari-submenu">
+                <div class="prodcut_items_box">
+                    <div class="img_text_product_item">
+                        <img src="./asset/img/sokhari1.jpg" alt="">
+                        <div class="text_prodcut_item_box">
+                            <h3>میکس چیکن</h3>
+                            <div class="price_prodcut_box">
+                                <h4> قیمت: </h4>
+                                <h5>460000 تومان</h5>
+                            </div>
+                            <div class="count_prodcut_box">
+                                <h4> تعداد: </h4>
+                                <h5>35 عدد</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="buttons_product_item">
+                        <div class="edite_delete_buttons_product_item">
+                            <a class="edit_product_item" href="#">ویرایش</a>
+                            <a class="delete_product_item" href="#">حذف محصول</a>
+                        </div>
+                        <a class="disable_product_item" href="#">غیر فعال</a>
+                    </div>
+                </div>
+                <div class="prodcut_items_box">
+                    <div class="img_text_product_item">
+                        <img src="./asset/img/sokhari2.jpg" alt="">
+                        <div class="text_prodcut_item_box">
+                            <h3>چیکن استریپس 5 تکه</h3>
+                            <div class="price_prodcut_box">
+                                <h4> قیمت: </h4>
+                                <h5>430000 تومان</h5>
+                            </div>
+                            <div class="count_prodcut_box">
+                                <h4> تعداد: </h4>
+                                <h5>12 عدد</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="buttons_product_item">
+                        <div class="edite_delete_buttons_product_item">
+                            <a class="edit_product_item" href="#">ویرایش</a>
+                            <a class="delete_product_item" href="#">حذف محصول</a>
+                        </div>
+                        <a class="disable_product_item" href="#">غیر فعال</a>
+                    </div>
+                </div>
+                <div class="prodcut_items_box">
+                    <div class="img_text_product_item">
+                        <img src="./asset/img/sokhari3.jpg" alt="">
+                        <div class="text_prodcut_item_box">
+                            <h3>فراید چیکن3 تکه</h3>
+                            <div class="price_prodcut_box">
+                                <h4> قیمت: </h4>
+                                <h5>580000 تومان</h5>
+                            </div>
+                            <div class="count_prodcut_box">
+                                <h4> تعداد: </h4>
+                                <h5>14 عدد</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="buttons_product_item">
+                        <div class="edite_delete_buttons_product_item">
+                            <a class="edit_product_item" href="#">ویرایش</a>
+                            <a class="delete_product_item" href="#">حذف محصول</a>
+                        </div>
+                        <a class="disable_product_item" href="#">غیر فعال</a>
+                    </div>
+                </div>
+                <div class="prodcut_items_box">
+                    <div class="img_text_product_item">
+                        <img src="./asset/img/sokhari4.jpg" alt="">
+                        <div class="text_prodcut_item_box">
+                            <h3>ساندویچ سوخاری</h3>
+                            <div class="price_prodcut_box">
+                                <h4> قیمت: </h4>
+                                <h5>230000 تومان</h5>
+                            </div>
+                            <div class="count_prodcut_box">
+                                <h4> تعداد: </h4>
+                                <h5>16 عدد</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="buttons_product_item">
+                        <div class="edite_delete_buttons_product_item">
+                            <a class="edit_product_item" href="#">ویرایش</a>
+                            <a class="delete_product_item" href="#">حذف محصول</a>
+                        </div>
+                        <a class="disable_product_item" href="#">غیر فعال</a>
+                    </div>
+                </div>
+               
+            </div>
+            <div class="subdivs" data-id="drink-submenu">
+
+                <div class="prodcut_items_box">
+                    <div class="img_text_product_item">
+                        <img src="./asset/img/noshidani1.jpg" alt="">
+                        <div class="text_prodcut_item_box">
+                            <h3>دوغ سنتی زالی</h3>
+                            <div class="price_prodcut_box">
+                                <h4> قیمت: </h4>
+                                <h5>53000 تومان</h5>
+                            </div>
+                            <div class="count_prodcut_box">
+                                <h4> تعداد: </h4>
+                                <h5>65 عدد</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="buttons_product_item">
+                        <div class="edite_delete_buttons_product_item">
+                            <a class="edit_product_item" href="#">ویرایش</a>
+                            <a class="delete_product_item" href="#">حذف محصول</a>
+                        </div>
+                        <a class="disable_product_item" href="#">غیر فعال</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <main class="order_main" data-id="order"></main>
+        <main data-id="addProduct">
+            <form class="formAddProduct" action="">
+                <div class="add-product-inputs">
+                    <div class="product-name inputdiv">
+                        <label>نام محصول</label>
+                        <input type="text">
+                    </div>
+                    <div class="product-type inputdiv">
+                        <label>نوع محصول</label>
+                        <input type="text">
+                    </div>
+                    <div class="product-count inputdiv">
+                        <label>تعداد محصول</label>
+                        <input type="text">
+                    </div>
+                    <div class="product-price inputdiv">
+                        <label>قیمت محصول</label>
+                        <input type="text">
+                    </div>
+                </div>
+                <div class="add-product-input-bottom">
+                   
+                    <div class="image_uploader">
+                        <label class="inputLable" for="inputTag1">
+                            <div>
+                                <span class="textInput">انتخاب عکس ویترین</span><br />
+                                <i class="fa fa-2x fa-camera icon_prev"></i>
+                            </div>
+                            <input id="inputTag1" type="file" /><br />
+                            <img  class="image-prev" src="./asset/img/comment_1.jpg">
+                        </label>
+                    </div>
+            
+                    <div class="image_uploader">
+                        <label class="inputLable" for="inputTag2">
+                            <div>
+                                <span class="textInput">انتخاب عکس بزرگ</span><br />
+                                <i class="fa fa-2x fa-camera icon_prev"></i>
+                            </div>
+                            <input id="inputTag2" type="file" /><br />
+                            <img  class="image-prev" src="./asset/img/comment_5.jpg">
+                        </label>
+                    </div>
+            
+   
+                    <div class="image_uploader">
+                        <label class="inputLable" for="inputTag3">
+                            <div>
+                                <span class="textInput">انتخاب عکس کوچک</span><br />
+                                <i class="fa fa-2x fa-camera icon_prev"></i>
+                            </div>
+                            <input id="inputTag3" type="file" /><br />
+                            <img class="image-prev" src="asset/img/comment_3.jpg">
+                        </label>
+                    </div>
+             
+                    <div class="image_uploader">
+                        <label class="inputLable" for="inputTag4">
+                            <div>
+                                <span class="textInput">انتخاب عکس کوچک</span><br />
+                                <i class="fa fa-2x fa-camera icon_prev"></i>
+                            </div>
+                            <input id="inputTag4" type="file" /><br />
+                            <img class="image-prev" src="asset/img/comment_4.jpg">
+                        </label>
+                    </div>
+            
+            </div>
+
+                <input type="submit" class="button" value="ثبت کالا جدید">
+
+                </div>
+
+            </form>
+        </main>
+        <main data-id="user">
+           
+        </main>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.0/dist/Chart.min.js"></script>
 
