@@ -1,6 +1,5 @@
 //  برای شناسایی حروف فارسی
-const persianRegex = /[\u0600-\u06FF\uFB8A\u067E\u0686\u0698\u06AF\u200C]/; 
-
+const persianRegex = /^[\u0600-\u06FF\s]+$/;
 function validateLoginForm() {
     // گرفتن المان‌های ورودی
     const userInput = document.getElementById('input_user');
