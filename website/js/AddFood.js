@@ -33,7 +33,7 @@ form.addEventListener("submit", function (e) {
 
   let valid = true;
 
-  // پاک کردن خطاهای قبلی
+  
   fields.forEach(f => {
     f.error.textContent = "";
     f.input.classList.remove("input-error");

@@ -3,6 +3,7 @@
 }
 body{
     background-color: rgb(245, 245, 249);
+    overflow: hidden;
 }
 .dashboard {
     display: flex;
@@ -103,15 +104,15 @@ aside ul .li-menu-dashboard a {
     background-color: #f5f5f5;
 }
 .active-dashboard {
-    background-color: #E7E7FF;
+    background-color: #fff2e7;
 }
 
 .active-dashboard:hover {
-    background-color: #ddddfa !important;
+    background-color: #f1b46e !important;
 }
 
 .active-dashboard a {
-    color: #696CFF !important;
+    color: #ca7508 !important;
 }
 
 /* main Dashboard */
@@ -224,6 +225,7 @@ aside ul .li-menu-dashboard a {
 }
 .top-dashboard{
     margin: 10px 25px 25px 25px;
+    display: none;
 }
 
 #myChart {
@@ -391,7 +393,7 @@ aside ul .li-menu-dashboard a {
     cursor: pointer;
 }
 .btnSearch i{
-    color: #696CFF;
+    color: #012c01;
 }
 
 .search.active input {
@@ -470,7 +472,7 @@ main.prodcut_main , main.order_main{
     width: 25%;
 }
 .disable_product_item {
-    background-color: #696CFF;
+    background-color: #307403;
     width: 150px;
     border-radius: 10px;
     -webkit-border-radius: 10px;
@@ -491,7 +493,7 @@ main.prodcut_main , main.order_main{
 }
 .edit_product_item , .delete_product_item{
     width: 120px;
-    border: 2px solid #696CFF;
+    border: 2px solid #307403;
     padding: 10px;
     font-size: 16px;
     border-radius: 10px;
@@ -507,7 +509,7 @@ main.prodcut_main , main.order_main{
     margin-bottom: 10px;
 }
 .active-submenu{
-    background-color: #D6F5FC;
+    background-color: #fcdab4;
     border-radius: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
@@ -526,6 +528,7 @@ main.prodcut_main , main.order_main{
     -o-border-radius: 5px;
     margin: 20px;
     padding: 10px;
+    height: 100vh;
 }
  .add-product-inputs{
     display: flex;

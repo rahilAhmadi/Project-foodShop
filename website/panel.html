@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/panel.css">
+    <link rel="stylesheet" href="css/AddFood.css"
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <script src="https://kit.fontawesome.com/9d805968ce.js" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -415,77 +416,37 @@
         <main class="order_main" data-id="order"></main>
         <main data-id="addProduct">
             <form class="formAddProduct" action="">
-                <div class="add-product-inputs">
-                    <div class="product-name inputdiv">
-                        <label>نام محصول</label>
-                        <input type="text">
+                <div class="food_section">
+
+                    <form class="form_food" action="#" method="POST" enctype="multipart/form-data">
+                    
+                        <h2 style="text-align:center;margin-bottom:15px;">افزودن غذای جدید</h2>
+                    
+                        <h3 class="label_food">نام غذا:</h3>
+                        <input type="text" class="input_food" placeholder="مثلاً پیتزا مخصوص" id="name">
+                        <span class="error-message" id="nameError"></span>
+                    
+                        <h3 class="label_food">توضیحات غذا:</h3>
+                        <textarea class="input_area" placeholder="توضیحات..." id="description"></textarea>
+                        <span class="error-message" id="descriptionError"></span>
+                    
+                        <h3 class="label_food">قیمت:</h3>
+                        <input type="text" class="input_food" placeholder="مثلاً 250000" id="price">
+                        <span class="error-message" id="priceError"></span>
+                    
+                        <h3 class="label_food">تصویر غذا:</h3>
+                        <input type="file" class="input_food" id="image" accept="image/*">
+                        <span class="error-message" id="imageError"></span>
+                        <div style="margin-top:5px;">
+                            <img id="imagePreview" src="" alt="پیش‌نمایش تصویر" style="max-width:150px; display:none; border:1px solid #ccc; padding:3px;">
+                        </div>
+                
+                        <button type="submit" class="btn_submit_food">ثبت غذا</button>
+                    
+                    </form>
                     </div>
-                    <div class="product-type inputdiv">
-                        <label>نوع محصول</label>
-                        <input type="text">
-                    </div>
-                    <div class="product-count inputdiv">
-                        <label>تعداد محصول</label>
-                        <input type="text">
-                    </div>
-                    <div class="product-price inputdiv">
-                        <label>قیمت محصول</label>
-                        <input type="text">
-                    </div>
-                </div>
-                <div class="add-product-input-bottom">
                    
-                    <div class="image_uploader">
-                        <label class="inputLable" for="inputTag1">
-                            <div>
-                                <span class="textInput">انتخاب عکس ویترین</span><br />
-                                <i class="fa fa-2x fa-camera icon_prev"></i>
-                            </div>
-                            <input id="inputTag1" type="file" /><br />
-                            <img  class="image-prev" src="./asset/img/comment_1.jpg">
-                        </label>
-                    </div>
-            
-                    <div class="image_uploader">
-                        <label class="inputLable" for="inputTag2">
-                            <div>
-                                <span class="textInput">انتخاب عکس بزرگ</span><br />
-                                <i class="fa fa-2x fa-camera icon_prev"></i>
-                            </div>
-                            <input id="inputTag2" type="file" /><br />
-                            <img  class="image-prev" src="./asset/img/comment_5.jpg">
-                        </label>
-                    </div>
-            
-   
-                    <div class="image_uploader">
-                        <label class="inputLable" for="inputTag3">
-                            <div>
-                                <span class="textInput">انتخاب عکس کوچک</span><br />
-                                <i class="fa fa-2x fa-camera icon_prev"></i>
-                            </div>
-                            <input id="inputTag3" type="file" /><br />
-                            <img class="image-prev" src="asset/img/comment_3.jpg">
-                        </label>
-                    </div>
-             
-                    <div class="image_uploader">
-                        <label class="inputLable" for="inputTag4">
-                            <div>
-                                <span class="textInput">انتخاب عکس کوچک</span><br />
-                                <i class="fa fa-2x fa-camera icon_prev"></i>
-                            </div>
-                            <input id="inputTag4" type="file" /><br />
-                            <img class="image-prev" src="asset/img/comment_4.jpg">
-                        </label>
-                    </div>
-            
             </div>
-
-                <input type="submit" class="button" value="ثبت کالا جدید">
-
-                </div>
-
             </form>
         </main>
         <main data-id="user">
@@ -616,8 +577,113 @@
     
     
     
+// add food js
+const form = document.querySelector(".form_food");
+const imageInput = document.getElementById("image");
+const imagePreview = document.getElementById("imagePreview");
+
+imageInput.addEventListener("change", function() {
+    const file = this.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            imagePreview.src = e.target.result;
+            imagePreview.style.display = "block";
+        }
+        reader.readAsDataURL(file);
+    } else {
+        imagePreview.src = "";
+        imagePreview.style.display = "none";
+    }
+});
+
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const fields = [
+    { input: document.getElementById("name"), error: document.getElementById("nameError"), type: "persian" },
+    { input: document.getElementById("description"), error: document.getElementById("descriptionError"), type: "persian" },
+    { input: document.getElementById("price"), error: document.getElementById("priceError"), type: "number" },
+    { input: document.getElementById("image"), error: document.getElementById("imageError"), type: "image" }
+  ];
+
+  const persianRegex = /^[\u0600-\u06FF\s]+$/;
+  const numberRegex = /^[0-9]+$/;
+  const imageRegex = /\.(jpg|jpeg|png|gif|bmp)$/i;
+
+  let valid = true;
+
+  
+  fields.forEach(f => {
+    f.error.textContent = "";
+    f.input.classList.remove("input-error");
+  });
+
+  fields.forEach(f => {
+    const value = f.input.value.trim();
+    if (f.type === "persian") {
+      if (!value) {
+        f.error.textContent = "این فیلد را وارد کنید.";
+        f.input.classList.add("input-error");
+        valid = false;
+      } else if (!persianRegex.test(value)) {
+        f.error.textContent = "فقط حروف فارسی مجاز است.";
+        f.input.classList.add("input-error");
+        valid = false;
+      }
+    }
+
+    if (f.type === "number") {
+      if (!value) {
+        f.error.textContent = "این فیلد را وارد کنید.";
+        f.input.classList.add("input-error");
+        valid = false;
+      } else if (!numberRegex.test(value)) {
+        f.error.textContent = "فقط عدد مجاز است.";
+        f.input.classList.add("input-error");
+        valid = false;
+      } else {
+        const priceNum = parseInt(value, 10);
+        if (priceNum < 250000 || priceNum > 1000000) {
+          f.error.textContent = "قیمت باید بین 250,000 تا 1,000,000 تومان باشد.";
+          f.input.classList.add("input-error");
+          valid = false;
+        }
+      }
+    }
+
+    if (f.type === "image") {
+      const file = f.input.files[0];
+      if (!file) {
+        f.error.textContent = "یک تصویر انتخاب کنید.";
+        f.input.classList.add("input-error");
+        valid = false;
+      } else if (!imageRegex.test(file.name)) {
+        f.error.textContent = "فرمت تصویر معتبر نیست (jpg, png, gif, bmp).";
+        f.input.classList.add("input-error");
+        valid = false;
+      }
+    }
+  });
+
+  if (valid) {
+    alert("غذای جدید با موفقیت به منو اضافه شد!");
+      form.reset();
+
+    // پاک کردن پیش‌نمایش تصویر
+    imagePreview.src = "";
+    imagePreview.style.display = "none";
+
+    // پاک کردن کلاس‌های خطا
+    fields.forEach(f => f.input.classList.remove("input-error"));
+    // form.submit();
+  }
+});
+
+
+
         </script>
- 
+
 </body>
 
 </html>
