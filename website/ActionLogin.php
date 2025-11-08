@@ -22,6 +22,7 @@ if (isset($_POST['input_user']) && !empty($_POST['input_user']) &&
         $_SESSION['login'] = true;
         $_SESSION['name'] = $row['full_Name'];
         $_SESSION['username'] = $row['user_Name'];
+        $_SESSION['last_activity'] = time();
 
         // ورود موفق
         echo "<script>

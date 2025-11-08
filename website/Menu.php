@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 echo '  <div class="menu">
             <div class="menuRight">
                 <ul>
@@ -16,6 +17,8 @@ echo '  <div class="menu">
 if (isset($_SESSION['login'])&& $_SESSION['login']===true)
 
 {
+
+    require_once 'SessionCheck.php';
 
 echo'       <div class="menuLeft">
                 <ul>
