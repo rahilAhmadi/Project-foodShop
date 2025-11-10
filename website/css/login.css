@@ -82,8 +82,9 @@ body{
     height: 45px;
     cursor: pointer;
     border-radius: 50px;
-    border: 1px solid #4BA7B9;
-    background-color: #4ba7b94c;
+    border: 1px solid #012c01;
+    background-color: #307403;
+    color:#fff
 }
 .question{
     padding-right: 70px;
