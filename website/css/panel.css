@@ -659,6 +659,54 @@ i.fa.fa-2x.fa-camera.icon_prev{
   label{
     cursor:pointer;
   }
+  /* select section in add product */
+  .food-select-box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; 
+    gap: 8px;
+    font-family: "Vazir", sans-serif;
+    padding-bottom: 10px;
+    width: 100%;
+    padding-right: 50px;
+    margin-top: 30px;
+  }
+
+  .food-label {
+    color: #012c01;
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .food-dropdown {
+    width: 220px;
+    padding: 10px 14px;
+    font-size: 15px;
+    border-radius: 10px;
+    border: 2px solid #307403;
+    background-color: #fff;
+    color: #012c01;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    appearance: none;
+    background-image: linear-gradient(45deg, transparent 50%, #ff8f00 50%),
+                      linear-gradient(135deg, #ff8f00 50%, transparent 50%);
+    background-position: calc(100% - 20px) calc(1em + 2px),
+                         calc(100% - 15px) calc(1em + 2px);
+    background-size: 5px 5px, 5px 5px;
+    background-repeat: no-repeat;
+  }
+
+  .food-dropdown:hover {
+    border-color: #ff8f00;
+    box-shadow: 0 0 8px rgba(255, 152, 0, 0.6);
+  }
+
+  .food-dropdown:focus {
+    outline: none;
+    border-color: #ff8f00;
+    box-shadow: 0 0 10px rgba(255, 152, 0, 0.6);
+  }
   
   #imageName{
     color:green;
