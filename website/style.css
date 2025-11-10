@@ -20,12 +20,12 @@ a {
     text-decoration: none;
 }
 
-.pink {
-    color: #F385AA;
+.orange {
+    color: #ff8f00 !important;
 }
 
-.pink_dark {
-    color: #F012BE;
+.orange_dark {
+    color:rgba(255, 152, 0, 0.6);
 }
 
 .title {
