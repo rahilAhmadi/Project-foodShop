@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منوی غذا</title>
+      <link rel="shortcut icon" href="asset/icon/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/food.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+		<div class="menu">
+    <div class="menuRight">
+        <ul>
+            <li class="logo">
+                <a href="index.html"><img src="asset/icon/logo.png" alt="logo"></a>
+            </li>
+            <li class="hover"><a href="index.html">خانه</a></li>
+            <li class="hover"><a href="product.html">محصولات</a></li>
+            <li class="hover"><a href="about_me.html">درباره ما</a></li>
+            <li class="hover"><a href="contact_me.html">تماس با ما</a></li>
+        </ul>
+        <i class="fa fa-bars" id="bars"></i>
+    </div>
+    <div class="menuLeft">
+        <ul>
+            <li><a href="shopping-card.html"><img src="asset/icon/card 1.png" alt="shoping-card"></a></li>
+            <li>
+                <a href="login.html" class="buttonLogin btn_menu_a">ورود/عضویت</a>
+                <a href="login.html" class="logoLogin btn_menu_a"><img src="asset/icon/user.png" alt="user"></a>
+            </li>
+        </ul>
+    </div>
+</div>
+      
+	<nav class="categories">
+    <a href="#" class="active" data-category="all">✨ همه</a>
+    <a href="#" data-category="irani">🔥 ایرانی</a>
+    <a href="#" data-category="fastfood">🥪 فست فود</a>
+    <a href="#" data-category="kabab">🍖 کباب</a>
+    <a href="#" data-category="fried">🍟 سوخاری</a>
+    <a href="#" data-category="noshidani">🧋 نوشیدنی</a>
+</nav>
+
+    <!-- Container اصلی -->
+    <div class="container">
+        <!-- محصولات --> 
+	
+        <section class="product-grid">
+            <div class="product-card" data-category="irani">
+                <div class="product-image-container">
+                    <img src="asset/img/iranifood2.jpg" alt="مرغ">
+                </div>
+                <div class="product-info">
+                    <h3>زرشک پلو</h3>
+                    <p>یک پرس زرشک پلو با مرغ با برنج ایرانی</p>
+                    <span class="price">350000</span>
+                    <button class="add-to-cart-btn">+</button>
+                </div>
+            </div>
+            <div class="product-card" data-category="fastfood">
+                <div class="product-image-container">
+                    <img src="asset/img/fastfood1.jpg" alt="ساندویچ">
+                </div>
+                <div class="product-info">
+                    <h3>همبرگر</h3>
+                    <p>همبرگر ذغالی مخصوص با گوشت  تازه</p>
+                    <span class="price">150000</span>
+                    <button class="add-to-cart-btn">+</button>
+                </div>
+            </div>
+			<div class="product-card" data-category="kabab">
+                <div class="product-image-container">
+                    <img src="asset/img/kabab2.jpg" alt="کباب">
+                </div>
+                <div class="product-info">
+                    <h3>لفمه کباب</h3>
+                    <p>لقمه کباب با برنج 100 % ایرانی و گوشت تازه </p>
+                    <span class="price">150000</span>
+                    <button class="add-to-cart-btn">+</button>
+                </div>
+            </div>
+            <div class="product-card" data-category="fried">
+                <div class="product-image-container">
+                    <img src="asset/img/sokhari1.jpg" alt="مرغ سوخاری">
+                </div>
+                <div class="product-info">
+                    <h3>مرغ سوخاری</h3>
+                    <p>مرغ سوخاری ترد و خوشمزه با سیب‌زمینی</p>
+                    <span class="price">280000</span>
+                    <button class="add-to-cart-btn">+</button>
+                </div>
+            </div>
+            <div class="product-card" data-category="noshidani">
+                <div class="product-image-container">
+                    <img src="asset/img/noshidani1.jpg" alt="نوشیدنی">
+                </div>
+                <div class="product-info">
+                    <h3>دوغ</h3>
+                    <p>دوغ سنتی خوش طعم</p>
+                    <span class="price">150000</span>
+                    <button class="add-to-cart-btn">+</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- سایدبار سبد خرید -->
+        <aside class="cart-sidebar">
+            <div class="cart-header">سبد خرید</div>
+            <div class="cart-items"></div>
+            <div class="cart-summary">
+                <div class="summary-row">
+                    <span>جمع کل:</span>
+                    <span class="total-amount">0</span>
+                </div>
+            </div>
+            <input type="text" class="discount-input" placeholder="کد تخفیف">
+            <button class="checkout-btn">پرداخت</button>
+        </aside>
+    </div>
+
+    <!-- Modal محصول -->
+    <div class="modal hidden">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <div class="modal-image-container">
+                <img src="" alt="modal image" class="modal-img">
+            </div>
+            <div class="modal-body">
+                <h2 id="modal-name"></h2>
+                <p class="modal-desc"></p>
+                <p class="modal-price"></p>
+            </div>
+            <div class="modal-footer">
+                <div class="quantity-picker">
+                    <button class="quantity-btn decrease">-</button>
+                    <span class="quantity">1</span>
+                    <button class="quantity-btn increase">+</button>
+                </div>
+                <button class="add-to-cart-modal-btn">افزودن به سبد خرید</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="food.js"></script>
+</body>
+</html>
