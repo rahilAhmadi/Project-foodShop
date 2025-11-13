@@ -1,5 +1,8 @@
 <?php
 session_start();
+if (isset($_GET['user'])) {
+    $_SESSION['username'] = $_GET['user'];
+}
 
 echo '  <div class="menu">
             <div class="menuRight">

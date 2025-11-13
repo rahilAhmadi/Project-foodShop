@@ -12,25 +12,17 @@ if(isset($_POST['input_name']) && !empty($_POST['input_name'])&&
 
     $check_Username=check_username_uniuqe($user_Name);
    
-    if($check_Username)
-    {
-       echo "<script>
-                alert('نام کاربری تکراری است');
-                window.location.href='register.html';
-              </script>";
+    if($check_Username) {
+      header("Location: register.html?msg=" . urlencode('نام کاربری تکراری است'));
+      exit;
+  }
+  else {
+    add_user($full_Name, $user_Name, $user_Password);
+    header("Location: register.html?msg=" . urlencode('ثبت‌نام موفق بود') . "&user=" . urlencode($user_Name));
+    exit;
+}
 
-    }
-    else
-    {
-        add_user($full_Name,$user_Name,$user_Password);
-        echo "<script>
-                alert('ثبت‌نام موفق بود');
-               window.location.href='login.html';
-              </script>";
-              // echo $full_Name."++++".$user_Name."++++".$user_Password."true";
-     
 
-    }
   }
 else 
   {

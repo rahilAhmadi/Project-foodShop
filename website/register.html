@@ -63,7 +63,74 @@
         </form>
     </section>
     <script src="./js/register.js"></script>
+<div class="alert-box hidden">
+    <span class="close-btn">&times;</span>
+    <p>این یک پیام هشدار میباشد</p>
+  </div>
+  
+  <script>
+    window.alert = function(msg) {
+        showCustomAlert(msg);
+    };
+  
+    const alertBox = document.querySelector('.alert-box');
+    const closeBtn = document.querySelector('.close-btn');
+    let timer;
+  
+    function showCustomAlert(message) {
+        alertBox.querySelector('p').innerText = message;
+        alertBox.classList.remove('hide');
+        alertBox.classList.add('show');
+        alertBox.classList.remove('hidden');
+        clearTimeout(timer);
+        timer = setTimeout(() => hideAlertBox(), 4000);
+    }
+  
+    function hideAlertBox() {
+        alertBox.classList.remove('show');
+        alertBox.classList.add('hide');
+    }
+  
+    closeBtn.addEventListener('click', function () {
+        hideAlertBox();
+        clearTimeout(timer);
+    });
 
+const urlParams = new URLSearchParams(window.location.search);
+  const message = urlParams.get('msg');
+  const user = urlParams.get('user');
+
+  if (message) {
+      let bgColor, progressColor;
+
+      if (message.includes('تکراری') || message.includes('خطا')) {
+          bgColor = '#f8b4b4';
+          progressColor = '#ff7b7b';
+          alertBox.style.color = '#721c24';
+      } else {
+          bgColor = '#b2f5b2';
+          progressColor = '#5fd45f';
+          alertBox.style.color = '#0f5132';
+      }
+
+      alertBox.style.backgroundColor = bgColor;
+      alertBox.style.setProperty('--progress-color', progressColor);
+
+      showCustomAlert(message);
+
+      if (message.includes('ثبت‌نام موفق بود')) {
+          setTimeout(() => {
+              window.location.href = 'login.html?user=' + encodeURIComponent(user);
+          }, 3000);
+      }
+
+      setTimeout(() => {
+          const newUrl = window.location.pathname;
+          window.history.replaceState({}, document.title, newUrl);
+      }, 4500);
+  }
+  </script>
+  
 </body>
 
 </html>

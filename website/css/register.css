@@ -134,17 +134,20 @@ margin-top: 15px;
     animation: hideAlert 1s forwards;
     -webkit-animation: hideAlert 1s forwards;
 }
-  .alert-box.show::before{
+.alert-box.show::before {
     content: '';
     position: absolute;
     height: 4px;
     width: 100%;
     bottom: 0;
     left: 0;
-    background-color: #32ac32;
+    background-color: var(--progress-color, #32ac32); /* رنگ قابل تغییر */
     animation: hideMaster 5s linear;
     -webkit-animation: hideMaster 5s linear;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
+
 @keyframes hideMaster{
     0%{
         width: 100%;
@@ -157,6 +160,10 @@ margin-top: 15px;
     animation: showAlert 1s forwards;
     -webkit-animation: showAlert 1s forwards;
 }
+
+
+
+
 @keyframes showAlert{
     0%{
         transform: translateX(100%);
