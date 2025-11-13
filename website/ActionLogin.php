@@ -23,22 +23,17 @@ if (isset($_POST['input_user']) && !empty($_POST['input_user']) &&
         $_SESSION['name'] = $row['full_Name'];
         $_SESSION['username'] = $row['user_Name'];
         $_SESSION['last_activity'] = time();
-
-        // ورود موفق
         echo "<script>
-                alert('ورود موفق');
-                window.location.href='order.php'; // اگه میخوای به صفحه سفارش بری
-              </script>";
+            window.location.href='login.html?msg=" . urlencode('خوش آمدید') . "&user=" . urlencode($row['full_Name']) . "';
+        </script>";
     } else {
-        // نام کاربری یا رمز اشتباه
         echo "<script>
-                alert('نام کاربری یا کلمه عبور اشتباه است');
-                window.location.href='login.html';
-              </script>";
+            window.location.href='login.html?msg=" . urlencode('نام کاربری یا کلمه عبور اشتباه است') . "';
+        </script>";
     }
-
+    
+    
 } else {
-    // فرم کامل پر نشده
     echo "<script>
             alert('نام کاربری یا رمز عبور وارد نشده است');
             document.getElementById('loginForm').reset();

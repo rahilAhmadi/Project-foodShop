@@ -1,11 +1,9 @@
-// دریافت المان‌های فرم و ورودی‌ها
 const form = document.getElementById('form');
 const nameInput = document.getElementById('name_user_rigister');
 const userInput = document.getElementById('input_user');
 const passInput = document.getElementById('input_pass');
 const togglePassword = document.querySelector('.toggle');
 
-// المان‌های پیام راهنمای رمز عبور
 const messageBox = document.getElementById("message");
 const letter = document.getElementById("letter");
 const capital = document.getElementById("capital");
@@ -24,12 +22,8 @@ function setSuccess(input) {
     formControl.className = 'form-control success';
 }
 
-/**
- * اعتبارسنجی فیلد نام (فقط حروف فارسی، حداقل 2 و حداکثر 50 کاراکتر)
- */
 function validateName() {
     const nameValue = nameInput.value.trim();
-    // حروف فارسی و فاصله، حداقل 2 تا 50 کاراکتر
     const nameRegex =/^[\u0600-\u06FF\s]{2,50}$/;
     if (nameValue === '') {
         setError(nameInput, 'پر کردن نام الزامی است.');
@@ -46,12 +40,8 @@ function validateName() {
     }
 }
 
-/**
- * اعتبارسنجی فیلد نام کاربری
- */
 function validateUsername() {
     const userValue = userInput.value.trim();
-    // حروف انگلیسی، اعداد، آندرسکور (_) و دات (.),  
     const usernameRegex = /^[a-zA-Z0-9_.-]{5,10}$/; 
 
     if (userValue === '') {
@@ -69,21 +59,16 @@ function validateUsername() {
     }
 }
 
-/**
- * اعتبارسنجی فیلد رمز عبور (حداقل 8 کاراکتر و شرایط قدرت)
- */
 function validatePassword() {
     const passValue = passInput.value;
     let isValid = true;
     
-    // الگوی کلی: حداقل 8 کاراکتر، شامل عدد، حروف کوچک و بزرگ انگلیسی
     const overallRegex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
 
     if (passValue === '') {
         setError(passInput, 'پر کردن رمز عبور الزامی است.');
         isValid = false;
     } else if (!overallRegex.test(passValue)) {
-        // این خطا فقط به عنوان خطا کلی نمایش داده می‌شود
         setError(passInput, 'رمز عبور ضعیف یا نامعتبر است. راهنما را ببینید.');
         isValid = false;
     } else {
@@ -91,22 +76,17 @@ function validatePassword() {
         isValid = true;
     }
     
-    // به‌روزرسانی وضعیت پیام‌های راهنما
     updatePasswordHelpMessage(passValue);
 
     return isValid;
 }
 
 
-/**
- * به‌روزرسانی وضعیت پیام‌های راهنما رمز عبور */
 function updatePasswordHelpMessage(value) {
     const lowerCaseLetters = /[a-z]/g;
     const upperCaseLetters = /[A-Z]/g;
     const numbers = /[0-9]/g;
-    const minLength = 8; // **حداقل 8 کاراکتر**
-
-    // بررسی حرف کوچک
+    const minLength = 8;
     if(value.match(lowerCaseLetters)) {
         letter.classList.remove("invalid");
         letter.classList.add("valid");
@@ -115,7 +95,6 @@ function updatePasswordHelpMessage(value) {
         letter.classList.add("invalid");
     }
 
-    // بررسی حرف بزرگ
     if(value.match(upperCaseLetters)) {
         capital.classList.remove("invalid");
         capital.classList.add("valid");
@@ -124,7 +103,6 @@ function updatePasswordHelpMessage(value) {
         capital.classList.add("invalid");
     }
 
-    // بررسی عدد
     if(value.match(numbers)) {
         number.classList.remove("invalid");
         number.classList.add("valid");
@@ -133,7 +111,6 @@ function updatePasswordHelpMessage(value) {
         number.classList.add("invalid");
     }
 
-    // بررسی طول
     if(value.length >= minLength) {
         length.classList.remove("invalid");
         length.classList.add("valid");
@@ -143,51 +120,40 @@ function updatePasswordHelpMessage(value) {
     }
 }
 
-// اعتبارسنجی هنگام ارسال فرم
 form.addEventListener('submit', (e) => {
-    // اجرای اعتبارسنجی‌ها
     const isNameValid = validateName();
     const isUserValid = validateUsername();
     const isPassValid = validatePassword();
     
-    // اگر یکی از اعتبارسنجی‌ها موفق نبود، از ارسال فرم جلوگیری کن
-    // این همان بخشی است که تضمین می‌کند هر سه فیلد باید معتبر باشند.
     if (!isNameValid || !isUserValid || !isPassValid) {
-        e.preventDefault(); // **جلوگیری از رفتن به صفحه بعدی**
+        e.preventDefault(); 
     }
 });
 
 
-// اعتبارسنجی "آنی" هنگام ترک کردن فیلد (Blur)
 nameInput.addEventListener('blur', validateName);
 userInput.addEventListener('blur', validateUsername);
 passInput.addEventListener('blur', validatePassword);
 
 
-// نمایش/پنهان کردن راهنمای رمز عبور هنگام فوکوس/لغو فوکوس
 passInput.addEventListener('focus', () => {
     messageBox.style.display = "block";
 });
 
 passInput.addEventListener('blur', () => {
-    // اگر فیلد خالی نیست، پیام راهنما پنهان شود
     if (passInput.value.trim() !== '') {
         messageBox.style.display = "none";
     }
 });
 
-// اعتبارسنجی همزمان با تایپ کردن (برای راهنمای رمز عبور)
 passInput.addEventListener('keyup', () => {
     updatePasswordHelpMessage(passInput.value);
 });
 
 
-// قابلیت نمایش/پنهان کردن رمز عبور
 togglePassword.addEventListener('click', function (e) {
     const type = passInput.getAttribute('type') === 'password' ? 'text' : 'password';
     passInput.setAttribute('type', type);
-
-    // تغییر آیکون چشم
     const formControl = togglePassword.parentElement;
     if (type === 'text') {
         formControl.classList.add('hide');
