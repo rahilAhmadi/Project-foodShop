@@ -15,30 +15,39 @@
       
 	<nav class="categories">
     <a href="#" class="active" data-category="all">✨ همه</a>
-    <a href="#" data-category="irani">🔥 ایرانی</a>
-    <a href="#" data-category="fastfood">🥪 فست فود</a>
-    <a href="#" data-category="kabab">🍖 کباب</a>
-    <a href="#" data-category="fried">🍟 سوخاری</a>
-    <a href="#" data-category="noshidani">🧋 نوشیدنی</a>
+    <a href="food.php?index=1" data-category="irani">🔥 ایرانی</a>
+    <a href="food.php?index=2" data-category="fastfood">🥪 فست فود</a>
+    <a href="food.php?index=3" data-category="kabab">🍖 کباب</a>
+    <a href="food.php?index=4" data-category="fried">🍟 سوخاری</a>
+    <a href="food.php?index=5" data-category="noshidani">🧋 نوشیدنی</a>
 </nav>
 
     <!-- Container اصلی -->
     <div class="container">
         <!-- محصولات --> 
-	
+
         <section class="product-grid">
-            <div class="product-card" data-category="irani">
-                <div class="product-image-container">
-                    <img src="asset/img/iranifood2.jpg" alt="مرغ">
-                </div>
-                <div class="product-info">
-                    <h3>زرشک پلو</h3>
-                    <p>یک پرس زرشک پلو با مرغ با برنج ایرانی</p>
-                    <span class="price">350000</span>
-                    <button class="add-to-cart-btn">+</button>
-                </div>
-            </div>
-            <div class="product-card" data-category="fastfood">
+            <?php
+            $index=$_GET['index'];
+            $foods=show_food($index);
+            while($row=mysqli_fetch_array($foods))
+                 {
+                    echo'
+                    <div class="product-card" data-category="irani">
+                            <div class="product-image-container">
+                                <img src="asset/img/FoodsImage/'.$row['img_url'].'" alt="مرغ">
+                            </div>
+                            <div class="product-info">
+                                <h3> '.$row['food_Name'].'</h3>
+                                <p>'.$row['description'].'/p>
+                                <span class="price">'.$row['price'].'</span>
+                                <button class="add-to-cart-btn">+</button>
+                            </div>
+                        </div>
+                    ';
+            }
+        ?>
+            <!-- <div class="product-card" data-category="fastfood">
                 <div class="product-image-container">
                     <img src="asset/img/fastfood1.jpg" alt="ساندویچ">
                 </div>
@@ -81,7 +90,7 @@
                     <span class="price">150000</span>
                     <button class="add-to-cart-btn">+</button>
                 </div>
-            </div>
+            </div> -->
         </section>
 
         <!-- سایدبار سبد خرید -->
@@ -125,3 +134,16 @@
     <script src="js/food.js"></script>
 </body>
 </html>
+<?php
+
+    function show_food($type)
+    {
+
+        $connect=mysqli_connect('localhost','root','','daspokht');
+        $sql='SELECT * FROM `foods` WHERE `Type`='.$type;
+        $result=mysqli_query($connect,$sql);
+        return $result;
+                
+    }
+        
+?>
