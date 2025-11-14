@@ -1,0 +1,162 @@
+.card, .box, .stat-box {
+    direction: rtl;
+    text-align: right;
+}
+
+.food_section {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+}
+#image {
+    display: block !important;
+  }
+  
+  main{
+    overflow-y: scroll;
+  }
+.form_food{
+    display: flex;
+    flex-direction: column;
+    box-shadow: 5px 5px 50px 5px #a8a8a858;
+    width:800px;
+    border-radius: 25px;
+    padding: 30px;
+    background:white;
+}
+
+.label_food{
+    font-size: 15px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.input_food, .input_area{
+    height:45px;
+    width: 90%;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid #a8a8a8;
+    margin-top: 10px;
+    background-color: #dedede58;
+    transition: 0.4s;
+    padding: 5px;
+    direction: rtl;
+}
+h3.label_food {
+    direction: rtl;
+    text-align: right;
+    display: block;
+    width: 100%;
+    padding: 10px;
+    padding-right: 50px;
+}
+
+.input_area{
+    height:80px !important;
+    resize: none;
+}
+
+.input_food:hover, .input_area:hover{
+    background-color: #a7a7a758;
+}
+
+.btn_submit_food{
+    margin-top:25px;
+    height: 45px;
+    cursor: pointer;
+    border-radius: 50px;
+    border: 1px solid #4BA7B9;
+    background-color: #4ba7b94c;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.error-message {
+    color: #CC0000;
+    font-size: 0.85em;
+    margin-top: 5px;
+    direction: rtl;
+    text-align: right;
+    font-weight: bold;
+}
+
+.input-error {
+    border: 1px solid #CC0000 !important; 
+    box-shadow: 0 0 5px rgba(204, 0, 0, 0.5);
+}
+
+.general-error {
+    margin-top: 10px;
+    text-align: center;
+}
+.error-message {
+    color: #CC0000; 
+    font-size: 0.85em;
+    margin-top: 5px;
+    direction: rtl;
+    text-align: right;
+    font-weight: bold;
+}
+
+.input-error {
+    border: 1px solid #CC0000 !important;
+    box-shadow: 0 0 5px rgba(204, 0, 0, 0.5);
+}
+
+.general-error {
+    margin-top: 10px;
+    text-align: center;
+}
+
+svg{
+    width: 20px;
+}
+#imagePreview {
+    max-width: 150px;
+    display: none;
+    border: 1px solid #ccc;
+    padding: 3px;
+    margin-top: 5px;
+
+    display: block;      
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn_submit_food {
+    margin-top: 25px;
+    height: 48px;
+    width: 20%;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(135deg, #ff9800, #ff6f00);
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(255, 152, 0, 0.4);
+    letter-spacing: 0.5px;
+    margin-bottom: 20PX;
+}
+
+.btn_submit_food:hover {
+    background: linear-gradient(135deg, #ffa726, #ff8f00);
+    box-shadow: 0 6px 16px rgba(255, 152, 0, 0.6);
+    transform: translateY(-2px);
+}
+
+.btn_submit_food:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(255, 152, 0, 0.4);
+}
+
+@media (max-width: 480px) {
+    .btn_submit_food {
+        font-size: 14px;
+        height: 44px;
+    }
+}
