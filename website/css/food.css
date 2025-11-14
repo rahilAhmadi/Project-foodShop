@@ -1,0 +1,380 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7; 
+    direction: rtl; 
+    color: #333;
+    line-height: 1.6;
+}
+
+:root {
+    --primary-color: #40ad3a; 
+    --primary-hover: #186d2f;
+    --text-color: #333;
+    --light-bg: #e4ecf1;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.05); 
+    --card-shadow-hover: 0 4px 10px rgba(0, 0, 0, 0.1);
+    --border-radius: 12px; 
+    --border-soft: 1px solid #000;
+}
+
+.menu{
+    width:100%;
+    position: fixed;
+    top:0;
+    left:0;
+    right:0;
+    background: #fff;
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    padding: 6px 20px;
+    z-index:999;
+    box-shadow: 0 0 5px rgba(0,0,0,0.15);
+}
+
+.menu ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: #666;
+    padding: 8px 20px;
+    border-radius: 50px; /* بیضی */
+    transition: all 0.3s;
+}
+
+.logo-icon {
+    width: 150px;  /* اندازه آیکون */
+    height:60px;
+}
+.categories{
+    display: flex;
+    justify-content:right;
+    gap: 40px;
+    width: 100%;
+    margin-top: 130px; /* به اندازه فاصله از navbar */
+    padding-bottom: 12px;
+    
+}
+.categories a{
+    padding: 8px 18px;
+    font-size: 17px;
+    border-radius: 30px;
+    background: #fff;
+    border: 2px solid #ffeac2; 
+    transition: 0.25s;
+    white-space: nowrap;
+    box-shadow: 0 0 6px rgba(255, 190, 120, 0.25);
+}
+
+.categories a.active{
+    background: #ffb44c;
+    color: #fff;
+    border-color: #ffaa3d;
+    box-shadow: 0 0 10px rgba(255,170,60,0.45);
+}
+
+.categories a:hover{
+    transform: scale(1.09);
+    box-shadow: 0 0 10px rgba(255,170,60,0.35);
+}/* ------------------------------------------------ */
+/* لایه‌بندی اصلی و Grid محصولات */
+/* ------------------------------------------------ */
+.container{
+    display: flex;
+    padding: 30px 40px;
+    gap: 30px;
+    margin-top: 10px;
+ }
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 25px;
+}
+
+.product-card {
+    background-color: var(--light-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    position: relative; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--card-shadow-hover);
+}
+.product-image-container {
+    height: 180px; 
+    position: relative; 
+    overflow: hidden;
+    border-radius: var(--border-radius) var(--border-radius) 0 0; 
+}
+.product-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.product-info {
+    padding: 20px; 
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+    min-height: 80px;
+}
+.product-info h3 {
+    margin: 0;
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+.product-info p {
+    font-size: 0.95rem;
+    color: #555;
+}
+.price {
+    font-weight: bold;
+    color: var(--primary-color); 
+    font-size: 1.1rem;
+    margin-top: 5px;
+}
+.add-to-cart-btn {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background-color: var(--primary-color); 
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 38px; 
+    height: 38px; 
+    font-size: 1.8rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.add-to-cart-btn:hover {
+    background-color: var(--primary-hover);
+    transform: scale(1.05);
+}
+
+/* ------------------------------------- */
+/* سایدبار سبد خرید */
+.cart-sidebar {
+    position: fixed;
+    top: 220px;      /* فاصله از بالای صفحه */
+    left: 30px;      /* فاصله از چپ */
+    width: 420px;
+    height: fit-content;
+      background-color: var(--light-bg);
+    padding: 25px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.cart-header {
+    font-size: 1.15rem; 
+    font-weight: 700;
+    padding-bottom: 15px;
+    border-bottom: var(--border-soft);
+    margin-bottom: 20px;
+}
+.checkout-btn {
+    width: 100%;
+    padding: 15px; 
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.05rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    font-weight: bold;
+}
+.checkout-btn:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px dashed #f0f0f0;
+    font-size: 0.9rem;
+}
+.item-name {
+    flex-grow: 1; 
+    font-weight: 600;
+}
+.item-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 15px;
+}
+.quantity {
+    min-width: 15px;
+    text-align: center;
+    font-weight: 600;
+}
+.quantity-btn {
+    background-color: #f5f5f5; 
+    color: #666;
+    border: none;
+    border-radius: 6px;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    line-height: 1;
+    font-size: 1.1rem;
+    transition: background-color 0.2s;
+}
+.quantity-btn:hover {
+    background-color: #e0e0e0;
+}
+.item-price {
+    font-weight: bold;
+    color: var(--primary-color); 
+    white-space: nowrap;
+    font-size: 1rem;
+}
+.cart-summary {
+    margin-top: 20px;
+    padding-top: 15px;
+}
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    color: #666;
+    font-size: 0.95rem;
+}
+.total-amount {
+    font-weight: bold;
+    color: var(--text-color);
+    font-size: 1.25rem;
+    padding: 15px 0;
+    border-top: 1px solid #ddd;
+    margin-top: 20px;
+}
+.total-amount span {
+    color: var(--primary-color);
+    font-size: 1.3rem;
+}
+.discount-input {
+    width: 100%;
+    padding: 10px 12px;
+    margin: 10px 0 20px 0;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    outline: none;
+    transition: border-color 0.3s;
+    text-align: right;
+    direction: rtl; 
+}
+.discount-input:focus {
+    border-color: var(--primary-color);
+}
+
+/* ------------------------------------- */
+/* Modal محصول */
+/* ------------------------------------- */
+.modal {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+.modal.hidden {
+    display: none;
+}
+.modal-content {
+    background-color: var(--light-bg);
+    border-radius: var(--border-radius); 
+    padding: 30px;
+    max-width: 800px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+}
+.close-btn {
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    font-size: 2rem;
+    color: #333;
+    cursor: pointer;
+}
+.modal-image-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+#modal-name {
+    font-size: 2rem; 
+    color: var(--text-color);
+}
+.modal-price {
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+}
+.modal-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+.add-to-cart-modal-btn {
+    padding: 12px 40px; 
+    border-radius: 6px;
+    font-size: 1.05rem;
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.add-to-cart-modal-btn:hover {
+    background-color: var(--primary-hover);
+}
+.quantity-picker {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 5px 15px;
+}
+.quantity-picker .quantity-btn {
+    background-color: transparent;
+    border: none;
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    width: 30px;
+    height: 30px;
+}

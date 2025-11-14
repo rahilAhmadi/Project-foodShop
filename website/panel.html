@@ -32,7 +32,7 @@
                 <li class="li-menu-dashboard"><a href="../website/index.html">ورود به سایت<i class="fa-solid fa-globe"></i></a></li>
             </ul>
         </aside>
-        <main data-id="dashboard" class="index-main" dir="rtl">
+        <main data-id="dashboard" id="dashboard" class="index-main" dir="rtl">
             <div class="top-dashboard">
                 <div class="action">
                     <div class="profile" onclick="toggleMenu()">
@@ -431,7 +431,8 @@
                         <span class="error-message" id="descriptionError"></span>
                     
                         <h3 class="label_food">قیمت:</h3>
-                        <input type="text" class="input_food"  name="food_price" placeholder="مثلاً 250000" id="price">
+                        <input type="text" class="input_food"  name="food_price"  placeholder="مثلاً 250000" id="price">
+                        <span class="error-message" id="priceError"></span>
                         <div class="food-select-box">
                             <label for="food-type" class="food-label">انتخاب نوع غذا</label>
                             <select id="food-type"  name="food_type" class="food-dropdown">
@@ -443,7 +444,6 @@
                               <option value="drink">نوشیدنی</option>
                             </select>
                           </div>
-                        <span class="error-message" id="priceError"></span>
                     
                         <h3 class="label_food">تصویر غذا:</h3>
                         <input type="file"  name="food_image" class="input_food" id="image" accept="image/*">

@@ -106,26 +106,20 @@ body{
     font-size: 14px;
     margin-right: 10px;
 }
-/* استایل برای متن پیام خطا */
 .error-message {
-    /* رنگ قرمز برای متن خطا */
     color: #CC0000; 
     font-size: 0.85em;
     margin-top: 5px;
     direction: rtl;
     text-align: right;
-    font-weight: bold; /* اختیاری: برای بهتر دیده شدن */
+    font-weight: bold; 
 }
 
-/* استایل برای کادر ورودی در صورت وجود خطا */
 .input-error {
-    /* کادر قرمز برای فیلد */
     border: 1px solid #CC0000 !important; 
-    /* سایه یا پس‌زمینه کم‌رنگ قرمز برای تأکید بیشتر */
     box-shadow: 0 0 5px rgba(204, 0, 0, 0.5);
 }
 
-/* استایل خطای کلی (اختیاری) */
 .general-error {
     margin-top: 10px;
     text-align: center;
@@ -133,3 +127,69 @@ body{
 svg{
     width: 20px;
 }
+
+
+
+.alert-box {
+    position: fixed;
+    top: 50px;
+    right: 20px;
+    width: 370px;
+    padding: 20px 30px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    font-family: 'vazir', sans-serif;
+    font-size: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    visibility: visible;
+    transition: 0.4s ease-in-out;
+  }
+
+  .alert-box.hidden {
+    visibility: hidden;
+  }
+  
+  .alert-box.show::before {
+    content: '';
+    position: absolute;
+    height: 4px;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    background-color: var(--progress-color, #32ac32);
+    animation: hideMaster 5s linear;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+  }
+  
+  @keyframes hideMaster {
+    0% { width: 100%; }
+    100% { width: 0%; }
+  }
+  
+  .alert-box.show {
+    animation: showAlert 0.8s forwards;
+  }
+  
+  @keyframes showAlert {
+    0% { transform: translateX(100%); opacity: 0; }
+    100% { transform: translateX(0); opacity: 1; }
+  }
+  
+  .alert-box.hide {
+    animation: hideAlert 0.8s forwards;
+  }
+  
+  @keyframes hideAlert {
+    0% { transform: translateX(0); opacity: 1; }
+    100% { transform: translateX(100%); opacity: 0; }
+  }
+  
+  .close-btn {
+    cursor: pointer;
+    font-size: 22px;
+    margin-left: 10px;
+  }
+ 
