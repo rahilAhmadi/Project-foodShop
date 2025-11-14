@@ -39,7 +39,7 @@ function AddFood($food_info,$image_name)
     var_dump($food_info);
     echo $image_name;
     $connect = mysqli_connect('localhost', 'root', '', 'daspokht');
-    $sql = 'INSERT INTO foods (food_Name, description, price, img_url) VALUES ("'.$food_info['name'].'","'.$food_info['description'].'","'.$food_info['price'].'","'.$image_name.'")';
+    $sql = 'INSERT INTO foods (food_Name, description, price, img_url,type) VALUES ("'.$food_info['name'].'","'.$food_info['description'].'","'.$food_info['price'].'","'.$image_name.'","'.$food_info['type'].'")';
     $query = mysqli_query($connect, $sql);
 }
 
