@@ -691,6 +691,27 @@
 //   }
 // });
 
+//    ++++++++++++++++++++++++ بخش باز کردن تب از صفحه php+++++++++++++
+     // فعال‌سازی تب از طریق پارامتر URL
+  function activateTabByName(tabName) {
+    const menuItem = document.querySelector(`.li-menu-dashboard[data-name="${tabName}"]`);
+    if (menuItem) {
+      menuItem.click(); // استفاده از سیستم موجود نمایش تب
+    }
+  }
+
+  // بررسی ?tab=addProduct
+  const params = new URLSearchParams(window.location.search);
+  if (params.has('tab')) {
+    const tab = params.get('tab');
+    activateTabByName(tab);
+
+    // اگر خواستی پیام موفقیت بده
+    if (params.get('status') === 'success') {
+      // ساده‌ترین حالت:
+      alert("غذا با موفقیت ذخیره شد");
+    }
+  }
 
 
         </script>

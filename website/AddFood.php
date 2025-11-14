@@ -6,7 +6,14 @@ if( isset($_POST['food_info'])&& !empty($_POST['food_info'])&&
 {
     $food_info=$_POST['food_info'];
     $image_name=Uploader();
-    AddFood($food_info,$image_name);
+    $ok=AddFood($food_info,$image_name);
+    if ($ok) {
+    header("Location: panel.html?tab=addProduct&status=success");
+    exit;
+} else {
+    header("Location: panel.html?tab=addProduct&status=error");
+    exit;
+}
 
 
 }
@@ -16,8 +23,6 @@ else
     echo "eror";
 }
 
-echo"Add food page";
-echo"<a href='panel.html#addProduct'>add</a>";
 
 
 function Uploader()
@@ -41,6 +46,15 @@ function AddFood($food_info,$image_name)
     $connect = mysqli_connect('localhost', 'root', '', 'daspokht');
     $sql = 'INSERT INTO foods (food_Name, description, price, img_url,type) VALUES ("'.$food_info['name'].'","'.$food_info['description'].'","'.$food_info['price'].'","'.$image_name.'","'.$food_info['type'].'")';
     $query = mysqli_query($connect, $sql);
+
+    if($query)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 ?>
