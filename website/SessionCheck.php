@@ -1,6 +1,6 @@
 <?php
 
-$timeout_seconds = 30;
+$timeout_seconds = 30*60;
 
 if (isset($_SESSION['last_activity'])) 
     {

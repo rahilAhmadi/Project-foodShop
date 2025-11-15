@@ -1,6 +1,6 @@
 <?php
 session_start();
-$timeout_seconds=60 ;
+$timeout_seconds=20*60 ;
 
 if (isset($_SESSION['admin_login']) ) 
     {
