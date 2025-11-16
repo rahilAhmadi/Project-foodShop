@@ -154,7 +154,10 @@ if (isset($_GET['Avalible']))
                     </div>
                     <div class="buttons_product_item">
                         <div class="edite_delete_buttons_product_item">
-                            <a class="edit_product_item" href="#">ویرایش</a>
+                            <a class="edit_product_item" 
+                                 href="panel.php?tab=addProduct&editId='. $row['food_ID'].'">
+                                    ویرایش
+                                    </a>
                             <a class="delete_product_item" href="panel.php?delete_id='.$row['food_ID'].'" >حذف محصول</a>
                         </div>';
 
@@ -167,8 +170,8 @@ if (isset($_GET['Avalible']))
                              echo' <a class="disable_product_item" href="panel.php?set=1&Avalible='.$row['food_ID'].'"> فعال</a>';
                         }
                        
-                  echo'  </div>
-                </div>
+                         echo'  </div>
+                    </div>
                         
                         ';
 
@@ -198,12 +201,24 @@ if (isset($_GET['Avalible']))
                     </div>
                     <div class="buttons_product_item">
                         <div class="edite_delete_buttons_product_item">
-                            <a class="edit_product_item" href="#">ویرایش</a>
-                            <a class="delete_product_item" href="#">حذف محصول</a>
-                        </div>
-                        <a class="disable_product_item" href="#">غیر فعال</a>
+                            <a class="edit_product_item" 
+                                 href="panel.php?tab=addProduct&editId='. $row['food_ID'].'">
+                                    ویرایش
+                                    </a>
+                            <a class="delete_product_item" href="panel.php?delete_id='.$row['food_ID'].'" >حذف محصول</a>
+                        </div>';
+
+                        if($row['available']==1)
+                        {
+                            echo' <a class="disable_product_item" href="panel.php?set=0&Avalible='.$row['food_ID'].'">غیر فعال</a>';
+                        }
+                        else
+                        {
+                             echo' <a class="disable_product_item" href="panel.php?set=1&Avalible='.$row['food_ID'].'"> فعال</a>';
+                        }
+                       
+                             echo'  </div>
                     </div>
-                </div>
                         
                         ';
 
@@ -214,260 +229,216 @@ if (isset($_GET['Avalible']))
 
 
             </div>
+
+
             <div class="subdivs" data-id="kebab-submenu">
-                <div class="prodcut_items_box">
+              
+                <?php
+                    $result = Show_foods("kebab");
+                    while($row=mysqli_fetch_array($result))
+                    {
+
+                        echo'
+                        
+                    <div class="prodcut_items_box">
                     <div class="img_text_product_item">
-                        <img src="../asset/img/kabab2.jpg" alt="">
+                        <img src="../asset/img/FoodsImage/'.$row['img_url'].'" alt="">
                         <div class="text_prodcut_item_box">
-                            <h3>لقمه گوسفندی</h3>
+                            <h3> '.$row['food_Name'].'</h3>
                             <div class="price_prodcut_box">
                                 <h4> قیمت: </h4>
-                                <h5>580000 تومان</h5>
-                            </div>
-                            <div class="count_prodcut_box">
-                                <h4> تعداد: </h4>
-                                <h5>15 عدد</h5>
+                                <h5>'.$row['price'].'تومان</h5> 
                             </div>
                         </div>
                     </div>
                     <div class="buttons_product_item">
                         <div class="edite_delete_buttons_product_item">
-                            <a class="edit_product_item" href="#">ویرایش</a>
-                            <a class="delete_product_item" href="#">حذف محصول</a>
-                        </div>
-                        <a class="disable_product_item" href="#">غیر فعال</a>
+                            <a class="edit_product_item" 
+                                 href="panel.php?tab=addProduct&editId='. $row['food_ID'].'">
+                                    ویرایش
+                                    </a>
+                            <a class="delete_product_item" href="panel.php?delete_id='.$row['food_ID'].'" >حذف محصول</a>
+                        </div>';
+
+                        if($row['available']==1)
+                        {
+                            echo' <a class="disable_product_item" href="panel.php?set=0&Avalible='.$row['food_ID'].'">غیر فعال</a>';
+                        }
+                        else
+                        {
+                             echo' <a class="disable_product_item" href="panel.php?set=1&Avalible='.$row['food_ID'].'"> فعال</a>';
+                        }
+                       
+                             echo'  </div>
                     </div>
-                </div>
-                <div class="prodcut_items_box">
-                    <div class="img_text_product_item">
-                        <img src="../asset/img/kabab1.jpg" alt="">
-                        <div class="text_prodcut_item_box">
-                            <h3>جوجه کباب</h3>
-                            <div class="price_prodcut_box">
-                                <h4> قیمت: </h4>
-                                <h5>389000 تومان</h5>
-                            </div>
-                            <div class="count_prodcut_box">
-                                <h4> تعداد: </h4>
-                                <h5>4 عدد</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="buttons_product_item">
-                        <div class="edite_delete_buttons_product_item">
-                            <a class="edit_product_item" href="#">ویرایش</a>
-                            <a class="delete_product_item" href="#">حذف محصول</a>
-                        </div>
-                        <a class="disable_product_item" href="#">غیر فعال</a>
-                    </div>
-                </div>
-                <div class="prodcut_items_box">
-                    <div class="img_text_product_item">
-                        <img src="../asset/img/kabab3.jpg" alt="">
-                        <div class="text_prodcut_item_box">
-                            <h3>کباب وزیری</h3>
-                            <div class="price_prodcut_box">
-                                <h4> قیمت: </h4>
-                                <h5>910000 تومان</h5>
-                            </div>
-                            <div class="count_prodcut_box">
-                                <h4> تعداد: </h4>
-                                <h5>5 عدد</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="buttons_product_item">
-                        <div class="edite_delete_buttons_product_item">
-                            <a class="edit_product_item" href="#">ویرایش</a>
-                            <a class="delete_product_item" href="#">حذف محصول</a>
-                        </div>
-                        <a class="disable_product_item" href="#">غیر فعال</a>
-                    </div>
-                </div>
-                <div class="prodcut_items_box">
-                    <div class="img_text_product_item">
-                        <img src="../asset/img/kabab4.jpg" alt="">
-                        <div class="text_prodcut_item_box">
-                            <h3>میکس کباب خانواده</h3>
-                            <div class="price_prodcut_box">
-                                <h4> قیمت: </h4>
-                                <h5>3530000 تومان</h5>
-                            </div>
-                            <div class="count_prodcut_box">
-                                <h4> تعداد: </h4>
-                                <h5>7 عدد</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="buttons_product_item">
-                        <div class="edite_delete_buttons_product_item">
-                            <a class="edit_product_item" href="#">ویرایش</a>
-                            <a class="delete_product_item" href="#">حذف محصول</a>
-                        </div>
-                        <a class="disable_product_item" href="#">غیر فعال</a>
-                    </div>
-                </div>
+                        
+                        ';
+
+                    }
+
+                    ?>
 
             </div>
+
+
             <div class="subdivs" data-id="sokhari-submenu">
-                <div class="prodcut_items_box">
+                
+
+                    <?php
+                    $result = Show_foods("sokhari");
+                    while($row=mysqli_fetch_array($result))
+                    {
+
+                        echo'
+                        
+                    <div class="prodcut_items_box">
                     <div class="img_text_product_item">
-                        <img src="../asset/img/sokhari1.jpg" alt="">
+                        <img src="../asset/img/FoodsImage/'.$row['img_url'].'" alt="">
                         <div class="text_prodcut_item_box">
-                            <h3>میکس چیکن</h3>
+                            <h3> '.$row['food_Name'].'</h3>
                             <div class="price_prodcut_box">
                                 <h4> قیمت: </h4>
-                                <h5>460000 تومان</h5>
-                            </div>
-                            <div class="count_prodcut_box">
-                                <h4> تعداد: </h4>
-                                <h5>35 عدد</h5>
+                                <h5>'.$row['price'].'تومان</h5> 
                             </div>
                         </div>
                     </div>
                     <div class="buttons_product_item">
                         <div class="edite_delete_buttons_product_item">
-                            <a class="edit_product_item" href="#">ویرایش</a>
-                            <a class="delete_product_item" href="#">حذف محصول</a>
-                        </div>
-                        <a class="disable_product_item" href="#">غیر فعال</a>
+                            <a class="edit_product_item" 
+                                 href="panel.php?tab=addProduct&editId='. $row['food_ID'].'">
+                                    ویرایش
+                                    </a>
+                            <a class="delete_product_item" href="panel.php?delete_id='.$row['food_ID'].'" >حذف محصول</a>
+                        </div>';
+
+                        if($row['available']==1)
+                        {
+                            echo' <a class="disable_product_item" href="panel.php?set=0&Avalible='.$row['food_ID'].'">غیر فعال</a>';
+                        }
+                        else
+                        {
+                             echo' <a class="disable_product_item" href="panel.php?set=1&Avalible='.$row['food_ID'].'"> فعال</a>';
+                        }
+                       
+                             echo'  </div>
                     </div>
-                </div>
-                <div class="prodcut_items_box">
-                    <div class="img_text_product_item">
-                        <img src="../asset/img/sokhari2.jpg" alt="">
-                        <div class="text_prodcut_item_box">
-                            <h3>چیکن استریپس 5 تکه</h3>
-                            <div class="price_prodcut_box">
-                                <h4> قیمت: </h4>
-                                <h5>430000 تومان</h5>
-                            </div>
-                            <div class="count_prodcut_box">
-                                <h4> تعداد: </h4>
-                                <h5>12 عدد</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="buttons_product_item">
-                        <div class="edite_delete_buttons_product_item">
-                            <a class="edit_product_item" href="#">ویرایش</a>
-                            <a class="delete_product_item" href="#">حذف محصول</a>
-                        </div>
-                        <a class="disable_product_item" href="#">غیر فعال</a>
-                    </div>
-                </div>
-                <div class="prodcut_items_box">
-                    <div class="img_text_product_item">
-                        <img src="../asset/img/sokhari3.jpg" alt="">
-                        <div class="text_prodcut_item_box">
-                            <h3>فراید چیکن3 تکه</h3>
-                            <div class="price_prodcut_box">
-                                <h4> قیمت: </h4>
-                                <h5>580000 تومان</h5>
-                            </div>
-                            <div class="count_prodcut_box">
-                                <h4> تعداد: </h4>
-                                <h5>14 عدد</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="buttons_product_item">
-                        <div class="edite_delete_buttons_product_item">
-                            <a class="edit_product_item" href="#">ویرایش</a>
-                            <a class="delete_product_item" href="#">حذف محصول</a>
-                        </div>
-                        <a class="disable_product_item" href="#">غیر فعال</a>
-                    </div>
-                </div>
-                <div class="prodcut_items_box">
-                    <div class="img_text_product_item">
-                        <img src="../asset/img/sokhari4.jpg" alt="">
-                        <div class="text_prodcut_item_box">
-                            <h3>ساندویچ سوخاری</h3>
-                            <div class="price_prodcut_box">
-                                <h4> قیمت: </h4>
-                                <h5>230000 تومان</h5>
-                            </div>
-                            <div class="count_prodcut_box">
-                                <h4> تعداد: </h4>
-                                <h5>16 عدد</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="buttons_product_item">
-                        <div class="edite_delete_buttons_product_item">
-                            <a class="edit_product_item" href="#">ویرایش</a>
-                            <a class="delete_product_item" href="#">حذف محصول</a>
-                        </div>
-                        <a class="disable_product_item" href="#">غیر فعال</a>
-                    </div>
-                </div>
+                        
+                        ';
+
+                    }
+
+                    ?>
                
             </div>
+
+
             <div class="subdivs" data-id="drink-submenu">
 
-                <div class="prodcut_items_box">
+               <?php
+                    $result = Show_foods("drink");
+                    while($row=mysqli_fetch_array($result))
+                    {
+
+                        echo'
+                        
+                    <div class="prodcut_items_box">
                     <div class="img_text_product_item">
-                        <img src="../asset/img/noshidani1.jpg" alt="">
+                        <img src="../asset/img/FoodsImage/'.$row['img_url'].'" alt="">
                         <div class="text_prodcut_item_box">
-                            <h3>دوغ سنتی زالی</h3>
+                            <h3> '.$row['food_Name'].'</h3>
                             <div class="price_prodcut_box">
                                 <h4> قیمت: </h4>
-                                <h5>53000 تومان</h5>
-                            </div>
-                            <div class="count_prodcut_box">
-                                <h4> تعداد: </h4>
-                                <h5>65 عدد</h5>
+                                <h5>'.$row['price'].'تومان</h5> 
                             </div>
                         </div>
                     </div>
                     <div class="buttons_product_item">
                         <div class="edite_delete_buttons_product_item">
-                            <a class="edit_product_item" href="#">ویرایش</a>
-                            <a class="delete_product_item" href="#">حذف محصول</a>
-                        </div>
-                        <a class="disable_product_item" href="#">غیر فعال</a>
+                            <a class="edit_product_item" 
+                                 href="panel.php?tab=addProduct&editId='. $row['food_ID'].'">
+                                    ویرایش
+                                    </a>
+                            <a class="delete_product_item" href="panel.php?delete_id='.$row['food_ID'].'" >حذف محصول</a>
+                        </div>';
+
+                        if($row['available']==1)
+                        {
+                            echo' <a class="disable_product_item" href="panel.php?set=0&Avalible='.$row['food_ID'].'">غیر فعال</a>';
+                        }
+                        else
+                        {
+                             echo' <a class="disable_product_item" href="panel.php?set=1&Avalible='.$row['food_ID'].'"> فعال</a>';
+                        }
+                       
+                             echo'  </div>
                     </div>
-                </div>
+                        
+                        ';
+
+                    }
+
+                    ?>
             </div>
         </main>
         <main class="order_main" data-id="order"></main>
         <main data-id="addProduct" id="addfood">
             <!-- <form class="formAddProduct" action=""> -->
                 <div class="food_section">
+                    
+                    <?php
+
+
+
+                                        $food = null;
+
+                                            if (isset($_GET['editId'])) {
+                                                $result = Select_food($_GET['editId']);
+                                                if ($result && mysqli_num_rows($result) > 0) {
+                                                    $food = mysqli_fetch_assoc($result);
+                                                }
+                                            }
+                    ?>
+
 
                     <form class="form_food" action="AddFood.php" method="POST" enctype="multipart/form-data">
                     
                         <h2 style="text-align:center;margin-bottom:15px;">افزودن غذای جدید</h2>
                     
+                            <?php if ($food): ?>
+                            <input type="hidden" name="food_id" value="<?= $food['food_ID'] ?>">
+                             <?php endif; ?>
+
                         <h3 class="label_food">نام غذا:</h3>
-                        <input type="text" name="food_info[name]" class="input_food" placeholder="مثلاً پیتزا مخصوص" id="name">
+                        <input type="text" name="food_info[name]" class="input_food" placeholder="مثلاً پیتزا مخصوص" id="name" value="<?= $food ? $food['food_Name'] : '' ?>">
                         <span class="error-message" id="nameError"></span>
                     
                         <h3 class="label_food">توضیحات غذا:</h3>
-                        <textarea class="input_area" name="food_info[description]" placeholder="توضیحات..." id="description"></textarea>
+                        <textarea class="input_area" name="food_info[description]" placeholder="توضیحات..." id="description"  ><?= $food ? $food['description'] : '' ?></textarea>
                         <span class="error-message" id="descriptionError"></span>
                     
                         <h3 class="label_food">قیمت:</h3>
-                        <input type="text" class="input_food"  name="food_info[price]"  placeholder="مثلاً 250000" id="price">
+                        <input type="text" class="input_food"  name="food_info[price]"  placeholder="مثلاً 250000" id="price"  value="<?= $food ? $food['price'] : '' ?>">
                         <span class="error-message" id="priceError"></span>
                         <div class="food-select-box">
                             <label for="food-type" class="food-label">انتخاب نوع غذا</label>
-                            <select id="food-type"  name="food_info[type]" class="food-dropdown">
-                              <option value="" disabled selected>انتخاب کنید...</option>
-                              <option value="irani">غذای ایرانی</option>
-                              <option value="fastfood">فست فود</option>
-                              <option value="kebab">کباب</option>
-                              <option value="sokhari">سوخاری</option>
-                              <option value="drink">نوشیدنی</option>
-                            </select>
+                            <select id="food-type" name="food_info[type]" class="food-dropdown">
+                                    <option value="" disabled <?= !$food ? 'selected' : '' ?>>انتخاب کنید...</option>
+
+                                    <option value="irani"     <?= ($food && $food['Type'] == 'irani') ? 'selected' : '' ?>>غذای ایرانی</option>
+                                    <option value="fastfood"  <?= ($food && $food['Type'] == 'fastfood') ? 'selected' : '' ?>>فست فود</option>
+                                    <option value="kebab"     <?= ($food && $food['Type'] == 'kebab') ? 'selected' : '' ?>>کباب</option>
+                                    <option value="sokhari"   <?= ($food && $food['Type'] == 'sokhari') ? 'selected' : '' ?>>سوخاری</option>
+                                    <option value="drink"     <?= ($food && $food['Type'] == 'drink') ? 'selected' : '' ?>>نوشیدنی</option>
+
+                                </select>
+
                           </div>
                     
                         <h3 class="label_food">تصویر غذا:</h3>
                         <input type="file"  name="food_image" class="input_food" id="image" accept="image/*">
                         <span class="error-message" id="imageError"></span>
                         <div style="margin-top:5px;">
-                            <img id="imagePreview" src="" alt="پیش‌نمایش تصویر" style="max-width:150px; display:none; border:1px solid #ccc; padding:3px;">
+                            <img id="imagePreview" src="../asset/img/FoodsImage<? ? $food['img_url'] : ''  ?>" alt="پیش‌نمایش تصویر" style="max-width:150px; display:none; border:1px solid #ccc; padding:3px;">
                         </div>
                 
                         <input type="submit" class="btn_submit_food" value="ثبت غذا"></input>
