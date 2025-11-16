@@ -1,13 +1,41 @@
+<?php
+ include 'FoodManager.php';
+if (isset($_GET['delete_id']))
+        {
+    $ok=Delete_food($_GET['delete_id']);
+    // برای جلوگیری از تکرار حذف هنگام رفرش، ریدایرکت می‌کنیم:
+    if($ok)
+    {
+        header("Location: panel.php?tab=product");
+    }
+    exit;
+        }
+if (isset($_GET['Avalible']))
+        {
+    
+     $ok=Avalible_food($_GET['Avalible'],$_GET['set']);
+    // برای جلوگیری از تکرار حذف هنگام رفرش، ریدایرکت می‌کنیم:
+    if($ok)
+    {
+        header("Location: panel.php?tab=product");
+    }
+    exit;
+        }
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
     <?php  
-        session_start();
         require_once 'SessionCheck.php';?>
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="css/panel.css">
-    <link rel="stylesheet" href="css/AddFood.css"
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../css/panel.css">
+    <link rel="stylesheet" href="../css/AddFood.css"
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <script src="https://kit.fontawesome.com/9d805968ce.js" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,7 +47,7 @@
         <aside>
             <ul class="menu_dashboard">
                 <li class="logo-dashboard li-menu-dashboard"><a href="#">
-                        <img src="./asset/icon/logo.png" alt="">
+                        <img src="../asset/icon/logo.png" alt="">
                     </a></li>
                 <li data-name="dashboard" class="active-dashboard li-menu-dashboard"><a href="#">داشبورد<i
                             class="fas fa-home"></i></a></li>
@@ -31,7 +59,7 @@
                             class="fa-brands fa-shopify"></i></a></li>
                 <li data-name="user" class="li-menu-dashboard"><a href="#">مدیریت کاربران<i
                             class="fa-solid fa-user"></i></a></li>
-                <li class="li-menu-dashboard"><a href="../website/index.html">ورود به سایت<i class="fa-solid fa-globe"></i></a></li>
+                <li class="li-menu-dashboard"><a href="../index.html">ورود به سایت<i class="fa-solid fa-globe"></i></a></li>
             <!-- ++++++++++ logout   -->
                 <li class="li-menu-dashboard"><a href="../Admin/LogOut.php">خروج <i class="fa-solid fa-arrow-right-from-bracket"></i></a></li>
           
@@ -41,19 +69,19 @@
             <div class="top-dashboard">
                 <div class="action">
                     <div class="profile" onclick="toggleMenu()">
-                        <img src="asset/icon/user-profile.png" alt="profile img">
+                        <img src="../asset/icon/user-profile.png" alt="profile img">
                     </div>
                     <div class="menu-profile-dashboard">
                         <h3>محمدرضا احمدپور
                             <br> <span>طراح و برنامه نویس وب</span>
                         </h3>
                         <ul>
-                            <li><img src="asset/icon/user-profile.png" alt=""><a href="#">پروفایل من</a></li>
-                            <li><img src="asset/icon/edit.png" alt=""><a href="#">تغییر اطلاعات</a></li>
-                            <li><img src="asset/icon/inbox.png" alt=""><a href="#">پیام ها</a></li>
-                            <li><img src="asset/icon/setting.png" alt=""><a href="#">تنظیمات</a></li>
-                            <li><img src="asset/icon/help.jpg" alt=""><a href="#">پشتیبانی</a></li>
-                            <li><img src="asset/icon/logout.png" alt=""><a href="#"> خروچ</a></li>
+                            <li><img src="../asset/icon/user-profile.png" alt=""><a href="#">پروفایل من</a></li>
+                            <li><img src="../asset/icon/edit.png" alt=""><a href="#">تغییر اطلاعات</a></li>
+                            <li><img src="../asset/icon/inbox.png" alt=""><a href="#">پیام ها</a></li>
+                            <li><img src="../asset/icon/setting.png" alt=""><a href="#">تنظیمات</a></li>
+                            <li><img src="../asset/icon/help.jpg" alt=""><a href="#">پشتیبانی</a></li>
+                            <li><img src="../asset/icon/logout.png" alt=""><a href="#"> خروچ</a></li>
                         </ul>
                     </div>
                 </div>
@@ -98,74 +126,73 @@
         </main>
         <main class="prodcut_main" data-id="product">
             <ul class="product-menu">
-                <li data-name="iranianFood-submenu" class="active-submenu">مدیریت غذای ایرانی</li>
+
+                <li data-name="iranianFood-submenu" class="active-submenu">مدیریت غذای ایران</li>
                 <li data-name="fastFood-submenu">مدیریت فست فود</li>
                 <li data-name="kebab-submenu">مدیریت کباب</li>
                 <li data-name="sokhari-submenu">مدیریت سوخاری</li>
                 <li data-name="drink-submenu">مدیریت نوشیدنی</li>
             </ul>
             <div class="subdivs" data-id="iranianFood-submenu">
-                <div class="prodcut_items_box">
+                    <?php
+                    $result = Show_foods("irani");
+                    while($row=mysqli_fetch_array($result))
+                    {
+
+                        echo'
+                        
+                    <div class="prodcut_items_box">
                     <div class="img_text_product_item">
-                        <img src="./asset/img/iranifood1.jpg" alt="">
+                        <img src="../asset/img/FoodsImage/'.$row['img_url'].'" alt="">
                         <div class="text_prodcut_item_box">
-                            <h3>چلوکباب سلطانی</h3>
+                            <h3> '.$row['food_Name'].'</h3>
                             <div class="price_prodcut_box">
                                 <h4> قیمت: </h4>
-                                <h5>530000 تومان</h5>
-                            </div>
-                            <div class="count_prodcut_box">
-                                <h4> تعداد: </h4>
-                                <h5>15 عدد</h5>
+                                <h5>'.$row['price'].'تومان</h5> 
                             </div>
                         </div>
                     </div>
                     <div class="buttons_product_item">
                         <div class="edite_delete_buttons_product_item">
                             <a class="edit_product_item" href="#">ویرایش</a>
-                            <a class="delete_product_item" href="#">حذف محصول</a>
-                        </div>
-                        <a class="disable_product_item" href="#">غیر فعال</a>
-                    </div>
+                            <a class="delete_product_item" href="panel.php?delete_id='.$row['food_ID'].'" >حذف محصول</a>
+                        </div>';
+
+                        if($row['available']==1)
+                        {
+                            echo' <a class="disable_product_item" href="panel.php?set=0&Avalible='.$row['food_ID'].'">غیر فعال</a>';
+                        }
+                        else
+                        {
+                             echo' <a class="disable_product_item" href="panel.php?set=1&Avalible='.$row['food_ID'].'"> فعال</a>';
+                        }
+                       
+                  echo'  </div>
                 </div>
-                <div class="prodcut_items_box">
-                    <div class="img_text_product_item">
-                        <img src="./asset/img/iranifood2.jpg" alt="">
-                        <div class="text_prodcut_item_box">
-                            <h3>زرشک پلو با مرغ</h3>
-                            <div class="price_prodcut_box">
-                                <h4> قیمت: </h4>
-                                <h5>430000 تومان</h5>
-                            </div>
-                            <div class="count_prodcut_box">
-                                <h4> تعداد: </h4>
-                                <h5>10 عدد</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="buttons_product_item">
-                        <div class="edite_delete_buttons_product_item">
-                            <a class="edit_product_item" href="#">ویرایش</a>
-                            <a class="delete_product_item" href="#">حذف محصول</a>
-                        </div>
-                        <a class="disable_product_item" href="#">غیر فعال</a>
-                    </div>
-                </div>
+                        
+                        ';
+
+                    }
+
+                    ?>
             </div>
             <div class="subdivs" data-id="fastFood-submenu">
 
-                <div class="prodcut_items_box">
+                 <?php
+                    $result = Show_foods("fastfood");
+                    while($row=mysqli_fetch_array($result))
+                    {
+
+                        echo'
+                        
+                    <div class="prodcut_items_box">
                     <div class="img_text_product_item">
-                        <img src="./asset/img/fastfood1.jpg" alt="">
+                        <img src="../asset/img/FoodsImage/'.$row['img_url'].'" alt="">
                         <div class="text_prodcut_item_box">
-                            <h3>همبرگر زغالی مخصوص</h3>
+                            <h3> '.$row['food_Name'].'</h3>
                             <div class="price_prodcut_box">
                                 <h4> قیمت: </h4>
-                                <h5>256000 تومان</h5>
-                            </div>
-                            <div class="count_prodcut_box">
-                                <h4> تعداد: </h4>
-                                <h5>55 عدد</h5>
+                                <h5>'.$row['price'].'تومان</h5> 
                             </div>
                         </div>
                     </div>
@@ -177,34 +204,20 @@
                         <a class="disable_product_item" href="#">غیر فعال</a>
                     </div>
                 </div>
-                <div class="prodcut_items_box">
-                    <div class="img_text_product_item">
-                        <img src="./asset/img/fastfood2.jpg" alt="">
-                        <div class="text_prodcut_item_box">
-                            <h3>پیتزا مخلوط گوشت و مرغ</h3>
-                            <div class="price_prodcut_box">
-                                <h4> قیمت: </h4>
-                                <h5>335000 تومان</h5>
-                            </div>
-                            <div class="count_prodcut_box">
-                                <h4> تعداد: </h4>
-                                <h5>6 عدد</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="buttons_product_item">
-                        <div class="edite_delete_buttons_product_item">
-                            <a class="edit_product_item" href="#">ویرایش</a>
-                            <a class="delete_product_item" href="#">حذف محصول</a>
-                        </div>
-                        <a class="disable_product_item" href="#">غیر فعال</a>
-                    </div>
-                </div>
+                        
+                        ';
+
+                    }
+
+                    ?>
+
+
+
             </div>
             <div class="subdivs" data-id="kebab-submenu">
                 <div class="prodcut_items_box">
                     <div class="img_text_product_item">
-                        <img src="./asset/img/kabab2.jpg" alt="">
+                        <img src="../asset/img/kabab2.jpg" alt="">
                         <div class="text_prodcut_item_box">
                             <h3>لقمه گوسفندی</h3>
                             <div class="price_prodcut_box">
@@ -227,7 +240,7 @@
                 </div>
                 <div class="prodcut_items_box">
                     <div class="img_text_product_item">
-                        <img src="./asset/img/kabab1.jpg" alt="">
+                        <img src="../asset/img/kabab1.jpg" alt="">
                         <div class="text_prodcut_item_box">
                             <h3>جوجه کباب</h3>
                             <div class="price_prodcut_box">
@@ -250,7 +263,7 @@
                 </div>
                 <div class="prodcut_items_box">
                     <div class="img_text_product_item">
-                        <img src="./asset/img/kabab3.jpg" alt="">
+                        <img src="../asset/img/kabab3.jpg" alt="">
                         <div class="text_prodcut_item_box">
                             <h3>کباب وزیری</h3>
                             <div class="price_prodcut_box">
@@ -273,7 +286,7 @@
                 </div>
                 <div class="prodcut_items_box">
                     <div class="img_text_product_item">
-                        <img src="./asset/img/kabab4.jpg" alt="">
+                        <img src="../asset/img/kabab4.jpg" alt="">
                         <div class="text_prodcut_item_box">
                             <h3>میکس کباب خانواده</h3>
                             <div class="price_prodcut_box">
@@ -299,7 +312,7 @@
             <div class="subdivs" data-id="sokhari-submenu">
                 <div class="prodcut_items_box">
                     <div class="img_text_product_item">
-                        <img src="./asset/img/sokhari1.jpg" alt="">
+                        <img src="../asset/img/sokhari1.jpg" alt="">
                         <div class="text_prodcut_item_box">
                             <h3>میکس چیکن</h3>
                             <div class="price_prodcut_box">
@@ -322,7 +335,7 @@
                 </div>
                 <div class="prodcut_items_box">
                     <div class="img_text_product_item">
-                        <img src="./asset/img/sokhari2.jpg" alt="">
+                        <img src="../asset/img/sokhari2.jpg" alt="">
                         <div class="text_prodcut_item_box">
                             <h3>چیکن استریپس 5 تکه</h3>
                             <div class="price_prodcut_box">
@@ -345,7 +358,7 @@
                 </div>
                 <div class="prodcut_items_box">
                     <div class="img_text_product_item">
-                        <img src="./asset/img/sokhari3.jpg" alt="">
+                        <img src="../asset/img/sokhari3.jpg" alt="">
                         <div class="text_prodcut_item_box">
                             <h3>فراید چیکن3 تکه</h3>
                             <div class="price_prodcut_box">
@@ -368,7 +381,7 @@
                 </div>
                 <div class="prodcut_items_box">
                     <div class="img_text_product_item">
-                        <img src="./asset/img/sokhari4.jpg" alt="">
+                        <img src="../asset/img/sokhari4.jpg" alt="">
                         <div class="text_prodcut_item_box">
                             <h3>ساندویچ سوخاری</h3>
                             <div class="price_prodcut_box">
@@ -395,7 +408,7 @@
 
                 <div class="prodcut_items_box">
                     <div class="img_text_product_item">
-                        <img src="./asset/img/noshidani1.jpg" alt="">
+                        <img src="../asset/img/noshidani1.jpg" alt="">
                         <div class="text_prodcut_item_box">
                             <h3>دوغ سنتی زالی</h3>
                             <div class="price_prodcut_box">
@@ -457,7 +470,7 @@
                             <img id="imagePreview" src="" alt="پیش‌نمایش تصویر" style="max-width:150px; display:none; border:1px solid #ccc; padding:3px;">
                         </div>
                 
-                        <input type="submit" class="btn_submit_food">ثبت غذا</input>
+                        <input type="submit" class="btn_submit_food" value="ثبت غذا"></input>
                     
                     </form>
                     </div>
