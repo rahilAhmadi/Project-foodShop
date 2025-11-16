@@ -8,10 +8,10 @@ if( isset($_POST['food_info'])&& !empty($_POST['food_info'])&&
     $image_name=Uploader();
     $ok=AddFood($food_info,$image_name);
     if ($ok) {
-    header("Location: panel.html?tab=addProduct&status=success");
+    header("Location: panel.php?tab=addProduct&status=success");
     exit;
 } else {
-    header("Location: panel.html?tab=addProduct&status=error");
+    header("Location: panel.php?tab=addProduct&status=error");
     exit;
 }
 
@@ -32,7 +32,7 @@ function Uploader()
     $ext=end($array);
     $new_name=rand().".".$ext;
     $from=$_FILES['food_image']['tmp_name'];
-    $to="asset/img/FoodsImage/".$new_name;
+    $to="../asset/img/FoodsImage/".$new_name;
     move_uploaded_file($from,$to) ;
     return $new_name;
 
