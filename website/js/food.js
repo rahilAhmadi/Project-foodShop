@@ -150,19 +150,19 @@ function renderCart() {
     totalAmountEl.innerText = formatPrice(total);}
 
 // دسته‌بندی محصولات
-const categoryLinks = document.querySelectorAll('.categories a');
-categoryLinks.forEach(link => {
-    link.addEventListener('click', e => {
-        e.preventDefault();
-        categoryLinks.forEach(l => l.classList.remove('active'));
-        link.classList.add('active');
-        const category = link.dataset.category;
-        productCards.forEach(card => {
-            if(category === 'all' || card.dataset.category === category) {
-                card.style.display = 'flex';
-            } else {
-                card.style.display = 'none';
-            }
-        });
-    });
-});
+// const categoryLinks = document.querySelectorAll('.categories a');
+// categoryLinks.forEach(link => {
+//     link.addEventListener('click', e => {
+//         e.preventDefault();
+//         categoryLinks.forEach(l => l.classList.remove('active'));
+//         link.classList.add('active');
+//         const category = link.dataset.category;
+//         productCards.forEach(card => {
+//             if(category === 'all' || card.dataset.category === category) {
+//                 card.style.display = 'flex';
+//             } else {
+//                 card.style.display = 'none';
+//             }
+//         });
+//     });
+// });
