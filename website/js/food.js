@@ -15,6 +15,20 @@ const cartItemsContainer = document.querySelector('.cart-items');
 const totalAmountEl = document.querySelector('.total-amount');
 
 let cart = [];
+function formatPrice(num) {
+    return Number(num).toLocaleString("fa-IR") + " تومان";
+}
+
+// وقتی صفحه لود شد، همه قیمت‌ها را فارسی + تومان کن و عدد اصلی را ذخیره کن
+document.addEventListener("DOMContentLoaded", () => {
+    const priceEls = document.querySelectorAll(".price");
+    priceEls.forEach(el => {
+        // عدد اصلی انگلیسی
+        const num = Number(el.innerText.replace(/,/g,''));
+        el.dataset.price = num;  // ذخیره عدد اصلی
+        el.innerText = formatPrice(num); // نمایش فارسی
+    });
+});
 
 // باز کردن Modal با اطلاعات محصول
 productCards.forEach(card => {
@@ -23,12 +37,14 @@ productCards.forEach(card => {
         const img = card.querySelector('img').src;
         const name = card.querySelector('h3').innerText;
         const desc = card.querySelector('p').innerText;
-        const price = card.querySelector('.price').innerText;
+        const price = parseInt(card.querySelector('.price').dataset.price, 10);
 
         modalImg.src = img;
         modalName.innerText = name;
         modalDesc.innerText = desc;
-        modalPrice.innerText = price + " تومان";
+        modalPrice.dataset.price = price;
+        modalPrice.innerText = formatPrice(price);
+        modal.dataset.price = price;
         quantityEl.innerText = 1;
         modal.classList.remove('hidden');
         modal.dataset.price = price;
@@ -38,13 +54,23 @@ productCards.forEach(card => {
     // افزودن مستقیم به سبد خرید از کارت
     card.querySelector('.add-to-cart-btn').addEventListener('click', () => {
         const name = card.querySelector('h3').innerText;
-        const price = parseInt(card.querySelector('.price').innerText);
-        addToCart(name, price, 1);
+        const price = parseInt(card.querySelector('.price').dataset.price, 10);
+addToCart(name, price, 1);
+
     });
 });
 
 // بستن Modal
 closeBtn.addEventListener('click', () => modal.classList.add('hidden'));
+/** بستن مودال با کلیک روی بک‌دراپ */
+modal.addEventListener("click", (e) => {
+    if (e.target === modal) modal.classList.add("hidden");
+});
+
+/** بستن مودال با Escape */
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") modal.classList.add("hidden");
+});
 
 // تغییر تعداد در Modal
 decreaseBtn.addEventListener('click', () => {
@@ -53,7 +79,11 @@ decreaseBtn.addEventListener('click', () => {
 });
 increaseBtn.addEventListener('click', () => {
     let qty = parseInt(quantityEl.innerText);
-    quantityEl.innerText = qty + 1;
+    if (qty < 10) {
+        quantityEl.innerText = qty + 1;
+    } else {
+        alert("حداکثر تعداد هر محصول ۱۰ عدد است!");
+    }
 });
 
 // افزودن به سبد خرید از Modal
@@ -68,14 +98,25 @@ addModalBtn.addEventListener('click', () => {
 // افزودن یا بروزرسانی سبد خرید
 function addToCart(name, price, qty) {
     const existing = cart.find(item => item.name === name);
-    if(existing) {
-        existing.qty += qty;
+
+    if (existing) {
+        // اگر جمع تعداد فعلی + تعداد جدید بیشتر از 10 میشه، محدودش کن
+        if (existing.qty + qty > 10) {
+            existing.qty = 10;
+            alert("حداکثر تعداد هر محصول ۱۰ عدد است!");
+        } else {
+            existing.qty += qty;
+        }
     } else {
+        if (qty > 10) {
+            qty = 10;
+            alert("حداکثر تعداد هر محصول ۱۰ عدد است!");
+        }
         cart.push({name, price, qty});
     }
+
     renderCart();
 }
-
 // نمایش سبد خرید
 function renderCart() {
     cartItemsContainer.innerHTML = '';
@@ -91,7 +132,7 @@ function renderCart() {
                 <span class="quantity">${item.qty}</span>
                 <button class="quantity-btn increase">+</button>
             </div>
-            <span class="item-price">${item.price * item.qty} تومان</span>
+            <span class="item-price">${formatPrice(item.price * item.qty)}</span>
         `;
         // تغییر تعداد در سبد خرید
         div.querySelector('.decrease').addEventListener('click', () => {
@@ -100,14 +141,13 @@ function renderCart() {
             renderCart();
         });
         div.querySelector('.increase').addEventListener('click', () => {
-            item.qty++;
+            if(item.qty < 10) item.qty++;
             renderCart();
         });
 
         cartItemsContainer.appendChild(div);
     });
-    totalAmountEl.innerText = total.toLocaleString();
-}
+    totalAmountEl.innerText = formatPrice(total);}
 
 // دسته‌بندی محصولات
 const categoryLinks = document.querySelectorAll('.categories a');
