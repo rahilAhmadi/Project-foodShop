@@ -33,7 +33,7 @@
                             class="fa-solid fa-user"></i></a></li>
                 <li class="li-menu-dashboard"><a href="../website/index.html">ورود به سایت<i class="fa-solid fa-globe"></i></a></li>
             <!-- ++++++++++ logout   -->
-                <li class="li-menu-dashboard"><a href="../Admin/LogOut.php">خروج <i class="fa-solid fa-globe"></i></a></li>
+                <li class="li-menu-dashboard"><a href="../Admin/LogOut.php">خروج <i class="fa-solid fa-arrow-right-from-bracket"></i></a></li>
           
             </ul>
         </aside>
