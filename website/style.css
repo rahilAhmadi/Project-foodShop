@@ -86,7 +86,7 @@ a {
 
 .menu .menuRight li {
     flex-basis: 10%;
-    width: 150px;
+    width: 170px;
     list-style: none;
     margin: 15px;
     text-align: center;
@@ -95,9 +95,9 @@ a {
 
 .menu .menuRight .hover:hover {
     background-color: rgb(255, 188, 107);
-    border: 1px solid rgb(255,176,77);
+    /* border: 1px solid rgb(255,176,77); */
     border-radius: 20px;
-    padding: 3px 5px;
+    padding: 5px 0px;
 }
 
 .menu .menuRight .logo img {
@@ -138,7 +138,7 @@ a {
 
 .menu .menuLeft ul li .btn_menu_a {
     background-color: rgb(8, 113, 55);;
-    padding: 10px 60px;
+    /* padding: 10px 60px; */
     border-radius: 10px;
     width: 200px;
     margin-left: 30px;

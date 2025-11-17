@@ -14,12 +14,11 @@
 		<?php require ('Menu.php'); ?>
       
 	<nav class="categories">
-    <a href="#" class="active" data-category="all">✨ همه</a>
     <a href="food.php?index=1" data-category="irani">🔥 ایرانی</a>
     <a href="food.php?index=2" data-category="fastfood">🥪 فست فود</a>
     <a href="food.php?index=3" data-category="kabab">🍖 کباب</a>
     <a href="food.php?index=4" data-category="fried">🍟 سوخاری</a>
-    <a href="food.php?index=5" data-category="noshidani">🧋 نوشیدنی</a>
+    <a href="food.php?index=5" data-category="noshidani">🥤 نوشیدنی</a>
 </nav>
 
     <!-- Container اصلی -->
@@ -39,7 +38,7 @@
                             </div>
                             <div class="product-info">
                                 <h3> '.$row['food_Name'].'</h3>
-                                <p>'.$row['description'].'/p>
+                                <p>'.$row['description'].'</p>
                                 <span class="price">'.$row['price'].'</span>
                                 <button class="add-to-cart-btn">+</button>
                             </div>
@@ -140,7 +139,7 @@
     {
 
         $connect=mysqli_connect('localhost','root','','daspokht');
-        $sql='SELECT * FROM `foods` WHERE `Type`='.$type;
+        $sql='SELECT * FROM `foods` WHERE available=1 and`Type`='.$type;
         $result=mysqli_query($connect,$sql);
         return $result;
                 
