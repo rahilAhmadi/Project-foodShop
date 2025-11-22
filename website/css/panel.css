@@ -722,3 +722,103 @@ i.fa.fa-2x.fa-camera.icon_prev{
         width: 50%;
     }
 }
+
+
+/* user */
+main.user{
+    direction: rtl;
+}
+.ap-body {
+    margin: 0;
+    font-family: sans-serif;
+    background: #f5f5f5;
+    color: #333;
+  }
+  .ap-header {
+    background: #fff;
+    color: #333;
+    padding: 22px;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 2px solid #ff8c00;
+  }
+ 
+  .ap-container {
+    max-width: 1200px;
+    margin: 30px auto;
+    background: #fff;
+    padding: 22px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+  }
+  
+  .ap-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+
+  .ap-input {
+    width: 250px;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+  
+  .ap-btn {
+    padding: 10px 18px;
+    border: 0;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.2s;
+    color: #fff;
+  }
+  
+  .ap-btn-primary {
+    background: linear-gradient(135deg, #f49507, #ee9b00);
+  }
+  
+  .ap-btn-primary:hover {
+    opacity: 0.85;
+  }
+  
+  .ap-btn-success {
+    background: #4caf50;
+  }
+  
+  .ap-btn-danger {
+    background: #d9534f;
+  }
+  
+  .ap-btn:hover {
+    opacity: 0.85;
+  }
+  
+  .ap-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .ap-table-head {
+    background: #4caf50;
+    color: #fff;
+  }
+  
+  .ap-table th,
+  .ap-table td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+  }
+  
+  .ap-table tr:hover {
+    background: #fafafa;
+  }
+    .ap-table thead tr:hover {
+        background: inherit !important;
+        }

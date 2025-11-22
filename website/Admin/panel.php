@@ -449,8 +449,50 @@ if (isset($_GET['Avalible']))
             </div>
             <!-- </form> -->
         </main>
-        <main data-id="user">
-           
+        <main class="user" data-id="user">
+        <header class="ap-header">مدیریت کاربران</header>
+            <div class="ap-container">
+                <div class="ap-actions">
+                    <input type="text" class="ap-input" placeholder="جستجوی کاربر بر اساس نام کاربری..." />
+                    <button class="ap-btn ap-btn-primary">افزودن کاربر جدید</button>
+                </div>
+                <table class="ap-table">
+                    <thead class="ap-table-head">
+                        <tr>
+                            <th>شناسه</th>
+                            <th>نام</th>
+                            <th>نام کاربری</th>
+                            <th>نقش کاربر</th>
+                            <th>وضعیت</th>
+                            <th>عملیات</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>علی رضایی</td>
+                            <td>ali_rz</td>
+                            <td>ادمین</td>
+                            <td>فعال</td>
+                            <td>
+                                <button class="ap-btn ap-btn-success">ویرایش</button>
+                                <button class="ap-btn ap-btn-danger">حذف</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>مریم احمدی</td>
+                            <td>maryam_ah</td>
+                            <td>کاربر</td>
+                            <td>غیرفعال</td>
+                            <td>
+                                <button class="ap-btn ap-btn-success">ویرایش</button>
+                                <button class="ap-btn ap-btn-danger">حذف</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </main>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.0/dist/Chart.min.js"></script>
