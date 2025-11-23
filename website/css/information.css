@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+
+body {
+  font-family: 'Vazirmatn', sans-serif;
+  background: linear-gradient(160deg, #f5f7fa, #e0f7fa);
+  direction: rtl;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 15px 10px;
+}
+
+.header {
+  width: 100%;
+  max-width: 420px;
+  padding: 15px;
+  background: linear-gradient(135deg, #ffcc80, #ffe0b2);
+  border-radius: 20px 20px 0 0;
+  margin-bottom: 15px;
+  text-align: center;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+}
+
+.header h1 {
+  color: #e65100;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+.payment-container {
+  width: 100%;
+  max-width: 420px;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 25px 20px;
+  box-shadow: 0 18px 35px rgba(0,0,0,0.12);
+  transition: all 0.3s;
+}
+
+.payment-container:hover {
+  transform: translateY(-2px);
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+input {
+  width: 100%;
+  padding: 12px 12px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+  transition: all 0.3s;
+  font-family: 'Vazirmatn', sans-serif;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+}
+
+input:focus {
+  border-color: #ff9800;
+  box-shadow: 0 0 8px rgba(255,152,0,0.25);
+  outline: none;
+  transform: scale(1.01);
+}
+
+input.error {
+  border-color: #d32f2f;
+  box-shadow: 0 0 5px rgba(211,47,47,0.4);
+}
+
+.error-msg {
+  color: #d32f2f;
+  font-size: 0.8rem;
+  margin-top: 3px;
+  display: block;
+}
+
+div#order-total-text,
+div#shipping-cost-text,
+div#payable-amount-text {
+  background: #e8f5e9;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-weight: bold;
+  color: #2e7d32;
+  margin-top: 5px;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+div#payable-amount-text {
+  background: #fff3e0;
+  color: #ef6c00;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+}
+
+button {
+  flex: 1;
+  padding: 14px 0;
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: all 0.3s;
+  font-family: 'Vazirmatn', sans-serif;
+  margin: 0 5px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+#cancel {
+  background: linear-gradient(135deg, #ffb74d, #ff9800);
+  color: #fff;
+}
+
+#cancel:hover {
+  background: linear-gradient(135deg, #fb8c00, #f57c00);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+#pay {
+  background: linear-gradient(135deg, #81c784, #4caf50);
+  color: #fff;
+}
+
+#pay:hover {
+  background: linear-gradient(135deg, #66bb6a, #388e3c);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* موبایل ریسپانسیو */
+@media (max-width: 600px) {
+  .payment-container {
+    padding: 20px 15px;
+  }
+  button {
+    font-size: 0.95rem;
+    padding: 12px 0;
+  }
+  .header h1 {
+    font-size: 1.4rem;
+  }
+}
