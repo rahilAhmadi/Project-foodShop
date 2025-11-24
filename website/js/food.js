@@ -148,6 +148,20 @@ function renderCart() {
         cartItemsContainer.appendChild(div);
     });
     totalAmountEl.innerText = formatPrice(total);}
+    document.addEventListener("DOMContentLoaded", () => {
+        const checkoutBtn = document.getElementById("checkout-btn");
+        checkoutBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            if(cart.length === 0){
+                alert("سبد خرید شما خالی است!");
+                return;
+            }
+            let total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+            localStorage.setItem("finalAmount", total);
+            window.location.href = "information.html";
+        });
+    });
+    
 
 // دسته‌بندی محصولات
 // const categoryLinks = document.querySelectorAll('.categories a');

@@ -1,0 +1,243 @@
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+
+body {
+  font-family: 'Vazirmatn', sans-serif;
+  background: linear-gradient(160deg, #f5f7fa, #e0f7fa);
+  direction: rtl;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 15px 10px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background: #fff3e0;
+  border-bottom: 1px solid #e0e0e0;
+  border-radius: 15px 15px 0 0;
+  width: 95%;
+  max-width: 900px;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  color: #e65100;
+  font-size: 1.5rem;
+}
+
+.header-logo {
+  max-height: 50px;
+}
+
+.payment-container {
+  display: flex;
+  max-width: 900px;
+  width: 95%;
+  background: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+.payment-right {
+  flex: 1;
+  background: linear-gradient(to bottom, #fff3e0, #e8f5e9);
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border-right: 1px solid #d0e0d0;
+}
+
+.payment-right h2 {
+  font-size: 1.6rem;
+  color: #e65100;
+  margin-bottom: 15px;
+}
+
+.payment-right p {
+  font-size: 1rem;
+  color: #33691e;
+  margin-bottom: 8px;
+}
+
+.amount-box {
+  background: #c8e6c9;
+  padding: 15px 20px;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #2e7d32;
+  width: 100%;
+  text-align: center;
+  margin: 15px 0;
+}
+
+.timer-box {
+  background: #ffe0b2;
+  padding: 12px 15px;
+  border-radius: 10px;
+  font-weight: bold;
+  color: #ef6c00;
+  width: 100%;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.payment-left {
+  flex: 1;
+  padding: 40px 30px;
+}
+
+.form-logo {
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.form-logo img {
+  max-width: 150px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  transition: all 0.25s;
+  font-family: 'Vazirmatn', sans-serif;
+}
+
+input:focus {
+  border-color: #4caf50;
+  box-shadow: 0 0 6px rgba(76,175,80,0.4);
+  outline: none;
+}
+
+input.error {
+  border-color: #d32f2f;
+  box-shadow: 0 0 6px rgba(211,47,47,0.4);
+}
+
+.error-msg {
+  color: #d32f2f;
+  font-size: 0.85rem;
+  margin-top: 4px;
+  display: block;
+}
+
+.two-input {
+  display: flex;
+  gap: 15px;
+}
+
+.two-input div { flex: 1; }
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+}
+
+button {
+  flex: 1;
+  padding: 14px 0;
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: all 0.3s;
+  font-family: 'Vazirmatn', sans-serif;
+  margin: 0 5px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+#cancel {
+  background: linear-gradient(135deg, #ffb74d, #ff9800);
+  color: #fff;
+}
+
+#cancel:hover {
+  background: linear-gradient(135deg, #fb8c00, #f57c00);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+#pay {
+  background: linear-gradient(135deg, #81c784, #4caf50);
+  color: #fff;
+}
+
+#pay:hover {
+  background: linear-gradient(135deg, #66bb6a, #388e3c);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* موبایل ریسپانسیو */
+@media (max-width: 600px) {
+  .payment-container {
+    padding: 20px 15px;
+  }
+  button {
+    font-size: 0.95rem;
+    padding: 12px 0;
+  }
+  .header h1 {
+    font-size: 1.4rem;
+  }
+}
+
+
+.captcha-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+#captcha-text {
+  background: #eee;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  font-size: 1.1rem;
+}
+
+#refresh-captcha {
+  background: #4caf50;
+  border: none;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+#refresh-captcha:hover {
+  background: #388e3c;
+}
