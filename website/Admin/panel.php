@@ -380,7 +380,63 @@ if (isset($_GET['Avalible']))
                     ?>
             </div>
         </main>
-        <main class="order_main" data-id="order"></main>
+        <main class="order_main" data-id="order">
+
+
+        <div class="orders-header">
+        <div>شماره سفارش</div>
+        <div>کاربر</div>
+        <div>تاریخ</div>
+        <div>قیمت</div>
+        <div>وضعیت</div>
+        <div></div>
+    </div>
+
+    <div class="order-card">
+        <div class="order-summary">
+            <div>#2546</div>
+            <div>asmaa</div>
+            <div>30-11-2023</div>
+            <div>7,960,000</div>
+
+            <div class="status-wrapper">
+                <select class="status-select" onchange="changeStatus(this, event)">
+                    <option value="registered">ثبت سفارش</option>
+                    <option value="preparing">در حال آماده‌سازی</option>
+                    <option value="delivering">در حال ارسال</option>
+                </select>
+            </div>
+
+            <div class="arrow" onclick="toggleOrder(this)">▾</div>
+        </div>
+
+        <div class="order-details">
+            <div class="product-item">
+                <img src="../asset/img/kabab1.jpg">
+                <div class="info">
+                    <h4>جوجه کباب ایرانی با گوجه</h4>
+                    <h5>قیمت: 560000</h5>
+                    <h5>تعداد: 1</h5>
+                </div>
+            </div>
+
+            <div class="product-item">
+                <img src="../asset/img/noshidani1.jpg">
+                <div class="info">
+                    <h4>دوغ سنتی زال</h4>
+                    <h5>قیمت: 31000</h5>
+                    <h5>تعداد:1</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+        </main>
         <main data-id="addProduct" id="addfood">
             <!-- <form class="formAddProduct" action=""> -->
                 <div class="food_section">
@@ -744,6 +800,23 @@ if (isset($_GET['Avalible']))
     }
   }
 
+// order management
+function toggleOrder(el) {
+    const summary = el.parentElement;
+    summary.classList.toggle("open");
+}
+
+function changeStatus(select, event) {
+    event.stopPropagation();
+
+    const summary = select.closest(".order-summary");
+
+    summary.classList.remove("status-registered", "status-preparing", "status-delivering");
+
+    if (select.value === "registered") summary.classList.add("status-registered");
+    if (select.value === "preparing") summary.classList.add("status-preparing");
+    if (select.value === "delivering") summary.classList.add("status-delivering");
+}
 
         </script>
 

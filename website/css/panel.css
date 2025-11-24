@@ -822,3 +822,114 @@ main.user{
     .ap-table thead tr:hover {
         background: inherit !important;
         }
+
+
+
+/* order managment */
+.order_main{
+    direction: rtl;
+}
+.orders-header {
+    display: grid;
+    grid-template-columns: 130px 150px 150px 150px 150px 40px;
+    padding: 14px 20px;
+    margin-bottom: 15px;
+    font-weight: 600;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+  
+  .order-card {
+    background: #fff;
+    border-radius: 14px;
+    margin-bottom: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  }
+  .order-summary {
+    display: grid;
+    grid-template-columns: 130px 150px 150px 150px 150px 40px;
+    align-items: center;
+    padding: 18px 20px;
+    transition: background 0.2s;
+  }
+  
+  .order-summary:hover {
+    background: #fdf6f0;
+    cursor: pointer;
+  }
+  
+  .arrow {
+    font-size: 18px;
+    transition: transform 0.25s ease;
+    cursor: pointer;
+  }
+  
+  .order-summary.open+.order-details {
+    display: block;
+  }
+  
+  .order-summary.open .arrow {
+    transform: rotate(180deg);
+  }
+  
+  .order-details {
+    display: none;
+    padding: 20px;
+    border-top: 1px solid #eee;
+  }
+  
+  .product-item {
+    display: flex;
+    gap: 18px;
+    padding: 6px 0;
+    border: 1px solid #c4cfda;
+    margin: 10px 0;
+  }
+  
+  .product-item img {
+    width: 140px;
+    height: 95px;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+  .status-wrapper {
+    position: relative;
+  }
+  
+  .status-select {
+    width: 100%;
+    padding: 8px 34px 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background: #fff;
+    font-size: 13px;
+    appearance: none;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  .status-wrapper::after {
+    content: '▾';
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #ff7a00;
+    font-size: 13px;
+  }
+  .status-registered {
+    color: #ff7a00;
+    font-weight: 600;
+  }
+  
+  .status-preparing {
+    color: #0084ff;
+    font-weight: 600;
+  }
+  
+  .status-delivering {
+    color: #1ea65a;
+    font-weight: 600;
+  }
