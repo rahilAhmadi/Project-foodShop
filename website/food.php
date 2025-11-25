@@ -102,7 +102,8 @@
                     <span class="total-amount">0</span>
                 </div>
             </div>
-            <a href="shoppingCart.html"><button class="checkout-btn">رفتن به سبد خرید</button>
+            <input type="text" class="discount-input" placeholder="کد تخفیف">
+            <button class="checkout-btn" id="checkout-btn">پرداخت</button>
         </aside>
     </div>
 
