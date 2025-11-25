@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8"> 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منوی غذا</title>
+    <title>منوی سفارش</title>
       <link rel="shortcut icon" href="asset/icon/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/food.css">
@@ -27,8 +27,8 @@
 
         <section class="product-grid">
             <?php
-            $index=$_GET['index'];
-            $foods=show_food($index);
+            $index = isset($_GET['index']) ? $_GET['index'] : 1;
+            $foods = show_food($index);
             while($row=mysqli_fetch_array($foods))
                  {
                     echo'

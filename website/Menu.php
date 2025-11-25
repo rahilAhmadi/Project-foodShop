@@ -10,7 +10,7 @@ echo '  <div class="menu">
                     <li class="logo"><a href="index.html"><img src="asset/icon/logo.png" alt="logo"></a>
                     </li>
                     <li class="hover"><a href="index.html">خانه</a></li>
-                    <li class="hover"><a href="product.html">محصولات</a></li>
+                    <li class="hover"><a href="food.php">منوی سفارش</a></li>
                     <li class="hover"><a href="about_me.html">درباره ما</a></li>
                     <li class="hover"><a href="contact_me.html">تماس با ما</a></li>
                 </ul>
