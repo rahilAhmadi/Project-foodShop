@@ -35,7 +35,7 @@ if (isset($_GET['Avalible']))
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="../css/panel.css">
-    <link rel="stylesheet" href="../css/AddFood.css"
+    <link rel="stylesheet" href="../css/AddFood.css">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <script src="https://kit.fontawesome.com/9d805968ce.js" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -437,6 +437,7 @@ if (isset($_GET['Avalible']))
 
 
         </main>
+        <main class="order_main" data-id="order"></main>
         <main data-id="addProduct" id="addfood">
             <!-- <form class="formAddProduct" action=""> -->
                 <div class="food_section">
@@ -573,8 +574,8 @@ if (isset($_GET['Avalible']))
 
         </main>
     </section>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.0/dist/Chart.min.js"></script>
     <script src="../js/AddFood.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.0/dist/Chart.min.js"></script>
    <!-- <script src="js/main.js"></script> -->
    <script>
     let inputs = document.querySelectorAll("input[type=file]");
