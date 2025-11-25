@@ -158,7 +158,7 @@ function renderCart() {
             }
             let total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
             localStorage.setItem("finalAmount", total);
-            window.location.href = "information.html";
+            window.location.href = "shoppingCart.html";
         });
     });
     

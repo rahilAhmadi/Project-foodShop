@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="css/shoppingCart.css">
+    <title>Shopping card</title>
+</head>
+
+<body>
+    <div class="cart-page">
+        <div class="cart-items">
+
+            <div class="cart-item">
+                <img src="./asset/img/fastfood1.jpg" class="item-img">
+
+                <div class="item-info">
+                    <h3 class="item-title">همبرگر کلاسیک</h3>
+                    <p class="item-price">قیمت واحد: 450,000 تومان</p>
+
+                    <div class="item-qty">
+                        <button class="qty-btn">-</button>
+                        <span class="qty-number">1</span>
+                        <button class="qty-btn">+</button>
+                    </div>
+                </div>
+
+                <div class="item-total">
+                    <span>قیمت نهایی:</span>
+                    <strong>450,000 تومان</strong>
+                    <button class="remove-item">حذف</button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="cart-summary">
+            <h3 class="shop-box-text">خلاصه سفارش</h3>
+            <div class="jamkol_txt">
+                <p>جمع کل: <strong>0 تومان</strong></p>
+            </div>
+            <div class="discount-box">
+                <input type="text" placeholder="کد تخفیف" class="discount-input" />
+                <button class="apply-discount">اعمال تخفیف</button>
+            </div>
+            <a href="information.html">
+                <a href="information.html"><button class="pay-btn">پرداخت</button></a>
+            </a>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+
+            function updateCartTotal() {
+                let total = 0;
+
+                document.querySelectorAll(".cart-item").forEach(item => {
+                    const finalPriceText = item.querySelector(".item-total strong").textContent;
+                    const priceNumber = Number(finalPriceText.replace(/[, تومان]/g, ""));
+                    total += priceNumber;
+                });
+
+                document.querySelector(".jamkol_txt strong").textContent =
+                    total.toLocaleString() + " تومان";
+            }
+
+            document.querySelectorAll(".cart-item").forEach(item => {
+
+                const priceText = item.querySelector(".item-price").textContent;
+                const basePrice = Number(priceText.replace(/[, تومانقیمت واحد:]/g, ""));
+                const qtyNumberEl = item.querySelector(".qty-number");
+                const itemTotalEl = item.querySelector(".item-total strong");
+
+                function updateItemTotal() {
+                    const qty = Number(qtyNumberEl.textContent);
+                    const final = basePrice * qty;
+                    itemTotalEl.textContent = final.toLocaleString() + " تومان";
+                    updateCartTotal();
+                }
+
+                item.querySelectorAll(".qty-btn")[1].addEventListener("click", () => {
+                    qtyNumberEl.textContent = Number(qtyNumberEl.textContent) + 1;
+                    updateItemTotal();
+                });
+
+                item.querySelectorAll(".qty-btn")[0].addEventListener("click", () => {
+                    const current = Number(qtyNumberEl.textContent);
+                    if (current > 1) {
+                        qtyNumberEl.textContent = current - 1;
+                        updateItemTotal();
+                    }
+                });
+
+                item.querySelector(".remove-item").addEventListener("click", () => {
+                    item.remove();
+                    updateCartTotal();
+                });
+                updateItemTotal();
+            });
+
+        });
+
+        // کد تخفیف
+        function calculateTotal() {
+    let total = 0;
+    document.querySelectorAll('.cart-item').forEach(item => {
+        const priceText = item.querySelector('.item-price').textContent.replace(/[^0-9]/g,'');
+        const qty = parseInt(item.querySelector('.qty-number').textContent);
+        total += parseInt(priceText) * qty;
+    });
+    return total;
+}
+
+const jamkolTxt = document.querySelector('.jamkol_txt strong');
+const discountInput = document.querySelector('.discount-input');
+const applyBtn = document.querySelector('.apply-discount');
+const msgBox = document.createElement('p');
+msgBox.classList.add('discount-msg');
+document.querySelector('.discount-box').appendChild(msgBox);
+
+applyBtn.addEventListener('click', () => {
+    let total = calculateTotal();
+    const code = discountInput.value.trim().toUpperCase();
+
+    if (!code) {
+        msgBox.textContent = "لطفاً کد را وارد کنید.";
+        msgBox.className = 'discount-msg error';
+        return;
+    }
+
+    if (code === "SAVE10") {
+        const discounted = total * 0.9;
+        jamkolTxt.textContent = `${discounted.toLocaleString()} تومان`;
+        msgBox.textContent = "تخفیف اعمال شد!";
+        msgBox.className = 'discount-msg success';
+    } else {
+        jamkolTxt.textContent = `${total.toLocaleString()} تومان`; 
+        msgBox.textContent = "کد نامعتبر است.";
+        msgBox.className = 'discount-msg error';
+    }
+});
+
+    </script>
+
+</body>
+
+</html>
