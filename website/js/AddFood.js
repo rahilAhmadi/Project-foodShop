@@ -35,6 +35,8 @@ priceInput.value = Number(value).toLocaleString("fa-IR") + " تومان";
 }
 });
 
+//اعتبار سنجی و ارسال فرم 
+
 form.addEventListener("submit", function(e) {
 e.preventDefault();
 const fields = [
@@ -55,6 +57,8 @@ fields.forEach(f => {
     f.error.textContent = "";
     f.input.classList.remove("input-error");
 });
+
+// اعتبار سنجی فیلد ها
 
 fields.forEach(f => {
     let value = f.input.value.trim();
@@ -91,7 +95,9 @@ fields.forEach(f => {
               f.input.classList.add("input-error");
               valid = false;
           } else {
-              f.input.value = Number(priceNum).toLocaleString("fa-IR") + " تومان";
+            //   f.input.value = Number(priceNum).toLocaleString("fa-IR") + " تومان";
+              
+               f.input.value = priceNum;
               f.error.textContent = "";
               f.input.classList.remove("input-error");
           }
@@ -99,21 +105,27 @@ fields.forEach(f => {
   }
   
     if (f.type === "image") {
-        const file = f.input.files[0];
-        if (!file) {
-            f.error.textContent = "یک تصویر انتخاب کنید.";
-            f.input.classList.add("input-error");
-            valid = false;
-        } else if (!imageRegex.test(file.name)) {
-            f.error.textContent = "فرمت تصویر معتبر نیست (jpg, png, gif, bmp).";
-            f.input.classList.add("input-error");
-            valid = false;
+            const file = f.input.files[0];
+
+            // اگر کاربر در حالت "ویرایش" بود، نیاز نیست عکس جدید وارد کند
+            const isEditMode = document.querySelector("input[name='food_id']") !== null;
+
+            if (!file && !isEditMode) {
+                f.error.textContent = "یک تصویر انتخاب کنید.";
+                f.input.classList.add("input-error");
+                valid = false;
+            } else if (file && !imageRegex.test(file.name)) {
+                f.error.textContent = "فرمت تصویر معتبر نیست.";
+                f.input.classList.add("input-error");
+                valid = false;
+            }
         }
-    }
-});
+    });
+
 
 if (valid) {
-    alert("غذای جدید با موفقیت به منو اضافه شد!");
+     form.submit();
+    // alert("غذای جدید با موفقیت به منو اضافه شد!");
     form.reset();
 
     // پاک کردن پیش‌نمایش تصویر
