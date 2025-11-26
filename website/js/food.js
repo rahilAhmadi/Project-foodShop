@@ -15,6 +15,13 @@ const cartItemsContainer = document.querySelector('.cart-items');
 const totalAmountEl = document.querySelector('.total-amount');
 
 let cart = [];
+
+// اگر localStorage حاوی سبد خرید بود، بارگذاری کن
+if(localStorage.getItem("cartItems")){
+    cart = JSON.parse(localStorage.getItem("cartItems"));
+}
+
+// قالب‌بندی قیمت
 function formatPrice(num) {
     return Number(num).toLocaleString("fa-IR") + " تومان";
 }
@@ -23,11 +30,11 @@ function formatPrice(num) {
 document.addEventListener("DOMContentLoaded", () => {
     const priceEls = document.querySelectorAll(".price");
     priceEls.forEach(el => {
-        // عدد اصلی انگلیسی
         const num = Number(el.innerText.replace(/,/g,''));
-        el.dataset.price = num;  // ذخیره عدد اصلی
-        el.innerText = formatPrice(num); // نمایش فارسی
+        el.dataset.price = num;
+        el.innerText = formatPrice(num);
     });
+    renderCart();
 });
 
 // باز کردن Modal با اطلاعات محصول
@@ -47,7 +54,6 @@ productCards.forEach(card => {
         modal.dataset.price = price;
         quantityEl.innerText = 1;
         modal.classList.remove('hidden');
-        modal.dataset.price = price;
         modal.dataset.name = name;
     });
 
@@ -55,22 +61,14 @@ productCards.forEach(card => {
     card.querySelector('.add-to-cart-btn').addEventListener('click', () => {
         const name = card.querySelector('h3').innerText;
         const price = parseInt(card.querySelector('.price').dataset.price, 10);
-addToCart(name, price, 1);
-
+        addToCart(name, price, 1);
     });
 });
 
 // بستن Modal
 closeBtn.addEventListener('click', () => modal.classList.add('hidden'));
-/** بستن مودال با کلیک روی بک‌دراپ */
-modal.addEventListener("click", (e) => {
-    if (e.target === modal) modal.classList.add("hidden");
-});
-
-/** بستن مودال با Escape */
-document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") modal.classList.add("hidden");
-});
+modal.addEventListener("click", (e) => { if (e.target === modal) modal.classList.add("hidden"); });
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") modal.classList.add("hidden"); });
 
 // تغییر تعداد در Modal
 decreaseBtn.addEventListener('click', () => {
@@ -79,11 +77,8 @@ decreaseBtn.addEventListener('click', () => {
 });
 increaseBtn.addEventListener('click', () => {
     let qty = parseInt(quantityEl.innerText);
-    if (qty < 10) {
-        quantityEl.innerText = qty + 1;
-    } else {
-        alert("حداکثر تعداد هر محصول ۱۰ عدد است!");
-    }
+    if (qty < 10) quantityEl.innerText = qty + 1;
+    else alert("حداکثر تعداد هر محصول ۱۰ عدد است!");
 });
 
 // افزودن به سبد خرید از Modal
@@ -100,23 +95,20 @@ function addToCart(name, price, qty) {
     const existing = cart.find(item => item.name === name);
 
     if (existing) {
-        // اگر جمع تعداد فعلی + تعداد جدید بیشتر از 10 میشه، محدودش کن
-        if (existing.qty + qty > 10) {
-            existing.qty = 10;
-            alert("حداکثر تعداد هر محصول ۱۰ عدد است!");
-        } else {
-            existing.qty += qty;
-        }
+        existing.qty = Math.min(existing.qty + qty, 10);
     } else {
-        if (qty > 10) {
-            qty = 10;
-            alert("حداکثر تعداد هر محصول ۱۰ عدد است!");
-        }
-        cart.push({name, price, qty});
+        cart.push({name, price, qty: Math.min(qty, 10)});
     }
 
+    saveCart();
     renderCart();
 }
+
+// ذخیره سبد خرید در localStorage
+function saveCart(){
+    localStorage.setItem("cartItems", JSON.stringify(cart));
+}
+
 // نمایش سبد خرید
 function renderCart() {
     cartItemsContainer.innerHTML = '';
@@ -134,49 +126,33 @@ function renderCart() {
             </div>
             <span class="item-price">${formatPrice(item.price * item.qty)}</span>
         `;
-        // تغییر تعداد در سبد خرید
         div.querySelector('.decrease').addEventListener('click', () => {
             if(item.qty > 1) item.qty--;
             else cart = cart.filter(i => i !== item);
+            saveCart();
             renderCart();
         });
         div.querySelector('.increase').addEventListener('click', () => {
             if(item.qty < 10) item.qty++;
+            saveCart();
             renderCart();
         });
 
         cartItemsContainer.appendChild(div);
     });
-    totalAmountEl.innerText = formatPrice(total);}
-    document.addEventListener("DOMContentLoaded", () => {
-        const checkoutBtn = document.getElementById("checkout-btn");
-        checkoutBtn.addEventListener("click", (e) => {
-            e.preventDefault();
-            if(cart.length === 0){
-                alert("سبد خرید شما خالی است!");
-                return;
-            }
-            let total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-            localStorage.setItem("finalAmount", total);
-            window.location.href = "shoppingCart.html";
-        });
-    });
-    
+    totalAmountEl.innerText = formatPrice(total);
+}
 
-// دسته‌بندی محصولات
-// const categoryLinks = document.querySelectorAll('.categories a');
-// categoryLinks.forEach(link => {
-//     link.addEventListener('click', e => {
-//         e.preventDefault();
-//         categoryLinks.forEach(l => l.classList.remove('active'));
-//         link.classList.add('active');
-//         const category = link.dataset.category;
-//         productCards.forEach(card => {
-//             if(category === 'all' || card.dataset.category === category) {
-//                 card.style.display = 'flex';
-//             } else {
-//                 card.style.display = 'none';
-//             }
-//         });
-//     });
-// });
+// رفتن به صفحه سبد خرید
+document.addEventListener("DOMContentLoaded", () => {
+    const checkoutBtn = document.getElementById("checkout-btn");
+    checkoutBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        if(cart.length === 0){
+            alert("سبد خرید شما خالی است!");
+            return;
+        }
+        localStorage.setItem("finalAmount", cart.reduce((sum, item) => sum + item.price * item.qty, 0));
+        window.location.href = "shoppingCart.html";
+    });
+});
