@@ -39,7 +39,6 @@ else
 
 echo'       <div class="menuLeft">
                 <ul>
-                    <li><a href="shopping-card.html"><img src="asset/icon/card 1.png" alt="shoping-card"></a></li>
                     <li>
                         <a href="login.html" class="buttonLogin btn_menu_a">ورود/عضویت</a>
                         <a href="login.html" class="logoLogin btn_menu_a"><img src="asset/icon/user.png" alt="user"></a>
