@@ -153,6 +153,6 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
         localStorage.setItem("finalAmount", cart.reduce((sum, item) => sum + item.price * item.qty, 0));
-        window.location.href = "shoppingCart.html";
+        window.location.href = "shoppingCart.php";
     });
 });
