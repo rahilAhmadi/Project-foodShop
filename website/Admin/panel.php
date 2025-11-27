@@ -465,73 +465,14 @@ if (isset($_GET['Avalible']))
             </div>
             <!-- </form> -->
         </main>
+
+
         <main class="user" data-id="user">
-        <header class="ap-header">مدیریت کاربران</header>
-            <div class="ap-container">
-                <div class="ap-actions">
-                    <input type="text" class="ap-input" placeholder="جستجوی کاربر بر اساس نام کاربری..." />
-                    <button class="ap-btn ap-btn-primary">افزودن مدیر جدید</button>
-                </div>
-                <table class="ap-table">
-                    <thead class="ap-table-head">
-                        <tr>
-                            <th>شناسه</th>
-                            <th>نام</th>
-                            <th>نام کاربری</th>
-                            <th>نقش کاربر</th>
-                            <th>عملیات</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>علی رضایی</td>
-                            <td>ali_rz</td>
-                            <td>ادمین</td>
-                            <td>
-                                <button class="ap-btn ap-btn-danger">حذف</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>مریم احمدی</td>
-                            <td>maryam_ah</td>
-                            <td>کاربر</td>
-                            <td>
-                                <button class="ap-btn ap-btn-danger">حذف</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <!-- Modal Overlay -->
-<div class="modal-overlay" id="addAdminModal">
-    <div class="modal">
-        <h2>افزودن مدیر جدید</h2>
-
-        <label>نام</label>
-        <input type="text" id="newFullname" class="ap-input" placeholder="نام را وارد کنید">
-
-        <label>نام کاربری</label>
-        <input type="text" id="newUsername" class="ap-input" placeholder="نام کاربری">
-
-        <label>رمز عبور</label>
-        <input type="password" id="newPassword" class="ap-input" placeholder="رمز عبور">
-
-        <label>نقش</label>
-        <select id="newRole" class="ap-input">
-            <option value="admin">ادمین</option>
-            <option value="user">کاربر</option>
-        </select>
-
-        <div class="modal-actions">
-            <button class="ap-btn ap-btn-primary" id="saveAdmin">ثبت</button>
-            <button class="ap-btn ap-btn-danger" id="closeModal">انصراف</button>
-        </div>
-    </div>
-</div>
-
+                <?php include "users.php"; ?>
         </main>
+
+
+
     </section>
     <script src="../js/AddFood.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.0/dist/Chart.min.js"></script>
@@ -698,75 +639,7 @@ function changeStatus(select, event) {
     if (select.value === "preparing") summary.classList.add("status-preparing");
     if (select.value === "delivering") summary.classList.add("status-delivering");
 }
-// user management
-const searchInput = document.querySelector(".ap-input");
-const rows = document.querySelectorAll("tbody tr");
 
-searchInput.addEventListener("keyup", function () {
-    const value = this.value.toLowerCase().trim();
-
-    rows.forEach(row => {
-        const username = row.children[2].textContent.toLowerCase();   // نام کاربری
-        const fullname = row.children[1].textContent.toLowerCase();   // نام کامل
-        const id = row.children[0].textContent.toLowerCase();         // شناسه
-
-        // اگر در هرکدام از فیلدها پیدا شود، نمایش داده می‌شود
-        if (
-            username.includes(value) ||
-            fullname.includes(value) ||
-            id.includes(value)
-        ) {
-            row.style.display = "";
-        } else {
-            row.style.display = "none";
-        }
-    });
-});
-const modal = document.getElementById("addAdminModal");
-const openBtn = document.querySelector(".ap-btn-primary");
-const closeBtn = document.getElementById("closeModal");
-const saveBtn = document.getElementById("saveAdmin");
-const tableBody = document.querySelector("tbody");
-
-openBtn.addEventListener("click", () => {
-    modal.style.display = "flex";
-});
-
-closeBtn.addEventListener("click", () => {
-    modal.style.display = "none";
-});
-
-// افزودن مدیر جدید
-saveBtn.addEventListener("click", () => {
-
-    const fullname = document.getElementById("newFullname").value.trim();
-    const username = document.getElementById("newUsername").value.trim();
-    const password = document.getElementById("newPassword").value.trim();
-    const role = document.getElementById("newRole").value === "admin" ? "ادمین" : "کاربر";
-
-    if (!fullname || !username || !password) {
-        alert("لطفاً همه فیلدها را پر کنید");
-        return;
-    }
-
-    // افزودن سطر جدید به جدول
-    const newRow = document.createElement("tr");
-    newRow.innerHTML = `
-        <td>---</td>
-        <td>${fullname}</td>
-        <td>${username}</td>
-        <td>${role}</td>
-        <td><button class="ap-btn ap-btn-danger">حذف</button></td>
-    `;
-
-    tableBody.appendChild(newRow);
-
-    modal.style.display = "none";
-
-    document.getElementById("newFullname").value = "";
-    document.getElementById("newUsername").value = "";
-    document.getElementById("newPassword").value = "";
-});
 
         </script>
         <script src="../js/order.js"></script>
