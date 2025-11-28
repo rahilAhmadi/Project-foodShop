@@ -4,6 +4,8 @@ if (isset($_GET['user'])) {
     $_SESSION['username'] = $_GET['user'];
 }
 
+// add fake change to test github and trello sync
+
 echo '  <div class="menu">
             <div class="menuRight">
                 <ul>
