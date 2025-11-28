@@ -794,6 +794,22 @@ main.user{
   .ap-btn-danger {
     background: #d9534f;
   }
+
+
+
+  /* فعال = سبز */
+.active-status {
+    background-color: #28a745 !important;
+    color: #fff !important;
+}
+
+/* غیر فعال = قرمز */
+.inactive-status {
+    background-color: #dc3545 !important;
+    color: #fff !important;
+}
+
+
   
   .ap-btn:hover {
     opacity: 0.85;
