@@ -13,13 +13,13 @@ const countdown = setInterval(() => {
   if(time < 0){
     clearInterval(countdown);
     alert("زمان پرداخت تمام شد!");
-    window.location.href = "cart.html";
+    window.location.href = "food.php?index=1";
   }
 },1000);
 
 // دکمه انصراف
 document.getElementById("cancel").addEventListener("click", () => {
-  window.location.href = "cart.html";
+  window.location.href = "food.php?index=1";
 });
 
 // کپچا عددی
@@ -27,7 +27,6 @@ const captchaTextEl = document.getElementById("captcha-text");
 const captchaInput = document.getElementById("captcha-input");
 const refreshBtn = document.getElementById("refresh-captcha");
 let captchaText = "";
-
 function generateCaptcha(){
   captchaText = Math.floor(100000 + Math.random() * 900000).toString();
   captchaTextEl.textContent = captchaText;
@@ -92,14 +91,13 @@ document.getElementById("payForm").addEventListener("submit", function(e){
     },
     {
       el: document.getElementById("email"),
-      validator: val => val === "" || /^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(val),
+      validator: val => val === "" || /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(val),
       errorEl: document.getElementById("email-error"),
-      msg: "ایمیل معتبر Gmail نیست!"
+      msg: "ایمیل معتبر نیست!"
     }
   ];
 
   let isValid = true;
-
   fields.forEach(f => {
     if(!f.validator(f.el.value.trim())){
       f.el.classList.add("error");
@@ -112,24 +110,7 @@ document.getElementById("payForm").addEventListener("submit", function(e){
   });
 
   if(isValid){
-    alert("پرداخت با موفقیت انجام شد!");
-
-    // پاک کردن اطلاعات فرم و خطاها
-    document.getElementById("payForm").reset();
-    fields.forEach(f => {
-        f.el.classList.remove("error");
-        f.errorEl.textContent = "";
-    });
-
-    // پاک کردن سبد خرید در JS و localStorage
-    if(typeof cart !== "undefined") cart = [];
-    const cartItemsContainer = document.querySelector('.cart-items');
-    if(cartItemsContainer) cartItemsContainer.innerHTML = '';
-    localStorage.removeItem("payableAmount");
-    localStorage.removeItem("cart");
-
-    // ریفرش صفحه بعد از پرداخت موفق
-    location.reload();
-}
-
+    // اگر اعتبارسنجی موفق بود، فرم را ارسال کن
+    this.submit();
+  }
 });
