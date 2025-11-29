@@ -19,8 +19,9 @@ if (!isset($_SESSION["user_id"])) {
 </head>
 <body>
 <?php require ('Menu.php'); ?>
+<h2 class="title_shopCard">سبد خرید شما</h2>
     <div class="cart-page">
-        <h2>سبد خرید شما</h2>
+     
         <div class="cart-items">
             <!-- محصولات از JS اضافه میشن -->
         </div>
