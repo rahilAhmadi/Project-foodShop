@@ -5,11 +5,22 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dastpokht</title>
+    <script>
+        // نمایش پیغام موفقیت پرداخت
+        document.addEventListener("DOMContentLoaded", () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const msg = urlParams.get('msg');
+            if (msg) {
+                alert(decodeURIComponent(msg));
+                // پاک کردن پارامتر msg از URL
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }
+        });
+    </script>
 </head>
 <body>
     <div class="contaner">
@@ -18,6 +29,6 @@
             <h1 class="header2"> رستوران  <span class="header-text">  دستپخت </span></h1>
             <a class="header-btn" href="food.php?index=1">سفارش غذا</a>
         </header>
-     
+    </div>
 </body>
 </html>

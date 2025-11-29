@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/login.css">
@@ -10,66 +9,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>صفحه ی ورود</title>
 </head>
-
 <body>
     <section class="login_form_section">
         <a class="back" href="index.html">
             <img class="icon_login_back" src="asset/icon/right-arrow.png">
             <p>بازگشت</p>
         </a>
-
-        <form class="form_login" id="loginForm" onsubmit="return validateLoginForm()" action="actionLogin.php"
-            method="post">
-
+        <form class="form_login" id="loginForm" onsubmit="return validateLoginForm()" action="actionLogin.php" method="post">
+            <!-- فیلد مخفی برای redirect که با جاوااسکریپت مقداردهی می‌شه -->
+            <input type="hidden" name="redirect" id="redirect" value="">
             <div class="user">
                 <label class="lbl_user">نام کاربری:</label>
                 <input class="input_user" id="input_user" name="input_user" type="text">
                 <p class="error-message" id="userError"></p>
             </div>
-
             <div class="pass">
                 <label class="lbl_pass">رمز عبور:</label>
-                <!-- <div class="password_box">
-                    <div class="toggle">
-                        <i class="far fa-eye"></i>
-                        <i class="far fa-eye-slash"></i>
-                    </div>
-                    <input class="input_pass" id="input_pass" name="input_pass" type="password" maxlength="8">
-                </div> -->
                 <div class="password_box">
                     <div class="toggle">
-                        <svg class="svg-inline--fa fa-eye fa-w-18" aria-hidden="true" focusable="false"
-                            data-prefix="far" data-icon="eye" role="img" xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 576 512" data-fa-i2svg="">
-                            <path fill="currentColor"
-                                d="M288 144a110.94 110.94 0 0 0-31.24 5 55.4 55.4 0 0 1 7.24 27 56 56 0 0 1-56 56 55.4 55.4 0 0 1-27-7.24A111.71 111.71 0 1 0 288 144zm284.52 97.4C518.29 135.59 410.93 64 288 64S57.68 135.64 3.48 241.41a32.35 32.35 0 0 0 0 29.19C57.71 376.41 165.07 448 288 448s230.32-71.64 284.52-177.41a32.35 32.35 0 0 0 0-29.19zM288 400c-98.65 0-189.09-55-237.93-144C98.91 167 189.34 112 288 112s189.09 55 237.93 144C477.1 345 386.66 400 288 400z">
-                            </path>
-                        </svg><!-- <i class="far fa-eye" aria-hidden="true"></i> Font Awesome fontawesome.com -->
-                        <svg class="svg-inline--fa fa-eye-slash fa-w-20" aria-hidden="true" focusable="false"
-                            data-prefix="far" data-icon="eye-slash" role="img" xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 640 512" data-fa-i2svg="">
-                            <path fill="currentColor"
-                                d="M634 471L36 3.51A16 16 0 0 0 13.51 6l-10 12.49A16 16 0 0 0 6 41l598 467.49a16 16 0 0 0 22.49-2.49l10-12.49A16 16 0 0 0 634 471zM296.79 146.47l134.79 105.38C429.36 191.91 380.48 144 320 144a112.26 112.26 0 0 0-23.21 2.47zm46.42 219.07L208.42 260.16C210.65 320.09 259.53 368 320 368a113 113 0 0 0 23.21-2.46zM320 112c98.65 0 189.09 55 237.93 144a285.53 285.53 0 0 1-44 60.2l37.74 29.5a333.7 333.7 0 0 0 52.9-75.11 32.35 32.35 0 0 0 0-29.19C550.29 135.59 442.93 64 320 64c-36.7 0-71.71 7-104.63 18.81l46.41 36.29c18.94-4.3 38.34-7.1 58.22-7.1zm0 288c-98.65 0-189.08-55-237.93-144a285.47 285.47 0 0 1 44.05-60.19l-37.74-29.5a333.6 333.6 0 0 0-52.89 75.1 32.35 32.35 0 0 0 0 29.19C89.72 376.41 197.08 448 320 448c36.7 0 71.71-7.05 104.63-18.81l-46.41-36.28C359.28 397.2 339.89 400 320 400z">
-                            </path>
-                        </svg><!-- <i class="far fa-eye-slash" aria-hidden="true"></i> Font Awesome fontawesome.com -->
+                        <svg class="svg-inline--fa fa-eye fa-w-18" aria-hidden="true" focusable="false" data-prefix="far" data-icon="eye" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg="">
+                            <path fill="currentColor" d="M288 144a110.94 110.94 0 0 0-31.24 5 55.4 55.4 0 0 1 7.24 27 56 56 0 0 1-56 56 55.4 55.4 0 0 1-27-7.24A111.71 111.71 0 1 0 288 144zm284.52 97.4C518.29 135.59 410.93 64 288 64S57.68 135.64 3.48 241.41a32.35 32.35 0 0 0 0 29.19C57.71 376.41 165.07 448 288 448s230.32-71.64 284.52-177.41a32.35 32.35 0 0 0 0-29.19zM288 400c-98.65 0-189.09-55-237.93-144C98.91 167 189.34 112 288 112s189.09 55 237.93 144C477.1 345 386.66 400 288 400z"></path>
+                        </svg>
+                        <svg class="svg-inline--fa fa-eye-slash fa-w-20" aria-hidden="true" focusable="false" data-prefix="far" data-icon="eye-slash" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" data-fa-i2svg="">
+                            <path fill="currentColor" d="M634 471L36 3.51A16 16 0 0 0 13.51 6l-10 12.49A16 16 0 0 0 6 41l598 467.49a16 16 0 0 0 22.49-2.49l10-12.49A16 16 0 0 0 634 471zM296.79 146.47l134.79 105.38C429.36 191.91 380.48 144 320 144a112.26 112.26 0 0 0-23.21 2.47zm46.42 219.07L208.42 260.16C210.65 320.09 259.53 368 320 368a113 113 0 0 0 23.21-2.46zM320 112c98.65 0 189.09 55 237.93 144a285.53 285.53 0 0 1-44 60.2l37.74 29.5a333.7 333.7 0 0 0 52.9-75.11 32.35 32.35 0 0 0 0-29.19C550.29 135.59 442.93 64 320 64c-36.7 0-71.71 7-104.63 18.81l46.41 36.29c18.94-4.3 38.34-7.1 58.22-7.1zm0 288c-98.65 0-189.08-55-237.93-144a285.47 285.47 0 0 1 44.05-60.19l-37.74-29.5a333.6 333.6 0 0 0-52.89 75.1 32.35 32.35 0 0 0 0 29.19C89.72 376.41 197.08 448 320 448c36.7 0 71.71-7.05 104.63-18.81l-46.41-36.28C359.28 397.2 339.89 400 320 400z"></path>
+                        </svg>
                     </div>
                     <input class="input_pass" id="input_pass" name="input_pass" type="password">
                 </div>
                 <p class="error-message" id="passError"></p>
             </div>
-
             <input class="btn_submit" type="submit" value="ورود">
-
             <p class="question">اکانت ندارید؟ <a href="register.html" class="orange a_register">ثبت نام</a></p>
             <p class="error-message general-error" id="generalError"></p>
         </form>
     </section>
-
+    <script src="js/all.min.js"></script>
+    <script src="js/login.js"></script>
+    <div class="alert-box hidden">
+        <span class="close-btn">&times;</span>
+        <p>این یک پیام آزمایشی است</p>
+    </div>
     <script>
+        // مدیریت ریدایرکت با جاوااسکریپت
+        document.addEventListener("DOMContentLoaded", () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            let redirect = urlParams.get('redirect') || 'food.php?index=1';
+            // اگر redirect کدگذاری شده بود، آن را decode کن
+            try {
+                redirect = decodeURIComponent(redirect);
+            } catch (e) {
+                console.error("خطا در decode کردن redirect:", e);
+            }
+            document.getElementById('redirect').value = redirect;
+        });
+    
         const toggle = document.querySelector('.toggle');
         const input = document.getElementById('input_pass');
         toggle.addEventListener('click', function () {
-            console.log("click shodammm")
             if (input.type === "password") {
                 input.setAttribute('type', 'text');
                 toggle.classList.add('hide');
@@ -77,20 +73,11 @@
                 input.setAttribute('type', 'password');
                 toggle.classList.remove('hide');
             }
-        })
-    </script>
-    <script src="js/all.min.js"></script>
-    <script src="js/login.js"></script>
-    <div class="alert-box hidden">
-        <span class="close-btn">&times;</span>
-        <p>این یک پیام آزمایشی است</p>
-    </div>
-
-    <script>
+        });
+    
         const alertBox = document.querySelector('.alert-box');
         const closeBtn = document.querySelector('.close-btn');
         let timer;
-
         function showCustomAlert(message) {
             alertBox.querySelector('p').innerText = message;
             alertBox.classList.remove('hide');
@@ -99,24 +86,20 @@
             clearTimeout(timer);
             timer = setTimeout(() => hideAlertBox(), 4000);
         }
-
         function hideAlertBox() {
             alertBox.classList.remove('show');
             alertBox.classList.add('hide');
         }
-
         closeBtn.addEventListener('click', function () {
             hideAlertBox();
             clearTimeout(timer);
         });
-
+    
         const urlParams = new URLSearchParams(window.location.search);
         const message = urlParams.get('msg');
         const user = urlParams.get('user');
-
         if (message) {
             let bgColor, progressColor;
-
             if (message.includes('اشتباه') || message.includes('خطا')) {
                 bgColor = '#f8b4b4';
                 progressColor = '#ff7b7b';
@@ -126,24 +109,27 @@
                 progressColor = '#5fd45f';
                 alertBox.style.color = '#0f5132';
             }
-
             alertBox.style.backgroundColor = bgColor;
             alertBox.style.setProperty('--progress-color', progressColor);
-
             showCustomAlert(message);
             if (message.includes('خوش آمدید')) {
+                let redirect = urlParams.get('redirect') || 'food.php?index=1';
+                // اگر redirect کدگذاری شده بود، آن را decode کن
+                try {
+                    redirect = decodeURIComponent(redirect);
+                } catch (e) {
+                    console.error("خطا در decode کردن redirect:", e);
+                }
                 setTimeout(() => {
-                    window.location.href = 'food.php?index=1&user=' + encodeURIComponent(user);
+                    window.location.href = redirect + '&user=' + encodeURIComponent(user);
                 }, 1500);
             }
-
             setTimeout(() => {
                 const newUrl = window.location.pathname;
                 window.history.replaceState({}, document.title, newUrl);
             }, 4500);
         }
     </script>
-
+    
 </body>
-
 </html>
