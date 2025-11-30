@@ -90,8 +90,8 @@ fields.forEach(f => {
           valid = false;
       } else {
           const priceNum = parseInt(rawValue, 10);
-          if (priceNum < 50000 || priceNum > 500000) {
-              f.error.textContent = "قیمت باید بین 50,000 تا 500,000 تومان باشد.";
+          if (priceNum < 10000 || priceNum > 500000) {
+              f.error.textContent = "قیمت باید بین 10,000 تا 500,000 تومان باشد.";
               f.input.classList.add("input-error");
               valid = false;
           } else {
