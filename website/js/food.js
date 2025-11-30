@@ -242,16 +242,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
 //قیمت تومان
 
-document.addEventListener("DOMContentLoaded", () => {
-    const toPersian = n => n.replace(/\d/g, d => "۰۱۲۳۴۵۶۷۸۹"[d]);
+// document.addEventListener("DOMContentLoaded", () => {
+//     const toPersian = n => n.replace(/\d/g, d => "۰۱۲۳۴۵۶۷۸۹"[d]);
+//     document.querySelectorAll(".price").forEach(el => {
+//         const raw = el.dataset.price;
+//         if (!raw) return;
+//         let formatted = Number(raw).toLocaleString("en-US");
+//         formatted = toPersian(formatted);
 
-    document.querySelectorAll(".price").forEach(el => {
-        const raw = el.dataset.price;
-        if (!raw) return;
-        let formatted = Number(raw).toLocaleString("en-US");
-        formatted = toPersian(formatted);
+//         el.innerHTML = `${formatted} <small style="font-size:0.75em;color:#777">تومان</small>`;
+//     });
 
-        el.innerHTML = `${formatted} <small style="font-size:0.75em;color:#777">تومان</small>`;
-    });
-
-});
+// });
