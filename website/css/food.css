@@ -245,9 +245,24 @@ body {
     line-height: 1;
     font-size: 1.1rem;
     transition: background-color 0.2s;
+    flex-shrink: 0; 
 }
 .quantity-btn:hover {
     background-color: #e0e0e0;
+}
+.product-qty {
+    display: inline-flex;
+    color: #dd5d01;           
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 12px;
+    margin-bottom: 10px;
+}
+
+.modal-qty{
+    font-size: 1 rem;
+    padding-top: 10px;
+    color: #dd5d01;
 }
 .item-price {
     font-weight: bold;

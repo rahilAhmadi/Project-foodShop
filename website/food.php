@@ -53,6 +53,7 @@ while ($row = mysqli_fetch_array($foods)) {
         <div class="product-info">
             <h3>' . $row['food_Name'] . '</h3>
             <p>' . $row['description'] . '</p>
+            <h4 class="product-qty" data-qty="1">تعداد: ۱</h4>
             <span class="price" data-price="' . $price . '">' . $price . '</span>
             <button class="add-to-cart-btn" data-id="' . $row['food_ID'] . '">+</button>
         </div>
@@ -88,6 +89,7 @@ while ($row = mysqli_fetch_array($foods)) {
             <div class="modal-body">
                 <h2 id="modal-name"></h2>
                 <p class="modal-desc"></p>
+                <h4 class="modal-qty">تعداد:1</h4>
                 <p class="modal-price"></p>
             </div>
             <div class="modal-footer">

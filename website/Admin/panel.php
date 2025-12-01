@@ -192,7 +192,8 @@ if (isset($_GET['Avalible']))
                         <h3 class="label_food">قیمت:</h3>
                         <input type="text" class="input_food"  name="food_info[price]"  placeholder="مثلا 50.000 تومان" id="price"  value="<?= $food ? $food['price'] : '' ?>">
                         <span class="error-message" id="priceError"></span>
-                        <div class="food-select-box">
+                         <div class="counter-qty">
+                         <div class="food-select-box">
                             <label for="food-type" class="food-label">انتخاب نوع غذا</label>
                             <select id="food-type" name="food_info[type]" class="food-dropdown">
                                     <option value="" disabled <?= !$food ? 'selected' : '' ?>>انتخاب کنید...</option>
@@ -207,6 +208,13 @@ if (isset($_GET['Avalible']))
 
                           </div>
                     
+                        <div class="admin-qty-box">
+                            <label for="qty-input">تعداد :</label>
+                            <input type="number" id="qty-input" name="qty" placeholder="مثلاً 200">
+                        </div>
+
+
+                         </div>
                         <h3 class="label_food">تصویر غذا:</h3>
                         <input type="file"  name="food_image" class="input_food" id="image" accept="image/*">
                         <span class="error-message" id="imageError"></span>
