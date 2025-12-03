@@ -1,6 +1,18 @@
 const amountEl = document.getElementById("payment-amount");
-let finalAmount = localStorage.getItem("payableAmount") || 250000;
+
+// خواندن نوع پرداخت
+let payType = localStorage.getItem("payType") || "food"; // اگر چیزی نبود فرض بر خرید غذا
+let finalAmount;
+
+if(payType === "wallet"){
+    finalAmount = localStorage.getItem("payableAmount") || 0;
+} else {
+    finalAmount = localStorage.getItem("payableAmount") || 25000;
+}
+
+// نمایش مبلغ
 amountEl.textContent = Number(finalAmount).toLocaleString("fa-IR") + " تومان";
+
 
 // تایمر معکوس 10 دقیقه
 let time = 10 * 60; // 10 دقیقه
@@ -13,20 +25,31 @@ const countdown = setInterval(() => {
   if(time < 0){
     clearInterval(countdown);
     alert("زمان پرداخت تمام شد!");
-    window.location.href = "food.php?index=1";
+    window.location.href = "cart.html";
   }
 },1000);
 
 // دکمه انصراف
 document.getElementById("cancel").addEventListener("click", () => {
-  window.location.href = "food.php?index=1";
+  // پاک کردن مبلغ پرداخت موقت
+  localStorage.removeItem("payableAmount");
+  localStorage.removeItem("payType");
+
+  // هدایت بر اساس نوع پرداخت
+  if(payType === "wallet"){
+      window.location.href = "wallet.html"; // برگشت به کیف پول
+  } else {
+      window.location.href = "food.php";   // برگشت به صفحه غذا
+  }
 });
+
 
 // کپچا عددی
 const captchaTextEl = document.getElementById("captcha-text");
 const captchaInput = document.getElementById("captcha-input");
 const refreshBtn = document.getElementById("refresh-captcha");
 let captchaText = "";
+
 function generateCaptcha(){
   captchaText = Math.floor(100000 + Math.random() * 900000).toString();
   captchaTextEl.textContent = captchaText;
@@ -47,10 +70,6 @@ const emailInput = document.getElementById("email");
 emailInput.addEventListener("input", function(){
   this.value = this.value.replace(/[^a-zA-Z0-9@._-]/g, '');
 });
-
-// اعتبارسنجی فرم
-document.getElementById("payForm").addEventListener("submit", function(e){
-  e.preventDefault();
 
   const fields = [
     {
@@ -91,26 +110,51 @@ document.getElementById("payForm").addEventListener("submit", function(e){
     },
     {
       el: document.getElementById("email"),
-      validator: val => val === "" || /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(val),
+      validator: val => val === "" || /^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(val),
       errorEl: document.getElementById("email-error"),
-      msg: "ایمیل معتبر نیست!"
+      msg: "ایمیل معتبر Gmail نیست!"
     }
   ];
-
-  let isValid = true;
-  fields.forEach(f => {
-    if(!f.validator(f.el.value.trim())){
-      f.el.classList.add("error");
-      f.errorEl.textContent = f.msg;
-      isValid = false;
+  document.getElementById("payForm").addEventListener("submit", function(e){
+    e.preventDefault();
+  
+    let isValid = true;
+  
+    fields.forEach(f => {
+      if(!f.validator(f.el.value.trim())){
+        f.el.classList.add("error");
+        f.errorEl.textContent = f.msg;
+        isValid = false;
+      } else {
+        f.el.classList.remove("error");
+        f.errorEl.textContent = "";
+      }
+    });
+  
+    if(!isValid) return;
+  
+    alert("پرداخت با موفقیت انجام شد!");
+  
+    const payType = localStorage.getItem("payType") || "food";
+    const payableAmount = parseInt(localStorage.getItem("payableAmount") );
+  
+    // اگر کیف پول شارژ می‌شود
+    if(payType === "wallet" && payableAmount > 0){
+        let balance = parseInt(localStorage.getItem("balance") || 0);  
+        balance += payableAmount;  
+        localStorage.setItem("balance", balance);
+    }
+  
+    // پاک کردن مقادیر موقت
+    localStorage.removeItem("payableAmount");
+    localStorage.removeItem("payType");
+    localStorage.removeItem("cart");
+  
+    // هدایت بر اساس نوع پرداخت
+    if(payType === "wallet"){
+        window.location.href = "wallet.html";
     } else {
-      f.el.classList.remove("error");
-      f.errorEl.textContent = "";
+        window.location.href = "food.php"; // صفحه سفارش غذا
     }
   });
-
-  if(isValid){
-    // اگر اعتبارسنجی موفق بود، فرم را ارسال کن
-    this.submit();
-  }
-});
+  
