@@ -2,7 +2,6 @@
 
 /* تنظیمات کلی */
 body {
-    font-family: "Vazirmatn", sans-serif !important;
     margin: 0;
     background: linear-gradient(97deg, #e5d6c4, #ff972ead);
     min-height: 100vh;
@@ -21,6 +20,7 @@ body {
     color: #fff;
     margin-bottom: 25px;
     animation: fadeDown 0.7s ease;
+    height: auto !important;
 }
 
 /* کارت موجودی */
@@ -52,7 +52,7 @@ body {
 }
 
 .balance-left .label {
-    color: #eee;
+    color: rgba(56, 56, 56, 0.65);
     font-size: 15px;
     opacity: 0.9;
 }
@@ -102,13 +102,12 @@ body {
 }
 
 .add-section input {
-    font-family: "Vazirmatn", sans-serif !important; 
     padding: 16px;
     font-size: 25px;
     border-radius: 18px;
     border: none;
     text-align: center;
-    color: #ffffff;
+    color: rgba(56, 56, 56, 0.65);
     outline: none;
     font-weight: 600;
     background: linear-gradient(135deg, rgba(255,255,255,0.28), rgba(255,255,255,0.12));
@@ -119,7 +118,7 @@ body {
 }
 
 .add-section input::placeholder {
-    color: rgba(255,255,255,0.65);
+    color: rgba(56, 56, 56, 0.65);
     font-weight: 400;
 }
 
@@ -139,7 +138,6 @@ body {
 }
 
 .quick-amounts button {
-    font-family: "Vazirmatn", sans-serif !important;
       flex: 1 1 45%;
     min-width: 90px;
     padding: 12px 0;
@@ -161,7 +159,6 @@ body {
 
 /* دکمه تأیید */
 #confirmBtn {
-    font-family: "Vazirmatn", sans-serif !important;  
       padding: 15px;
     border-radius: 20px;
     border: none;
