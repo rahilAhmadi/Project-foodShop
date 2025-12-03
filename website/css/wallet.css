@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&display=swap');
+
+/* تنظیمات کلی */
+body {
+    font-family: "Vazirmatn", sans-serif !important;
+    margin: 0;
+    background: linear-gradient(97deg, #e5d6c4, #ff972ead);
+    min-height: 100vh;
+}
+
+/* کانتینر */
+.container {
+    max-width: 720px;
+    margin: auto;
+    padding: 25px;
+}
+
+/* هدر */
+.header {
+    text-align: center;
+    color: #fff;
+    margin-bottom: 25px;
+    animation: fadeDown 0.7s ease;
+}
+
+/* کارت موجودی */
+.balance-card {
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(16px);
+    border-radius: 22px;
+    padding: 25px;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.20);
+    animation: fadeUp 0.9s ease;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Glow */
+.balance-card::after {
+    content: "";
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    background: rgba(255,255,255,0.25);
+    top: -40px;
+    right: -40px;
+    border-radius: 50%;
+    filter: blur(40px);
+}
+
+.balance-left .label {
+    color: #eee;
+    font-size: 15px;
+    opacity: 0.9;
+}
+
+.balance-left .balance {
+    font-size: 32px;
+    font-weight: 900;
+    color: white;
+    margin-top: 10px;
+}
+
+.balance-icon img {
+    width: 100px;
+    opacity: 0.95;
+    animation: pulse 2s infinite ease-in-out;
+}
+
+/* انیمیشن‌ها */
+@keyframes fadeUp {
+    from { opacity:0; transform:translateY(20px); }
+    to   { opacity:1; transform:translateY(0); }
+}
+
+@keyframes fadeDown {
+    from { opacity:0; transform:translateY(-20px); }
+    to   { opacity:1; transform:translateY(0); }
+}
+
+@keyframes pulse {
+    0% { transform:scale(1); opacity:0.9 }
+    50%{ transform:scale(1.14); opacity:1 }
+    100%{ transform:scale(1); opacity:0.9 }
+}
+
+/* بخش افزودن مبلغ */
+.add-section {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: rgba(255,255,255,0.1);
+    padding: 20px;
+    border-radius: 20px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    animation: fadeUp 0.8s ease;
+}
+
+.add-section input {
+    font-family: "Vazirmatn", sans-serif !important; 
+    padding: 16px;
+    font-size: 25px;
+    border-radius: 18px;
+    border: none;
+    text-align: center;
+    color: #ffffff;
+    outline: none;
+    font-weight: 600;
+    background: linear-gradient(135deg, rgba(255,255,255,0.28), rgba(255,255,255,0.12));
+    box-shadow: 
+        4px 4px 12px rgba(0,0,0,0.25),
+        -4px -4px 12px rgba(255,255,255,0.25);
+    transition: 0.25s ease-in-out;
+}
+
+.add-section input::placeholder {
+    color: rgba(255,255,255,0.65);
+    font-weight: 400;
+}
+
+.add-section input:focus {
+    background: rgba(255,255,255,0.35);
+    box-shadow: 
+        0 0 12px rgba(26,255,140,0.6),
+        inset 0 0 10px rgba(255,255,255,0.3);
+}
+
+/* مبالغ پیشنهادی */
+.quick-amounts {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.quick-amounts button {
+    font-family: "Vazirmatn", sans-serif !important;
+      flex: 1 1 45%;
+    min-width: 90px;
+    padding: 12px 0;
+    border-radius: 18px;
+    border: none;
+    background: #ffffff;
+    color: #ff7f00;
+    font-weight: 800;
+    cursor: pointer;
+    font-size: 18px;
+    transition: 0.3s ease;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+
+.quick-amounts button:hover {
+    transform: translateY(-3px) scale(1.07);
+    box-shadow: 0 10px 25px rgba(255,127,0,0.5);
+}
+
+/* دکمه تأیید */
+#confirmBtn {
+    font-family: "Vazirmatn", sans-serif !important;  
+      padding: 15px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 800;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.20);
+    transition: 0.25s ease;
+    background: linear-gradient(135deg, #1be76c, #13c059);
+    color: white;
+}
+
+#confirmBtn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 28px rgba(38,217,110,0.55);
+}
+
+/* خطا */
+#errorMsg {
+    color: #ff4d4f;
+    margin-top: 10px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 14px;
+}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>کیف پول من</title>
+<link rel="stylesheet" href="css/wallet.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <header class="header">
+        <h2>کیف پول من</h2>
+    </header>
+
+    <div class="balance-card">
+        <div class="balance-left">
+            <span class="label">موجودی فعلی</span>
+            <span class="balance" id="balance"></span>
+        </div>
+        <div class="balance-icon">
+            <img src="asset/iconwallet.png">
+        </div>
+    </div>
+
+    <div class="add-section">
+
+     
+        <input type="text" id="amountInput" placeholder="مبلغ را وارد کنید">
+
+        <div class="quick-amounts">
+            <button type="button" data-amount="10000">۱۰,۰۰۰</button>
+            <button type="button" data-amount="25000">۲۵,۰۰۰</button>
+            <button type="button" data-amount="50000">۵۰,۰۰۰</button>
+            <button type="button" data-amount="100000">۱۰۰,۰۰۰</button>
+        </div>
+
+        <button id="confirmBtn">پرداخت</button>
+
+        <p id="errorMsg"></p>
+
+    </div>
+
+</div>
+
+<script>
+function formatFarsi(num) {
+    if (!num) return "۰";
+    let english = num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return english.replace(/\d/g, d => "۰۱۲۳۴۵۶۷۸۹"[d]);
+}
+function persianToEnglish(str) {
+    return str.replace(/[۰-۹]/g, d => "0123456789"["۰۱۲۳۴۵۶۷۸۹".indexOf(d)]);
+}
+
+const balanceEl = document.getElementById("balance");
+let balance = parseInt(localStorage.getItem("balance") || "0");
+balanceEl.textContent = formatFarsi(balance) + " تومان";
+
+
+const amountInput = document.getElementById('amountInput');
+const confirmBtn = document.getElementById('confirmBtn');
+const errorMsg = document.getElementById('errorMsg');
+const quickButtons = document.querySelectorAll('.quick-amounts button');
+
+amountInput.addEventListener("input", () => {
+    let clean = amountInput.value.replace(/[^\d۰-۹]/g, '');
+
+    clean = clean.replace(/\d/g, d => "۰۱۲۳۴۵۶۷۸۹"[d]);
+
+    amountInput.value = clean;
+});
+
+
+quickButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        let val = btn.getAttribute('data-amount');
+        amountInput.value = formatFarsi(val); 
+        errorMsg.style.display = 'none';
+    });
+});
+
+/* ----------------------------------------------------------
+   دکمه پرداخت
+---------------------------------------------------------- */
+confirmBtn.addEventListener('click', () => {
+
+   
+    let amount = parseInt(persianToEnglish(amountInput.value.replace(/,/g, "")));
+
+    if (!amount || amount <= 0) {
+        errorMsg.textContent = 'لطفاً مبلغ معتبر وارد کنید';
+        errorMsg.style.display = 'block';
+        return;
+    }
+
+    localStorage.setItem('payableAmount', amount);
+    localStorage.setItem('payType', 'wallet');
+
+    window.location.href = 'dargah.html';
+});
+
+</script>
+
+</body>
+</html>
