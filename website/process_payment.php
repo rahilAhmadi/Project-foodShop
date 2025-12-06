@@ -3,79 +3,107 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-// بررسی لاگین کاربر
+// ⚠️ ۱. بررسی لاگین کاربر
 if (!isset($_SESSION["user_id"])) {
-    // ⬅️ اگر لاگین نکرده بود، به صفحه لاگین منتقل می‌شود
     header("Location: login.html?redirect=dargah.php");
     exit();
 }
 
-// بررسی وجود اطلاعات سفارش
-if (!isset($_SESSION["cart"]) || !isset($_SESSION["order_info"])) {
-    // ⬅️ اگر سبد خرید یا اطلاعات سفارش نبود، به صفحه اصلی یا سبد خرید منتقل می‌شود
-    header("Location: shoppingCart.php");
-    exit();
+$user_id = $_SESSION["user_id"];
+
+// ⚠️ ۲. خواندن متغیرهای POST ارسالی از dargah.js
+$payType = $_POST['pay_type'] ?? 'unknown';
+$amount = $_POST['final_amount'] ?? 0;
+
+// بررسی صحت مبلغ
+if (!is_numeric($amount) || $amount <= 0) {
+    die("خطا: مبلغ پرداخت معتبر نیست.");
 }
 
-// اتصال به دیتابیس
-// ⚠️ اطلاعات اتصال را با مقادیر سرور خود (اگر متفاوت است) جایگزین کنید.
+// ⚠️ ۳. اتصال به دیتابیس
 $db = new mysqli("localhost", "root", "", "daspokht"); 
-
-// بررسی خطا در اتصال به دیتابیس
 if ($db->connect_error) {
     die("خطا در اتصال به دیتابیس: " . $db->connect_error);
 }
 
 // ------------------------------------------------
-// ۱. محاسبه مجموع قیمت سفارش (رفع اخطار خط ۲۴)
+// 🔍 نقطه اصلی: تشخیص نوع پرداخت و اجرای عملیات مربوطه
 // ------------------------------------------------
-$total_price = 0;
-// ⬅️ از کلید "qty" استفاده می‌شود
-foreach ($_SESSION["cart"] as $item) {
-    // رفع اخطار Undefined array key "qty"
-    $total_price += $item["price"] * $item["qty"]; 
-}
-// ⬅️ هزینه ارسال را از سشن می‌خوانیم
-$total_price += $_SESSION["order_info"]["shipping_cost"];
 
-
-// ------------------------------------------------
-// ۲. ثبت سفارش در جدول orders
-// ------------------------------------------------
-$stmt = $db->prepare("INSERT INTO orders (user_ID, total_Price, status, created_At) VALUES (?, ?, 'confirmed', NOW())");
-
-// $total_price را با نوع 'd' (double/float) به جای 'i' (integer) برای دقت بیشتر بگذارید
-$stmt->bind_param("id", $_SESSION["user_id"], $total_price);
-$stmt->execute();
-$order_id = $stmt->insert_id; // شناسه سفارش تازه ثبت شده
-
-
-// ------------------------------------------------
-// ۳. ثبت آیتم‌های سفارش در جدول order_items (رفع خطای خط ۳۹)
-// ------------------------------------------------
-foreach ($_SESSION["cart"] as $item) {
-    $stmt = $db->prepare("INSERT INTO order_items (order_ID, food_ID, quantity, price) VALUES (?, ?, ?, ?)");
+if ($payType === 'wallet') {
+    // ------------------------------------------------
+    // حالت ۱: شارژ کیف پول (Wallet Charge)
+    // ------------------------------------------------
     
-    // ⬅️ رفع خطای Fatal error: Uncaught mysqli_sql_exception: Column 'food_ID' cannot be null
-    // فرض: food_ID در سشن با کلید "food_id" ذخیره شده و ستون دیتابیس 'quantity' است.
-    $stmt->bind_param("iiid", 
-        $order_id, 
-        $item["food_id"], // استفاده از کلید "food_id"
-        $item["qty"],     // استفاده از کلید "qty"
-        $item["price"]
-    );
+    // به‌روزرسانی (UPDATE) فیلد 'wallet' در جدول 'users'
+    // مقدار جدید = موجودی قبلی + مبلغ جدید
+    $stmt = $db->prepare("UPDATE users SET wallet_Balance = wallet_Balance + ? WHERE user_ID = ?");
+    
+    // 'd' برای float/double (مبلغ) و 'i' برای integer (شناسه کاربر)
+    $stmt->bind_param("di", $amount, $user_id);
+    
+    if ($stmt->execute()) {
+        // ⬅️ انتقال به صفحه موفقیت شارژ (باید چنین صفحه‌ای وجود داشته باشد)
+        header("Location: wallet_success.php?amount=" . $amount); 
+        exit();
+    } else {
+        die("خطا در به‌روزرسانی کیف پول: " . $stmt->error);
+    }
+    
+} elseif ($payType === 'order') {
+    // ------------------------------------------------
+    // حالت ۲: ثبت سفارش (Order Registration) - منطق قبلی
+    // ------------------------------------------------
+    
+    // ⚠️ بررسی وجود اطلاعات سفارش (فقط برای حالت سفارش این چک لازم است)
+    if (!isset($_SESSION["cart"]) || !isset($_SESSION["order_info"])) {
+        header("Location: shoppingCart.php");
+        exit();
+    }
+    
+    // ۱. محاسبه مجموع قیمت سفارش (مبلغی که باید پرداخت می‌شد)
+    $total_price_from_session = 0;
+    foreach ($_SESSION["cart"] as $item) {
+        $total_price_from_session += $item["price"] * $item["qty"]; 
+    }
+    $expected_total = $total_price_from_session + $_SESSION["order_info"]["shipping_cost"];
+
+    // 🛡️ مرحله امنیتی: چک کردن تطابق مبلغ پرداخت شده با مبلغ مورد انتظار
+    // از آنجایی که مبلغ قابل پرداخت از سمت کاربر آمده است، باید با مقدار محاسبه شده از سشن چک شود.
+    if (abs($amount - $expected_total) > 0.01) { 
+        die("خطا: مبلغ پرداخت شده با مبلغ سفارش مطابقت ندارد. عملیات لغو شد.");
+    }
+    
+    // ۲. ثبت سفارش در جدول orders
+    $stmt = $db->prepare("INSERT INTO orders (user_ID, total_Price, status, created_At) VALUES (?, ?, 'confirmed', NOW())");
+    $stmt->bind_param("id", $user_id, $expected_total); 
     $stmt->execute();
+    $order_id = $stmt->insert_id; 
+
+    // ۳. ثبت آیتم‌های سفارش در جدول order_items
+    foreach ($_SESSION["cart"] as $item) {
+        $stmt = $db->prepare("INSERT INTO order_items (order_ID, food_ID, quantity, price) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("iiid", 
+            $order_id, 
+            $item["food_id"], 
+            $item["qty"],     
+            $item["price"]
+        );
+        $stmt->execute();
+    }
+
+    // ۴. اتمام موفقیت‌آمیز سفارش
+    unset($_SESSION["cart"]);
+    unset($_SESSION["order_info"]);
+
+    // ⬅️ انتقال به صفحه موفقیت سفارش
+    header("Location: order_success.php?order_id=" . $order_id);
+    exit();
+
+} else {
+    // ------------------------------------------------
+    // حالت ۳: نوع پرداخت نامشخص
+    // ------------------------------------------------
+    die("خطای سیستم: نوع پرداخت ارسالی نامشخص است.");
 }
-
-
-// ------------------------------------------------
-// ۴. اتمام موفقیت‌آمیز سفارش
-// ------------------------------------------------
-// پاک کردن سشن‌های سبد خرید
-unset($_SESSION["cart"]);
-unset($_SESSION["order_info"]);
-
-// ⬅️ انتقال به صفحه موفقیت سفارش
-header("Location: order_success.php?order_id=" . $order_id);
-exit();
 ?>

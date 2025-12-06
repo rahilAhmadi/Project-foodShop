@@ -1,18 +1,9 @@
 const amountEl = document.getElementById("payment-amount");
-
-// خواندن نوع پرداخت
-let payType = localStorage.getItem("payType") || "food"; // اگر چیزی نبود فرض بر خرید غذا
-let finalAmount;
-
-if(payType === "wallet"){
-    finalAmount = localStorage.getItem("payableAmount") || 0;
-} else {
-    finalAmount = localStorage.getItem("payableAmount") || 25000;
-}
-
-// نمایش مبلغ
+let finalAmount = localStorage.getItem("payableAmount") || 250000;
 amountEl.textContent = Number(finalAmount).toLocaleString("fa-IR") + " تومان";
 
+// ✨ جدید: خواندن نوع پرداخت از localStorage
+const payType = localStorage.getItem("payType") || "unknown"; 
 
 // تایمر معکوس 10 دقیقه
 let time = 10 * 60; // 10 دقیقه
@@ -25,31 +16,26 @@ const countdown = setInterval(() => {
   if(time < 0){
     clearInterval(countdown);
     alert("زمان پرداخت تمام شد!");
-    window.location.href = "cart.html";
+    window.location.href = "food.php?index=1";
   }
 },1000);
 
 // دکمه انصراف
 document.getElementById("cancel").addEventListener("click", () => {
-  // پاک کردن مبلغ پرداخت موقت
-  localStorage.removeItem("payableAmount");
-  localStorage.removeItem("payType");
-
-  // هدایت بر اساس نوع پرداخت
-  if(payType === "wallet"){
-      window.location.href = "wallet.html"; // برگشت به کیف پول
+  // ✨ جدید: بر اساس payType به صفحه مناسب برگرد
+  if (payType === "wallet") {
+    window.location.href = "wallet.php";
   } else {
-      window.location.href = "food.php";   // برگشت به صفحه غذا
+    // اگر 'order' یا 'unknown' بود، به صفحه پیش‌فرض (مثل صفحه اصلی یا سبد خرید)
+    window.location.href = "food.php?index=1"; 
   }
 });
-
 
 // کپچا عددی
 const captchaTextEl = document.getElementById("captcha-text");
 const captchaInput = document.getElementById("captcha-input");
 const refreshBtn = document.getElementById("refresh-captcha");
 let captchaText = "";
-
 function generateCaptcha(){
   captchaText = Math.floor(100000 + Math.random() * 900000).toString();
   captchaTextEl.textContent = captchaText;
@@ -70,6 +56,10 @@ const emailInput = document.getElementById("email");
 emailInput.addEventListener("input", function(){
   this.value = this.value.replace(/[^a-zA-Z0-9@._-]/g, '');
 });
+
+// اعتبارسنجی فرم
+document.getElementById("payForm").addEventListener("submit", function(e){
+  e.preventDefault();
 
   const fields = [
     {
@@ -110,51 +100,43 @@ emailInput.addEventListener("input", function(){
     },
     {
       el: document.getElementById("email"),
-      validator: val => val === "" || /^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(val),
+      validator: val => val === "" || /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(val),
       errorEl: document.getElementById("email-error"),
-      msg: "ایمیل معتبر Gmail نیست!"
+      msg: "ایمیل معتبر نیست!"
     }
   ];
-  document.getElementById("payForm").addEventListener("submit", function(e){
-    e.preventDefault();
-  
-    let isValid = true;
-  
-    fields.forEach(f => {
-      if(!f.validator(f.el.value.trim())){
-        f.el.classList.add("error");
-        f.errorEl.textContent = f.msg;
-        isValid = false;
-      } else {
-        f.el.classList.remove("error");
-        f.errorEl.textContent = "";
-      }
-    });
-  
-    if(!isValid) return;
-  
-    alert("پرداخت با موفقیت انجام شد!");
-  
-    const payType = localStorage.getItem("payType") || "food";
-    const payableAmount = parseInt(localStorage.getItem("payableAmount") );
-  
-    // اگر کیف پول شارژ می‌شود
-    if(payType === "wallet" && payableAmount > 0){
-        let balance = parseInt(localStorage.getItem("balance") || 0);  
-        balance += payableAmount;  
-        localStorage.setItem("balance", balance);
-    }
-  
-    // پاک کردن مقادیر موقت
-    localStorage.removeItem("payableAmount");
-    localStorage.removeItem("payType");
-    localStorage.removeItem("cart");
-  
-    // هدایت بر اساس نوع پرداخت
-    if(payType === "wallet"){
-        window.location.href = "wallet.html";
+
+  let isValid = true;
+  fields.forEach(f => {
+    if(!f.validator(f.el.value.trim())){
+      f.el.classList.add("error");
+      f.errorEl.textContent = f.msg;
+      isValid = false;
     } else {
-        window.location.href = "food.php"; // صفحه سفارش غذا
+      f.el.classList.remove("error");
+      f.errorEl.textContent = "";
     }
   });
-  
+
+  if(isValid){
+    // ✨ جدید: اگر اعتبارسنجی موفق بود، نوع پرداخت و مبلغ را به صورت مخفی به فرم اضافه کن
+    
+    // 1. افزودن payType
+    const payTypeInput = document.createElement('input');
+    payTypeInput.type = 'hidden';
+    payTypeInput.name = 'pay_type';
+    payTypeInput.value = payType;
+    this.appendChild(payTypeInput);
+    
+    // 2. افزودن مبلغ نهایی (اختیاری اما توصیه شده برای امنیت بیشتر)
+    const amountInput = document.createElement('input');
+    amountInput.type = 'hidden';
+    amountInput.name = 'final_amount';
+    // تبدیل تومان فارسی به عدد انگلیسی (فقط عدد)
+    amountInput.value = finalAmount; 
+    this.appendChild(amountInput);
+
+    // ارسال فرم
+    this.submit();
+  }
+});

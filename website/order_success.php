@@ -9,11 +9,11 @@
 </head>
 <body>
     <div class="success-container" style="text-align: center; margin-top: 50px;">
-        <h1>🎉 سفارش شما با موفقیت ثبت شد!</h1>
+        <h1>🎉 !سفارش شما با موفقیت ثبت شد</h1>
         <?php if (isset($_GET['order_id'])): ?>
-            <p style="font-size: 1.2em; color: #4CAF50;">شماره پیگیری سفارش شما: <strong><?php echo htmlspecialchars($_GET['order_id']); ?></strong></p>
+            <p style="font-size: 1.2em; color: #4CAF50;">:شماره پیگیری سفارش شما <strong><?php echo htmlspecialchars($_GET['order_id']); ?></strong></p>
         <?php endif; ?>
-        <p>به زودی با شما تماس خواهیم گرفت.</p>
+        <pوضعیت سفارش خود را میتوانید از صفحه پیگیری سفارش، مشاهده کنید</p>
         <a href="food.php" style="display: inline-block; margin-top: 20px; padding: 10px 20px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 5px;">بازگشت به منوی اصلی</a>
     </div>
     
