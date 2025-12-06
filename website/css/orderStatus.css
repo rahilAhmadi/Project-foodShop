@@ -1,0 +1,82 @@
+body {
+    font-family: Vazir, sans-serif;
+    background: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.order-card {
+    background: #fff;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    margin-bottom: 30px;
+    width: 92%;
+    margin-right: auto;
+    margin-left: auto;
+    border-right: 8px solid #FF9800; 
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 18px;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.status {
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #fff;
+}
+
+/* رنگ‌های وضعیت */
+.registered { background: #4CAF50; }       /* ثبت سفارش */
+.preparing  { background: #FF9800; }       /* در حال آماده‌سازی */
+.sending    { background: #03A9F4; }       /* در حال ارسال */
+.canceled   { background: #F44336; }       /* لغو سفارش */
+
+.items {
+    margin-top: 15px;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    background: #fafafa;
+    padding: 14px;
+    border-radius: 16px;
+    border: 1px solid #eee;
+    margin-bottom: 12px;
+    gap: 15px;
+}
+
+.item img {
+    width: 85px;
+    height: 85px;
+    border-radius: 14px;
+    object-fit: cover;
+}
+
+.item-info {
+    flex-grow: 1;
+}
+
+.item-title {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 6px;
+}
+
+.item-details {
+    font-size: 14px;
+    color: #666;
+}

@@ -41,6 +41,7 @@ if (isset($_GET['user'])) {
                     <a href="login.html" class="logoLogin btn_menu_a"><img src="asset/icon/user.png" alt="user"></a>
                 <?php endif; ?>
             </li>
+
         </ul>
     </div>
 </div>
